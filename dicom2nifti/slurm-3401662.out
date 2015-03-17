@@ -1,0 +1,2424 @@
+Vendor:  Continuum Analytics, Inc.
+Package: mkl
+Message: trial mode expires in 25 days
+/om/project/voice/env/voice_env/lib/python2.7/site-packages/Crypto/Util/number.py:57: PowmInsecureWarning: Not using mpz_powm_sec.  You should rebuild using libgmp >= 5 to avoid timing attack vulnerability.
+  _warn("Not using mpz_powm_sec.  You should rebuild using libgmp >= 5 to avoid timing attack vulnerability.", PowmInsecureWarning)
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run001/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run001
+nii.gz
+mri_convert
+150307-17:32:41,918 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:32:42,51 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-3-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run001/bold.nii.gz
+150307-17:32:42,338 interface INFO:
+	 stdout 2015-03-07T17:32:42.338453:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-3-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run001/bold.nii.gz 
+150307-17:32:42,359 interface INFO:
+	 stdout 2015-03-07T17:32:42.359268:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:32:42,359 interface INFO:
+	 stdout 2015-03-07T17:32:42.359268:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-3-1.dcm...
+150307-17:32:42,369 interface INFO:
+	 stdout 2015-03-07T17:32:42.369311:Getting Series No 
+150307-17:32:42,377 interface INFO:
+	 stderr 2015-03-07T17:32:42.377400:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:32:42,377 interface INFO:
+	 stderr 2015-03-07T17:32:42.377400:INFO: Scanning for Series Number 3
+150307-17:32:42,377 interface INFO:
+	 stdout 2015-03-07T17:32:42.377922:Scanning Directory 
+150307-17:33:51,879 interface INFO:
+	 stderr 2015-03-07T17:33:51.879788:INFO: found 57 files in series
+150307-17:33:51,913 interface INFO:
+	 stdout 2015-03-07T17:33:51.913146:INFO: loading series header info.
+150307-17:34:02,76 interface INFO:
+	 stderr 2015-03-07T17:34:02.076084:
+150307-17:34:02,76 interface INFO:
+	 stdout 2015-03-07T17:34:02.076419:INFO: sorting.
+150307-17:34:02,76 interface INFO:
+	 stderr 2015-03-07T17:34:02.076558:RunNo = 2
+150307-17:34:02,112 interface INFO:
+	 stdout 2015-03-07T17:34:02.112301:INFO: (108 108  65), nframes = 57, ismosaic=1
+150307-17:34:02,163 interface INFO:
+	 stdout 2015-03-07T17:34:02.163365:Could not parse NUMARIS version string syngo MR B17
+150307-17:34:02,163 interface INFO:
+	 stdout 2015-03-07T17:34:02.163365:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:34:02,163 interface INFO:
+	 stdout 2015-03-07T17:34:02.163365:Repetition Time = 4000, TR = 4000 ms
+150307-17:34:02,164 interface INFO:
+	 stdout 2015-03-07T17:34:02.163365:PE Dir COL COL
+150307-17:34:02,204 interface INFO:
+	 stdout 2015-03-07T17:34:02.203926:AutoAlign matrix detected 
+150307-17:34:02,213 interface INFO:
+	 stdout 2015-03-07T17:34:02.212946:AutoAlign Matrix --------------------- 
+150307-17:34:02,213 interface INFO:
+	 stdout 2015-03-07T17:34:02.212946: 1.000  -0.015   0.016  -0.967;
+150307-17:34:02,213 interface INFO:
+	 stdout 2015-03-07T17:34:02.212946: 0.011   0.972   0.233  -15.084;
+150307-17:34:02,213 interface INFO:
+	 stdout 2015-03-07T17:34:02.212946:-0.019  -0.233   0.972   0.736;
+150307-17:34:02,213 interface INFO:
+	 stdout 2015-03-07T17:34:02.212946: 0.000   0.000   0.000   1.000;
+150307-17:34:02,213 interface INFO:
+	 stdout 2015-03-07T17:34:02.212946:
+150307-17:34:02,239 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-3-1.dcm
+150307-17:34:02,239 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:Identification
+150307-17:34:02,239 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	NumarisVer        syngo MR B17
+150307-17:34:02,239 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	ScannerModel      TrioTim 
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	PatientName       voice_999b
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:Date and time
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	StudyDate         20150305
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	StudyTime         164719.750000 
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	SeriesTime        170646.875000 
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	AcqTime           170502.857500 
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:Acquisition parameters
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	PulseSeq          epfid2d1_108
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	Protocol          Sentences_2_SMS5_Sparse_2x2x2_4000_2900ms 
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	PhEncDir          COL
+150307-17:34:02,240 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	EchoNo            1
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	FlipAngle         90
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	EchoTime          30
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	InversionTime     -1
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	RepetitionTime    4000
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	PhEncFOV          216
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	ReadoutFOV        216
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:Image information
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	RunNo             2
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	SeriesNo          3
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	ImageNo           1
+150307-17:34:02,241 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	NImageRows        972
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	NImageCols        972
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	NFrames           57
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	SliceArraylSize   65
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	IsMosaic          1
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	ImgPos            108.3982 127.9841 -32.0640 
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	VolRes              2.0000   2.0000   2.2000 
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	VolDim            108      108       65 
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	Vc                 -0.9997  -0.0113  -0.0195 
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	Vr                  0.0155  -0.9724  -0.2327 
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	Vs                 -0.0163  -0.2330   0.9723 
+150307-17:34:02,242 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	VolCenter           0.9312   5.0897  10.2214 
+150307-17:34:02,243 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:	TransferSyntaxUID unknown
+150307-17:34:02,243 interface INFO:
+	 stdout 2015-03-07T17:34:02.239252:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:34:17,771 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:sagrev = 0, correv =0, trarev = 0
+150307-17:34:17,771 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:Vs = -0.0162995 -0.232984 0.972344
+150307-17:34:17,771 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:34:17,771 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:TR=4000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:34:17,771 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:i_ras = (-0.999747, -0.0112518, -0.0194549)
+150307-17:34:17,772 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:j_ras = (0.0154733, -0.972416, -0.232742)
+150307-17:34:17,772 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:k_ras = (-0.0162995, -0.232984, 0.972344)
+150307-17:34:17,772 interface INFO:
+	 stdout 2015-03-07T17:34:17.771177:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run001/bold.nii.gz...
+150307-17:34:18,499 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run002/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run002
+nii.gz
+mri_convert
+150307-17:34:36,829 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:34:36,921 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-6-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run002/bold.nii.gz
+150307-17:34:37,65 interface INFO:
+	 stdout 2015-03-07T17:34:37.065836:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-6-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run002/bold.nii.gz 
+150307-17:34:37,86 interface INFO:
+	 stdout 2015-03-07T17:34:37.086319:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:34:37,86 interface INFO:
+	 stdout 2015-03-07T17:34:37.086319:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-6-1.dcm...
+150307-17:34:37,96 interface INFO:
+	 stdout 2015-03-07T17:34:37.096416:Getting Series No 
+150307-17:34:37,104 interface INFO:
+	 stderr 2015-03-07T17:34:37.104376:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:34:37,104 interface INFO:
+	 stderr 2015-03-07T17:34:37.104376:INFO: Scanning for Series Number 6
+150307-17:34:37,104 interface INFO:
+	 stdout 2015-03-07T17:34:37.104917:Scanning Directory 
+150307-17:35:22,539 interface INFO:
+	 stderr 2015-03-07T17:35:22.539873:INFO: found 57 files in series
+150307-17:35:22,540 interface INFO:
+	 stdout 2015-03-07T17:35:22.540229:INFO: loading series header info.
+150307-17:35:32,803 interface INFO:
+	 stderr 2015-03-07T17:35:32.803562:
+150307-17:35:32,803 interface INFO:
+	 stdout 2015-03-07T17:35:32.803923:INFO: sorting.
+150307-17:35:32,804 interface INFO:
+	 stderr 2015-03-07T17:35:32.804068:RunNo = 5
+150307-17:35:32,840 interface INFO:
+	 stdout 2015-03-07T17:35:32.840053:INFO: (108 108  65), nframes = 57, ismosaic=1
+150307-17:35:32,891 interface INFO:
+	 stdout 2015-03-07T17:35:32.891204:Could not parse NUMARIS version string syngo MR B17
+150307-17:35:32,891 interface INFO:
+	 stdout 2015-03-07T17:35:32.891204:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:35:32,891 interface INFO:
+	 stdout 2015-03-07T17:35:32.891204:Repetition Time = 4000, TR = 4000 ms
+150307-17:35:32,891 interface INFO:
+	 stdout 2015-03-07T17:35:32.891204:PE Dir COL COL
+150307-17:35:32,931 interface INFO:
+	 stdout 2015-03-07T17:35:32.931677:AutoAlign matrix detected 
+150307-17:35:32,940 interface INFO:
+	 stdout 2015-03-07T17:35:32.940602:AutoAlign Matrix --------------------- 
+150307-17:35:32,940 interface INFO:
+	 stdout 2015-03-07T17:35:32.940602: 1.000  -0.015   0.016  -0.967;
+150307-17:35:32,940 interface INFO:
+	 stdout 2015-03-07T17:35:32.940602: 0.011   0.972   0.233  -15.084;
+150307-17:35:32,940 interface INFO:
+	 stdout 2015-03-07T17:35:32.940602:-0.019  -0.233   0.972   0.736;
+150307-17:35:32,941 interface INFO:
+	 stdout 2015-03-07T17:35:32.940602: 0.000   0.000   0.000   1.000;
+150307-17:35:32,941 interface INFO:
+	 stdout 2015-03-07T17:35:32.940602:
+150307-17:35:32,967 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-6-1.dcm
+150307-17:35:32,967 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:Identification
+150307-17:35:32,967 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	NumarisVer        syngo MR B17
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	ScannerModel      TrioTim 
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	PatientName       voice_999b
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:Date and time
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	StudyDate         20150305
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	StudyTime         164719.750000 
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	SeriesTime        172426.859000 
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	AcqTime           172249.280000 
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:Acquisition parameters
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	PulseSeq          epfid2d1_108
+150307-17:35:32,968 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	Protocol          Sentences_3_SMS5_Sparse_2x2x2_4000_2900ms 
+150307-17:35:32,969 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	PhEncDir          COL
+150307-17:35:32,969 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	EchoNo            1
+150307-17:35:32,969 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	FlipAngle         90
+150307-17:35:32,969 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	EchoTime          30
+150307-17:35:32,969 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	InversionTime     -1
+150307-17:35:32,969 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	RepetitionTime    4000
+150307-17:35:32,969 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	PhEncFOV          216
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	ReadoutFOV        216
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:Image information
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	RunNo             5
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	SeriesNo          6
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	ImageNo           1
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	NImageRows        972
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	NImageCols        972
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	NFrames           57
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	SliceArraylSize   65
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	IsMosaic          1
+150307-17:35:32,970 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	ImgPos            108.3982 127.9841 -32.0640 
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	VolRes              2.0000   2.0000   2.2000 
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	VolDim            108      108       65 
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	Vc                 -0.9997  -0.0113  -0.0195 
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	Vr                  0.0155  -0.9724  -0.2327 
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	Vs                 -0.0163  -0.2330   0.9723 
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	VolCenter           0.9312   5.0897  10.2214 
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:	TransferSyntaxUID unknown
+150307-17:35:32,971 interface INFO:
+	 stdout 2015-03-07T17:35:32.967462:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:35:48,549 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:sagrev = 0, correv =0, trarev = 0
+150307-17:35:48,549 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:Vs = -0.0162995 -0.232984 0.972344
+150307-17:35:48,549 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:35:48,549 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:TR=4000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:35:48,549 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:i_ras = (-0.999747, -0.0112518, -0.0194549)
+150307-17:35:48,550 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:j_ras = (0.0154733, -0.972416, -0.232742)
+150307-17:35:48,550 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:k_ras = (-0.0162995, -0.232984, 0.972344)
+150307-17:35:48,550 interface INFO:
+	 stdout 2015-03-07T17:35:48.549059:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task002_run002/bold.nii.gz...
+150307-17:35:49,243 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task004_run001/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task004_run001
+nii.gz
+mri_convert
+150307-17:36:08,274 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:36:08,351 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-9-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task004_run001/bold.nii.gz
+150307-17:36:08,497 interface INFO:
+	 stdout 2015-03-07T17:36:08.496748:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-9-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task004_run001/bold.nii.gz 
+150307-17:36:08,517 interface INFO:
+	 stdout 2015-03-07T17:36:08.517399:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:36:08,517 interface INFO:
+	 stdout 2015-03-07T17:36:08.517399:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-9-1.dcm...
+150307-17:36:08,527 interface INFO:
+	 stdout 2015-03-07T17:36:08.527455:Getting Series No 
+150307-17:36:08,535 interface INFO:
+	 stderr 2015-03-07T17:36:08.535477:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:36:08,535 interface INFO:
+	 stderr 2015-03-07T17:36:08.535477:INFO: Scanning for Series Number 9
+150307-17:36:08,536 interface INFO:
+	 stdout 2015-03-07T17:36:08.536020:Scanning Directory 
+150307-17:36:53,900 interface INFO:
+	 stderr 2015-03-07T17:36:53.900181:INFO: found 99 files in series
+150307-17:36:53,900 interface INFO:
+	 stdout 2015-03-07T17:36:53.900544:INFO: loading series header info.
+150307-17:37:11,210 interface INFO:
+	 stderr 2015-03-07T17:37:11.210090:
+150307-17:37:11,210 interface INFO:
+	 stdout 2015-03-07T17:37:11.210448:INFO: sorting.
+150307-17:37:11,210 interface INFO:
+	 stderr 2015-03-07T17:37:11.210591:RunNo = 8
+150307-17:37:11,246 interface INFO:
+	 stdout 2015-03-07T17:37:11.246439:INFO: (108 108  65), nframes = 99, ismosaic=1
+150307-17:37:11,336 interface INFO:
+	 stdout 2015-03-07T17:37:11.336737:Could not parse NUMARIS version string syngo MR B17
+150307-17:37:11,337 interface INFO:
+	 stdout 2015-03-07T17:37:11.336737:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:37:11,337 interface INFO:
+	 stdout 2015-03-07T17:37:11.336737:Repetition Time = 2000, TR = 2000 ms
+150307-17:37:11,337 interface INFO:
+	 stdout 2015-03-07T17:37:11.336737:PE Dir COL COL
+150307-17:37:11,379 interface INFO:
+	 stdout 2015-03-07T17:37:11.379247:AutoAlign matrix detected 
+150307-17:37:11,388 interface INFO:
+	 stdout 2015-03-07T17:37:11.388276:AutoAlign Matrix --------------------- 
+150307-17:37:11,388 interface INFO:
+	 stdout 2015-03-07T17:37:11.388276: 1.000  -0.022  -0.004  -1.366;
+150307-17:37:11,388 interface INFO:
+	 stdout 2015-03-07T17:37:11.388276: 0.023   0.967   0.253  -14.316;
+150307-17:37:11,388 interface INFO:
+	 stdout 2015-03-07T17:37:11.388276:-0.002  -0.253   0.967   0.378;
+150307-17:37:11,388 interface INFO:
+	 stdout 2015-03-07T17:37:11.388276: 0.000   0.000   0.000   1.000;
+150307-17:37:11,388 interface INFO:
+	 stdout 2015-03-07T17:37:11.388276:
+150307-17:37:11,414 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-9-1.dcm
+150307-17:37:11,414 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:Identification
+150307-17:37:11,414 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	NumarisVer        syngo MR B17
+150307-17:37:11,414 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	ScannerModel      TrioTim 
+150307-17:37:11,414 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	PatientName       voice_999b
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:Date and time
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	StudyDate         20150305
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	StudyTime         164719.750000 
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	SeriesTime        173326.843000 
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	AcqTime           173159.422500 
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:Acquisition parameters
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	PulseSeq          epfid2d1_108
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	Protocol          FaceMatch_2_SMS5_Sparse_2x2x2_2000_900ms
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	PhEncDir          COL
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	EchoNo            1
+150307-17:37:11,415 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	FlipAngle         90
+150307-17:37:11,416 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	EchoTime          30
+150307-17:37:11,416 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	InversionTime     -1
+150307-17:37:11,416 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	RepetitionTime    2000
+150307-17:37:11,416 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	PhEncFOV          216
+150307-17:37:11,416 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	ReadoutFOV        216
+150307-17:37:11,416 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:Image information
+150307-17:37:11,416 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	RunNo             8
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	SeriesNo          9
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	ImageNo           1
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	NImageRows        972
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	NImageCols        972
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	NFrames           99
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	SliceArraylSize   65
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	IsMosaic          1
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	ImgPos            106.7272 137.8259 -26.2468 
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	VolRes              2.0000   2.0000   2.2000 
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	VolDim            108      108       65 
+150307-17:37:11,417 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	Vc                 -0.9997  -0.0225  -0.0028 
+150307-17:37:11,418 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	Vr                  0.0224  -0.9566  -0.2904 
+150307-17:37:11,418 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	Vs                  0.0039  -0.2904   0.9569 
+150307-17:37:11,418 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	VolCenter           1.4463  11.3130  10.5043 
+150307-17:37:11,418 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:	TransferSyntaxUID unknown
+150307-17:37:11,418 interface INFO:
+	 stdout 2015-03-07T17:37:11.414288:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:37:38,782 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:sagrev = 0, correv =0, trarev = 0
+150307-17:37:38,783 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:Vs = 0.00387994 -0.290418 0.956892
+150307-17:37:38,783 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:37:38,783 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:TR=2000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:37:38,783 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:i_ras = (-0.999743, -0.0225135, -0.00277919)
+150307-17:37:38,783 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:j_ras = (0.0223501, -0.956635, -0.290431)
+150307-17:37:38,783 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:k_ras = (0.00387994, -0.290418, 0.956892)
+150307-17:37:38,783 interface INFO:
+	 stdout 2015-03-07T17:37:38.782607:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task004_run001/bold.nii.gz...
+150307-17:37:39,838 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task008_run001/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task008_run001
+nii.gz
+mri_convert
+150307-17:38:11,45 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:38:11,119 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-19-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task008_run001/bold.nii.gz
+150307-17:38:11,325 interface INFO:
+	 stdout 2015-03-07T17:38:11.325557:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-19-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task008_run001/bold.nii.gz 
+150307-17:38:11,346 interface INFO:
+	 stdout 2015-03-07T17:38:11.345968:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:38:11,346 interface INFO:
+	 stdout 2015-03-07T17:38:11.345968:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-19-1.dcm...
+150307-17:38:11,355 interface INFO:
+	 stdout 2015-03-07T17:38:11.355852:Getting Series No 
+150307-17:38:11,363 interface INFO:
+	 stderr 2015-03-07T17:38:11.363780:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:38:11,364 interface INFO:
+	 stderr 2015-03-07T17:38:11.363780:INFO: Scanning for Series Number 19
+150307-17:38:11,364 interface INFO:
+	 stdout 2015-03-07T17:38:11.364340:Scanning Directory 
+150307-17:38:56,311 interface INFO:
+	 stderr 2015-03-07T17:38:56.311837:INFO: found 138 files in series
+150307-17:38:56,312 interface INFO:
+	 stdout 2015-03-07T17:38:56.312204:INFO: loading series header info.
+150307-17:39:20,874 interface INFO:
+	 stderr 2015-03-07T17:39:20.874689:
+150307-17:39:20,875 interface INFO:
+	 stdout 2015-03-07T17:39:20.875046:INFO: sorting.
+150307-17:39:20,875 interface INFO:
+	 stderr 2015-03-07T17:39:20.875192:RunNo = 18
+150307-17:39:20,906 interface INFO:
+	 stdout 2015-03-07T17:39:20.906181:INFO: (108 108  65), nframes = 138, ismosaic=1
+150307-17:39:21,26 interface INFO:
+	 stdout 2015-03-07T17:39:21.026722:Could not parse NUMARIS version string syngo MR B17
+150307-17:39:21,27 interface INFO:
+	 stdout 2015-03-07T17:39:21.026722:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:39:21,27 interface INFO:
+	 stdout 2015-03-07T17:39:21.026722:Repetition Time = 1090, TR = 1090 ms
+150307-17:39:21,27 interface INFO:
+	 stdout 2015-03-07T17:39:21.026722:PE Dir COL COL
+150307-17:39:21,70 interface INFO:
+	 stdout 2015-03-07T17:39:21.070828:AutoAlign matrix detected 
+150307-17:39:21,79 interface INFO:
+	 stdout 2015-03-07T17:39:21.079891:AutoAlign Matrix --------------------- 
+150307-17:39:21,80 interface INFO:
+	 stdout 2015-03-07T17:39:21.079891: 1.000   0.002  -0.011  -2.018;
+150307-17:39:21,80 interface INFO:
+	 stdout 2015-03-07T17:39:21.079891: 0.002   0.957   0.291  -14.009;
+150307-17:39:21,80 interface INFO:
+	 stdout 2015-03-07T17:39:21.079891: 0.011  -0.291   0.957   2.373;
+150307-17:39:21,80 interface INFO:
+	 stdout 2015-03-07T17:39:21.079891: 0.000   0.000   0.000   1.000;
+150307-17:39:21,80 interface INFO:
+	 stdout 2015-03-07T17:39:21.079891:
+150307-17:39:21,102 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-19-1.dcm
+150307-17:39:21,102 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:Identification
+150307-17:39:21,102 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	NumarisVer        syngo MR B17
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	ScannerModel      TrioTim 
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	PatientName       voice_999b
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:Date and time
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	StudyDate         20150305
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	StudyTime         164719.750000 
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	SeriesTime        181306.906000 
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	AcqTime           181150.470000 
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:Acquisition parameters
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	PulseSeq          epfid2d1_108
+150307-17:39:21,103 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	Protocol          Movie_SMS5_rsfMRI_PA
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	PhEncDir          COL
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	EchoNo            1
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	FlipAngle         61
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	EchoTime          30
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	InversionTime     -1
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	RepetitionTime    1090
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	PhEncFOV          216
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	ReadoutFOV        216
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:Image information
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	RunNo             18
+150307-17:39:21,104 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	SeriesNo          19
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	ImageNo           1
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	NImageRows        972
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	NImageCols        972
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	NFrames           138
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	SliceArraylSize   65
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	IsMosaic          1
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	ImgPos            109.5004 124.3432  -7.5014 
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	VolRes              2.0000   2.0000   2.0000 
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	VolDim            108      108       65 
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	Vc                 -0.9999  -0.0023   0.0107 
+150307-17:39:21,105 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	Vr                 -0.0017  -0.9324  -0.3615 
+150307-17:39:21,106 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	Vs                  0.0109  -0.3615   0.9323 
+150307-17:39:21,106 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	VolCenter           2.0291  -0.1026  15.2177 
+150307-17:39:21,106 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:	TransferSyntaxUID unknown
+150307-17:39:21,106 interface INFO:
+	 stdout 2015-03-07T17:39:21.102456:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:39:59,304 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:sagrev = 0, correv =0, trarev = 0
+150307-17:39:59,321 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:Vs = 0.0108652 -0.361494 0.932311
+150307-17:39:59,321 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:39:59,321 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:TR=1090.00, TE=30.00, TI=-1.00, flip angle=61.00
+150307-17:39:59,321 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:i_ras = (-0.99994, -0.00233841, 0.0107467)
+150307-17:39:59,321 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:j_ras = (-0.00170473, -0.932371, -0.361498)
+150307-17:39:59,322 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:k_ras = (0.0108652, -0.361494, 0.932311)
+150307-17:39:59,322 interface INFO:
+	 stdout 2015-03-07T17:39:59.304318:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task008_run001/bold.nii.gz...
+150307-17:40:00,703 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run001/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run001
+nii.gz
+mri_convert
+150307-17:40:43,703 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:40:43,777 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-4-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run001/bold.nii.gz
+150307-17:40:44,12 interface INFO:
+	 stdout 2015-03-07T17:40:44.011897:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-4-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run001/bold.nii.gz 
+150307-17:40:44,32 interface INFO:
+	 stdout 2015-03-07T17:40:44.032490:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:40:44,32 interface INFO:
+	 stdout 2015-03-07T17:40:44.032490:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-4-1.dcm...
+150307-17:40:44,42 interface INFO:
+	 stdout 2015-03-07T17:40:44.042376:Getting Series No 
+150307-17:40:44,50 interface INFO:
+	 stderr 2015-03-07T17:40:44.050400:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:40:44,50 interface INFO:
+	 stderr 2015-03-07T17:40:44.050400:INFO: Scanning for Series Number 4
+150307-17:40:44,51 interface INFO:
+	 stdout 2015-03-07T17:40:44.050961:Scanning Directory 
+150307-17:41:29,124 interface INFO:
+	 stderr 2015-03-07T17:41:29.123997:INFO: found 42 files in series
+150307-17:41:29,124 interface INFO:
+	 stdout 2015-03-07T17:41:29.124351:INFO: loading series header info.
+150307-17:41:36,521 interface INFO:
+	 stderr 2015-03-07T17:41:36.521753:
+150307-17:41:36,522 interface INFO:
+	 stdout 2015-03-07T17:41:36.522101:INFO: sorting.
+150307-17:41:36,522 interface INFO:
+	 stderr 2015-03-07T17:41:36.522240:RunNo = 3
+150307-17:41:36,555 interface INFO:
+	 stdout 2015-03-07T17:41:36.555225:INFO: (108 108  65), nframes = 42, ismosaic=1
+150307-17:41:36,593 interface INFO:
+	 stdout 2015-03-07T17:41:36.593527:Could not parse NUMARIS version string syngo MR B17
+150307-17:41:36,593 interface INFO:
+	 stdout 2015-03-07T17:41:36.593527:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:41:36,594 interface INFO:
+	 stdout 2015-03-07T17:41:36.593527:Repetition Time = 4000, TR = 4000 ms
+150307-17:41:36,594 interface INFO:
+	 stdout 2015-03-07T17:41:36.593527:PE Dir COL COL
+150307-17:41:36,633 interface INFO:
+	 stdout 2015-03-07T17:41:36.633339:AutoAlign matrix detected 
+150307-17:41:36,642 interface INFO:
+	 stdout 2015-03-07T17:41:36.642266:AutoAlign Matrix --------------------- 
+150307-17:41:36,642 interface INFO:
+	 stdout 2015-03-07T17:41:36.642266: 1.000  -0.015   0.016  -0.967;
+150307-17:41:36,642 interface INFO:
+	 stdout 2015-03-07T17:41:36.642266: 0.011   0.972   0.233  -15.084;
+150307-17:41:36,642 interface INFO:
+	 stdout 2015-03-07T17:41:36.642266:-0.019  -0.233   0.972   0.736;
+150307-17:41:36,642 interface INFO:
+	 stdout 2015-03-07T17:41:36.642266: 0.000   0.000   0.000   1.000;
+150307-17:41:36,642 interface INFO:
+	 stdout 2015-03-07T17:41:36.642266:
+150307-17:41:36,667 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-4-1.dcm
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:Identification
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	NumarisVer        syngo MR B17
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	ScannerModel      TrioTim 
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	PatientName       voice_999b
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:Date and time
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	StudyDate         20150305
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	StudyTime         164719.750000 
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	SeriesTime        171346.890000 
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	AcqTime           171205.710000 
+150307-17:41:36,668 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:Acquisition parameters
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	PulseSeq          epfid2d1_108
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	Protocol          Nonword_2_SMS5_Sparse_2x2x2_4000_2900ms 
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	PhEncDir          COL
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	EchoNo            1
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	FlipAngle         90
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	EchoTime          30
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	InversionTime     -1
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	RepetitionTime    4000
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	PhEncFOV          216
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	ReadoutFOV        216
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:Image information
+150307-17:41:36,669 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	RunNo             3
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	SeriesNo          4
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	ImageNo           1
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	NImageRows        972
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	NImageCols        972
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	NFrames           42
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	SliceArraylSize   65
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	IsMosaic          1
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	ImgPos            108.3982 127.9841 -32.0640 
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	VolRes              2.0000   2.0000   2.2000 
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	VolDim            108      108       65 
+150307-17:41:36,670 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	Vc                 -0.9997  -0.0113  -0.0195 
+150307-17:41:36,671 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	Vr                  0.0155  -0.9724  -0.2327 
+150307-17:41:36,671 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	Vs                 -0.0163  -0.2330   0.9723 
+150307-17:41:36,671 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	VolCenter           0.9312   5.0897  10.2214 
+150307-17:41:36,671 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:	TransferSyntaxUID unknown
+150307-17:41:36,671 interface INFO:
+	 stdout 2015-03-07T17:41:36.667734:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:41:47,997 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:sagrev = 0, correv =0, trarev = 0
+150307-17:41:47,997 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:Vs = -0.0162995 -0.232984 0.972344
+150307-17:41:47,997 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:41:47,997 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:TR=4000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:41:47,997 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:i_ras = (-0.999747, -0.0112518, -0.0194549)
+150307-17:41:47,997 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:j_ras = (0.0154733, -0.972416, -0.232742)
+150307-17:41:47,997 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:k_ras = (-0.0162995, -0.232984, 0.972344)
+150307-17:41:47,998 interface INFO:
+	 stdout 2015-03-07T17:41:47.996888:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run001/bold.nii.gz...
+150307-17:41:48,514 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run002/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run002
+nii.gz
+mri_convert
+150307-17:42:01,186 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:42:01,261 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-5-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run002/bold.nii.gz
+150307-17:42:01,467 interface INFO:
+	 stdout 2015-03-07T17:42:01.467155:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-5-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run002/bold.nii.gz 
+150307-17:42:01,487 interface INFO:
+	 stdout 2015-03-07T17:42:01.487769:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:42:01,488 interface INFO:
+	 stdout 2015-03-07T17:42:01.487769:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-5-1.dcm...
+150307-17:42:01,498 interface INFO:
+	 stdout 2015-03-07T17:42:01.497965:Getting Series No 
+150307-17:42:01,506 interface INFO:
+	 stderr 2015-03-07T17:42:01.506023:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:42:01,506 interface INFO:
+	 stderr 2015-03-07T17:42:01.506023:INFO: Scanning for Series Number 5
+150307-17:42:01,506 interface INFO:
+	 stdout 2015-03-07T17:42:01.506560:Scanning Directory 
+150307-17:42:46,897 interface INFO:
+	 stderr 2015-03-07T17:42:46.897861:INFO: found 42 files in series
+150307-17:42:46,898 interface INFO:
+	 stdout 2015-03-07T17:42:46.898231:INFO: loading series header info.
+150307-17:42:54,358 interface INFO:
+	 stderr 2015-03-07T17:42:54.358707:
+150307-17:42:54,359 interface INFO:
+	 stdout 2015-03-07T17:42:54.359053:INFO: sorting.
+150307-17:42:54,359 interface INFO:
+	 stderr 2015-03-07T17:42:54.359193:RunNo = 4
+150307-17:42:54,394 interface INFO:
+	 stdout 2015-03-07T17:42:54.394649:INFO: (108 108  65), nframes = 42, ismosaic=1
+150307-17:42:54,432 interface INFO:
+	 stdout 2015-03-07T17:42:54.432079:Could not parse NUMARIS version string syngo MR B17
+150307-17:42:54,432 interface INFO:
+	 stdout 2015-03-07T17:42:54.432079:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:42:54,432 interface INFO:
+	 stdout 2015-03-07T17:42:54.432079:Repetition Time = 4000, TR = 4000 ms
+150307-17:42:54,432 interface INFO:
+	 stdout 2015-03-07T17:42:54.432079:PE Dir COL COL
+150307-17:42:54,471 interface INFO:
+	 stdout 2015-03-07T17:42:54.471833:AutoAlign matrix detected 
+150307-17:42:54,480 interface INFO:
+	 stdout 2015-03-07T17:42:54.480768:AutoAlign Matrix --------------------- 
+150307-17:42:54,480 interface INFO:
+	 stdout 2015-03-07T17:42:54.480768: 1.000  -0.015   0.016  -0.967;
+150307-17:42:54,481 interface INFO:
+	 stdout 2015-03-07T17:42:54.480768: 0.011   0.972   0.233  -15.084;
+150307-17:42:54,481 interface INFO:
+	 stdout 2015-03-07T17:42:54.480768:-0.019  -0.233   0.972   0.736;
+150307-17:42:54,481 interface INFO:
+	 stdout 2015-03-07T17:42:54.480768: 0.000   0.000   0.000   1.000;
+150307-17:42:54,481 interface INFO:
+	 stdout 2015-03-07T17:42:54.480768:
+150307-17:42:54,506 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-5-1.dcm
+150307-17:42:54,506 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:Identification
+150307-17:42:54,506 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	NumarisVer        syngo MR B17
+150307-17:42:54,506 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	ScannerModel      TrioTim 
+150307-17:42:54,506 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	PatientName       voice_999b
+150307-17:42:54,506 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:Date and time
+150307-17:42:54,506 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	StudyDate         20150305
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	StudyTime         164719.750000 
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	SeriesTime        171806.828000 
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	AcqTime           171708.165000 
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:Acquisition parameters
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	PulseSeq          epfid2d1_108
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	Protocol          Nonword_3_SMS5_Sparse_2x2x2_4000_2900ms 
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	PhEncDir          COL
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	EchoNo            1
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	FlipAngle         90
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	EchoTime          30
+150307-17:42:54,507 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	InversionTime     -1
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	RepetitionTime    4000
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	PhEncFOV          216
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	ReadoutFOV        216
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:Image information
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	RunNo             4
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	SeriesNo          5
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	ImageNo           1
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	NImageRows        972
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	NImageCols        972
+150307-17:42:54,508 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	NFrames           42
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	SliceArraylSize   65
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	IsMosaic          1
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	ImgPos            108.3982 127.9841 -32.0640 
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	VolRes              2.0000   2.0000   2.2000 
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	VolDim            108      108       65 
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	Vc                 -0.9997  -0.0113  -0.0195 
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	Vr                  0.0155  -0.9724  -0.2327 
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	Vs                 -0.0163  -0.2330   0.9723 
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	VolCenter           0.9312   5.0897  10.2214 
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:	TransferSyntaxUID unknown
+150307-17:42:54,509 interface INFO:
+	 stdout 2015-03-07T17:42:54.506134:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:43:05,820 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:sagrev = 0, correv =0, trarev = 0
+150307-17:43:05,820 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:Vs = -0.0162995 -0.232984 0.972344
+150307-17:43:05,820 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:43:05,821 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:TR=4000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:43:05,821 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:i_ras = (-0.999747, -0.0112518, -0.0194549)
+150307-17:43:05,821 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:j_ras = (0.0154733, -0.972416, -0.232742)
+150307-17:43:05,821 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:k_ras = (-0.0162995, -0.232984, 0.972344)
+150307-17:43:05,821 interface INFO:
+	 stdout 2015-03-07T17:43:05.820370:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task003_run002/bold.nii.gz...
+150307-17:43:06,327 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run001/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run001
+nii.gz
+mri_convert
+150307-17:43:19,58 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:43:19,148 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-11-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run001/bold.nii.gz
+150307-17:43:19,352 interface INFO:
+	 stdout 2015-03-07T17:43:19.352047:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-11-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run001/bold.nii.gz 
+150307-17:43:19,372 interface INFO:
+	 stdout 2015-03-07T17:43:19.372396:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:43:19,372 interface INFO:
+	 stdout 2015-03-07T17:43:19.372396:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-11-1.dcm...
+150307-17:43:19,383 interface INFO:
+	 stdout 2015-03-07T17:43:19.383299:Getting Series No 
+150307-17:43:19,391 interface INFO:
+	 stderr 2015-03-07T17:43:19.391273:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:43:19,391 interface INFO:
+	 stderr 2015-03-07T17:43:19.391273:INFO: Scanning for Series Number 11
+150307-17:43:19,391 interface INFO:
+	 stdout 2015-03-07T17:43:19.391836:Scanning Directory 
+150307-17:44:04,508 interface INFO:
+	 stderr 2015-03-07T17:44:04.508790:INFO: found 55 files in series
+150307-17:44:04,509 interface INFO:
+	 stdout 2015-03-07T17:44:04.509153:INFO: loading series header info.
+150307-17:44:14,381 interface INFO:
+	 stderr 2015-03-07T17:44:14.381426:
+150307-17:44:14,381 interface INFO:
+	 stdout 2015-03-07T17:44:14.381787:INFO: sorting.
+150307-17:44:14,381 interface INFO:
+	 stderr 2015-03-07T17:44:14.381941:RunNo = 10
+150307-17:44:14,417 interface INFO:
+	 stdout 2015-03-07T17:44:14.417469:INFO: (108 108  65), nframes = 55, ismosaic=1
+150307-17:44:14,465 interface INFO:
+	 stdout 2015-03-07T17:44:14.465238:Could not parse NUMARIS version string syngo MR B17
+150307-17:44:14,465 interface INFO:
+	 stdout 2015-03-07T17:44:14.465238:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:44:14,465 interface INFO:
+	 stdout 2015-03-07T17:44:14.465238:Repetition Time = 4000, TR = 4000 ms
+150307-17:44:14,465 interface INFO:
+	 stdout 2015-03-07T17:44:14.465238:PE Dir COL COL
+150307-17:44:14,505 interface INFO:
+	 stdout 2015-03-07T17:44:14.505307:AutoAlign matrix detected 
+150307-17:44:14,514 interface INFO:
+	 stdout 2015-03-07T17:44:14.514270:AutoAlign Matrix --------------------- 
+150307-17:44:14,514 interface INFO:
+	 stdout 2015-03-07T17:44:14.514270: 1.000  -0.022  -0.004  -1.366;
+150307-17:44:14,514 interface INFO:
+	 stdout 2015-03-07T17:44:14.514270: 0.023   0.967   0.253  -14.316;
+150307-17:44:14,514 interface INFO:
+	 stdout 2015-03-07T17:44:14.514270:-0.002  -0.253   0.967   0.378;
+150307-17:44:14,514 interface INFO:
+	 stdout 2015-03-07T17:44:14.514270: 0.000   0.000   0.000   1.000;
+150307-17:44:14,514 interface INFO:
+	 stdout 2015-03-07T17:44:14.514270:
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-11-1.dcm
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:Identification
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	NumarisVer        syngo MR B17
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	ScannerModel      TrioTim 
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	PatientName       voice_999b
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:Date and time
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	StudyDate         20150305
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	StudyTime         164719.750000 
+150307-17:44:14,541 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	SeriesTime        174426.906000 
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	AcqTime           174236.870000 
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:Acquisition parameters
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	PulseSeq          epfid2d1_108
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	Protocol          Vowels_1_SMS5_Sparse_2x2x2_4000_2900ms
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	PhEncDir          COL
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	EchoNo            1
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	FlipAngle         90
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	EchoTime          30
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	InversionTime     -1
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	RepetitionTime    4000
+150307-17:44:14,542 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	PhEncFOV          216
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	ReadoutFOV        216
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:Image information
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	RunNo             10
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	SeriesNo          11
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	ImageNo           1
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	NImageRows        972
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	NImageCols        972
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	NFrames           55
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	SliceArraylSize   65
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	IsMosaic          1
+150307-17:44:14,543 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	ImgPos            106.7272 137.8259 -26.2468 
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	VolRes              2.0000   2.0000   2.2000 
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	VolDim            108      108       65 
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	Vc                 -0.9997  -0.0225  -0.0028 
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	Vr                  0.0224  -0.9566  -0.2904 
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	Vs                  0.0039  -0.2904   0.9569 
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	VolCenter           1.4463  11.3130  10.5043 
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:	TransferSyntaxUID unknown
+150307-17:44:14,544 interface INFO:
+	 stdout 2015-03-07T17:44:14.540908:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:44:29,450 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:sagrev = 0, correv =0, trarev = 0
+150307-17:44:29,450 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:Vs = 0.00387994 -0.290418 0.956892
+150307-17:44:29,450 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:44:29,450 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:TR=4000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:44:29,450 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:i_ras = (-0.999743, -0.0225135, -0.00277919)
+150307-17:44:29,450 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:j_ras = (0.0223501, -0.956635, -0.290431)
+150307-17:44:29,450 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:k_ras = (0.00387994, -0.290418, 0.956892)
+150307-17:44:29,451 interface INFO:
+	 stdout 2015-03-07T17:44:29.449873:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run001/bold.nii.gz...
+150307-17:44:30,74 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run002/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run002
+nii.gz
+mri_convert
+150307-17:44:47,97 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:44:47,226 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-12-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run002/bold.nii.gz
+150307-17:44:47,428 interface INFO:
+	 stdout 2015-03-07T17:44:47.428789:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-12-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run002/bold.nii.gz 
+150307-17:44:47,449 interface INFO:
+	 stdout 2015-03-07T17:44:47.449388:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:44:47,449 interface INFO:
+	 stdout 2015-03-07T17:44:47.449388:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-12-1.dcm...
+150307-17:44:47,459 interface INFO:
+	 stdout 2015-03-07T17:44:47.459578:Getting Series No 
+150307-17:44:47,467 interface INFO:
+	 stderr 2015-03-07T17:44:47.467514:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:44:47,467 interface INFO:
+	 stderr 2015-03-07T17:44:47.467514:INFO: Scanning for Series Number 12
+150307-17:44:47,468 interface INFO:
+	 stdout 2015-03-07T17:44:47.468072:Scanning Directory 
+150307-17:45:33,181 interface INFO:
+	 stderr 2015-03-07T17:45:33.181509:INFO: found 55 files in series
+150307-17:45:33,181 interface INFO:
+	 stdout 2015-03-07T17:45:33.181890:INFO: loading series header info.
+150307-17:45:43,291 interface INFO:
+	 stderr 2015-03-07T17:45:43.291775:
+150307-17:45:43,292 interface INFO:
+	 stdout 2015-03-07T17:45:43.292137:INFO: sorting.
+150307-17:45:43,292 interface INFO:
+	 stderr 2015-03-07T17:45:43.292279:RunNo = 11
+150307-17:45:43,328 interface INFO:
+	 stdout 2015-03-07T17:45:43.327938:INFO: (108 108  65), nframes = 55, ismosaic=1
+150307-17:45:43,377 interface INFO:
+	 stdout 2015-03-07T17:45:43.377138:Could not parse NUMARIS version string syngo MR B17
+150307-17:45:43,377 interface INFO:
+	 stdout 2015-03-07T17:45:43.377138:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:45:43,377 interface INFO:
+	 stdout 2015-03-07T17:45:43.377138:Repetition Time = 4000, TR = 4000 ms
+150307-17:45:43,377 interface INFO:
+	 stdout 2015-03-07T17:45:43.377138:PE Dir COL COL
+150307-17:45:43,417 interface INFO:
+	 stdout 2015-03-07T17:45:43.417357:AutoAlign matrix detected 
+150307-17:45:43,425 interface INFO:
+	 stdout 2015-03-07T17:45:43.425744:AutoAlign Matrix --------------------- 
+150307-17:45:43,425 interface INFO:
+	 stdout 2015-03-07T17:45:43.425744: 1.000  -0.022  -0.004  -1.366;
+150307-17:45:43,426 interface INFO:
+	 stdout 2015-03-07T17:45:43.425744: 0.023   0.967   0.253  -14.316;
+150307-17:45:43,426 interface INFO:
+	 stdout 2015-03-07T17:45:43.425744:-0.002  -0.253   0.967   0.378;
+150307-17:45:43,426 interface INFO:
+	 stdout 2015-03-07T17:45:43.425744: 0.000   0.000   0.000   1.000;
+150307-17:45:43,426 interface INFO:
+	 stdout 2015-03-07T17:45:43.425744:
+150307-17:45:43,451 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-12-1.dcm
+150307-17:45:43,451 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:Identification
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	NumarisVer        syngo MR B17
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	ScannerModel      TrioTim 
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	PatientName       voice_999b
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:Date and time
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	StudyDate         20150305
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	StudyTime         164719.750000 
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	SeriesTime        174906.843000 
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	AcqTime           174808.985000 
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:Acquisition parameters
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	PulseSeq          epfid2d1_108
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	Protocol          Vowels_2_SMS5_Sparse_2x2x2_4000_2900ms
+150307-17:45:43,452 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	PhEncDir          COL
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	EchoNo            1
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	FlipAngle         90
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	EchoTime          30
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	InversionTime     -1
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	RepetitionTime    4000
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	PhEncFOV          216
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	ReadoutFOV        216
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:Image information
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	RunNo             11
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	SeriesNo          12
+150307-17:45:43,453 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	ImageNo           1
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	NImageRows        972
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	NImageCols        972
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	NFrames           55
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	SliceArraylSize   65
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	IsMosaic          1
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	ImgPos            106.7272 137.8259 -26.2468 
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	VolRes              2.0000   2.0000   2.2000 
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	VolDim            108      108       65 
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	Vc                 -0.9997  -0.0225  -0.0028 
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	Vr                  0.0224  -0.9566  -0.2904 
+150307-17:45:43,454 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	Vs                  0.0039  -0.2904   0.9569 
+150307-17:45:43,455 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	VolCenter           1.4463  11.3130  10.5043 
+150307-17:45:43,455 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:	TransferSyntaxUID unknown
+150307-17:45:43,455 interface INFO:
+	 stdout 2015-03-07T17:45:43.451498:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:45:58,339 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:sagrev = 0, correv =0, trarev = 0
+150307-17:45:58,339 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:Vs = 0.00387994 -0.290418 0.956892
+150307-17:45:58,339 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:45:58,339 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:TR=4000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:45:58,339 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:i_ras = (-0.999743, -0.0225135, -0.00277919)
+150307-17:45:58,339 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:j_ras = (0.0223501, -0.956635, -0.290431)
+150307-17:45:58,340 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:k_ras = (0.00387994, -0.290418, 0.956892)
+150307-17:45:58,340 interface INFO:
+	 stdout 2015-03-07T17:45:58.339014:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task006_run002/bold.nii.gz...
+150307-17:45:58,954 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run001/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run001
+nii.gz
+mri_convert
+150307-17:46:16,85 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:46:16,164 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-15-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run001/bold.nii.gz
+150307-17:46:16,365 interface INFO:
+	 stdout 2015-03-07T17:46:16.365149:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-15-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run001/bold.nii.gz 
+150307-17:46:16,385 interface INFO:
+	 stdout 2015-03-07T17:46:16.385872:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:46:16,386 interface INFO:
+	 stdout 2015-03-07T17:46:16.385872:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-15-1.dcm...
+150307-17:46:16,396 interface INFO:
+	 stdout 2015-03-07T17:46:16.396296:Getting Series No 
+150307-17:46:16,404 interface INFO:
+	 stderr 2015-03-07T17:46:16.404352:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:46:16,404 interface INFO:
+	 stderr 2015-03-07T17:46:16.404352:INFO: Scanning for Series Number 15
+150307-17:46:16,404 interface INFO:
+	 stdout 2015-03-07T17:46:16.404912:Scanning Directory 
+150307-17:47:01,660 interface INFO:
+	 stderr 2015-03-07T17:47:01.660341:INFO: found 101 files in series
+150307-17:47:01,660 interface INFO:
+	 stdout 2015-03-07T17:47:01.660712:INFO: loading series header info.
+150307-17:47:19,651 interface INFO:
+	 stderr 2015-03-07T17:47:19.651425:
+150307-17:47:19,651 interface INFO:
+	 stdout 2015-03-07T17:47:19.651784:INFO: sorting.
+150307-17:47:19,651 interface INFO:
+	 stderr 2015-03-07T17:47:19.651935:RunNo = 14
+150307-17:47:19,683 interface INFO:
+	 stdout 2015-03-07T17:47:19.683004:INFO: (108 108  65), nframes = 101, ismosaic=1
+150307-17:47:19,774 interface INFO:
+	 stdout 2015-03-07T17:47:19.774487:Could not parse NUMARIS version string syngo MR B17
+150307-17:47:19,774 interface INFO:
+	 stdout 2015-03-07T17:47:19.774487:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:47:19,775 interface INFO:
+	 stdout 2015-03-07T17:47:19.774487:Repetition Time = 2000, TR = 2000 ms
+150307-17:47:19,775 interface INFO:
+	 stdout 2015-03-07T17:47:19.774487:PE Dir COL COL
+150307-17:47:19,816 interface INFO:
+	 stdout 2015-03-07T17:47:19.816058:AutoAlign matrix detected 
+150307-17:47:19,825 interface INFO:
+	 stdout 2015-03-07T17:47:19.825097:AutoAlign Matrix --------------------- 
+150307-17:47:19,825 interface INFO:
+	 stdout 2015-03-07T17:47:19.825097: 1.000  -0.006  -0.010  -1.932;
+150307-17:47:19,825 interface INFO:
+	 stdout 2015-03-07T17:47:19.825097: 0.008   0.958   0.285  -14.062;
+150307-17:47:19,825 interface INFO:
+	 stdout 2015-03-07T17:47:19.825097: 0.008  -0.285   0.958   1.904;
+150307-17:47:19,825 interface INFO:
+	 stdout 2015-03-07T17:47:19.825097: 0.000   0.000   0.000   1.000;
+150307-17:47:19,825 interface INFO:
+	 stdout 2015-03-07T17:47:19.825097:
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-15-1.dcm
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:Identification
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	NumarisVer        syngo MR B17
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	ScannerModel      TrioTim 
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	PatientName       voice_999b
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:Date and time
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	StudyDate         20150305
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	StudyTime         164719.750000 
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	SeriesTime        175606.906000 
+150307-17:47:19,848 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	AcqTime           175445.162500 
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:Acquisition parameters
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	PulseSeq          epfid2d1_108
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	Protocol          PitchEmph_1_SMS5_Sparse_2x2x2_2000_900ms
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	PhEncDir          COL
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	EchoNo            1
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	FlipAngle         90
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	EchoTime          30
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	InversionTime     -1
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	RepetitionTime    2000
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	PhEncFOV          216
+150307-17:47:19,849 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	ReadoutFOV        216
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:Image information
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	RunNo             14
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	SeriesNo          15
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	ImageNo           1
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	NImageRows        972
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	NImageCols        972
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	NFrames           101
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	SliceArraylSize   65
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	IsMosaic          1
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	ImgPos            108.7400 137.1464 -20.7565 
+150307-17:47:19,850 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	VolRes              2.0000   2.0000   2.2000 
+150307-17:47:19,851 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	VolDim            108      108       65 
+150307-17:47:19,851 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	Vc                 -0.9999  -0.0088   0.0077 
+150307-17:47:19,851 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	Vr                  0.0057  -0.9439  -0.3301 
+150307-17:47:19,851 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	Vs                  0.0102  -0.3300   0.9439 
+150307-17:47:19,851 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	VolCenter           2.0929  10.6597  11.9200 
+150307-17:47:19,851 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:	TransferSyntaxUID unknown
+150307-17:47:19,851 interface INFO:
+	 stdout 2015-03-07T17:47:19.847882:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:47:47,613 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:sagrev = 0, correv =0, trarev = 0
+150307-17:47:47,614 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:Vs = 0.0101868 -0.330013 0.943921
+150307-17:47:47,614 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:47:47,614 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:TR=2000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:47:47,614 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:i_ras = (-0.999932, -0.00875685, 0.00772971)
+150307-17:47:47,614 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:j_ras = (0.00571487, -0.943936, -0.33008)
+150307-17:47:47,614 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:k_ras = (0.0101868, -0.330013, 0.943921)
+150307-17:47:47,614 interface INFO:
+	 stdout 2015-03-07T17:47:47.613746:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run001/bold.nii.gz...
+150307-17:47:48,585 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run002/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run002
+nii.gz
+mri_convert
+150307-17:48:18,630 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:48:18,717 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-16-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run002/bold.nii.gz
+150307-17:48:18,918 interface INFO:
+	 stdout 2015-03-07T17:48:18.917997:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-16-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run002/bold.nii.gz 
+150307-17:48:18,938 interface INFO:
+	 stdout 2015-03-07T17:48:18.938852:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:48:18,939 interface INFO:
+	 stdout 2015-03-07T17:48:18.938852:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-16-1.dcm...
+150307-17:48:18,948 interface INFO:
+	 stdout 2015-03-07T17:48:18.948944:Getting Series No 
+150307-17:48:18,957 interface INFO:
+	 stderr 2015-03-07T17:48:18.956997:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:48:18,957 interface INFO:
+	 stderr 2015-03-07T17:48:18.956997:INFO: Scanning for Series Number 16
+150307-17:48:18,957 interface INFO:
+	 stdout 2015-03-07T17:48:18.957533:Scanning Directory 
+150307-17:49:04,275 interface INFO:
+	 stderr 2015-03-07T17:49:04.275026:INFO: found 101 files in series
+150307-17:49:04,275 interface INFO:
+	 stdout 2015-03-07T17:49:04.275389:INFO: loading series header info.
+150307-17:49:22,309 interface INFO:
+	 stderr 2015-03-07T17:49:22.309809:
+150307-17:49:22,310 interface INFO:
+	 stdout 2015-03-07T17:49:22.310162:INFO: sorting.
+150307-17:49:22,310 interface INFO:
+	 stderr 2015-03-07T17:49:22.310302:RunNo = 15
+150307-17:49:22,345 interface INFO:
+	 stdout 2015-03-07T17:49:22.345855:INFO: (108 108  65), nframes = 101, ismosaic=1
+150307-17:49:22,434 interface INFO:
+	 stdout 2015-03-07T17:49:22.434778:Could not parse NUMARIS version string syngo MR B17
+150307-17:49:22,435 interface INFO:
+	 stdout 2015-03-07T17:49:22.434778:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:49:22,435 interface INFO:
+	 stdout 2015-03-07T17:49:22.434778:Repetition Time = 2000, TR = 2000 ms
+150307-17:49:22,435 interface INFO:
+	 stdout 2015-03-07T17:49:22.434778:PE Dir COL COL
+150307-17:49:22,476 interface INFO:
+	 stdout 2015-03-07T17:49:22.476227:AutoAlign matrix detected 
+150307-17:49:22,485 interface INFO:
+	 stdout 2015-03-07T17:49:22.485283:AutoAlign Matrix --------------------- 
+150307-17:49:22,485 interface INFO:
+	 stdout 2015-03-07T17:49:22.485283: 1.000  -0.006  -0.010  -1.932;
+150307-17:49:22,485 interface INFO:
+	 stdout 2015-03-07T17:49:22.485283: 0.008   0.958   0.285  -14.062;
+150307-17:49:22,485 interface INFO:
+	 stdout 2015-03-07T17:49:22.485283: 0.008  -0.285   0.958   1.904;
+150307-17:49:22,485 interface INFO:
+	 stdout 2015-03-07T17:49:22.485283: 0.000   0.000   0.000   1.000;
+150307-17:49:22,485 interface INFO:
+	 stdout 2015-03-07T17:49:22.485283:
+150307-17:49:22,512 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-16-1.dcm
+150307-17:49:22,512 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:Identification
+150307-17:49:22,512 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	NumarisVer        syngo MR B17
+150307-17:49:22,512 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	ScannerModel      TrioTim 
+150307-17:49:22,512 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	PatientName       voice_999b
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:Date and time
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	StudyDate         20150305
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	StudyTime         164719.750000 
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	SeriesTime        180106.843000 
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	AcqTime           175943.195000 
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:Acquisition parameters
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	PulseSeq          epfid2d1_108
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	Protocol          PitchEmph_2_SMS5_Sparse_2x2x2_2000_900ms
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	PhEncDir          COL
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	EchoNo            1
+150307-17:49:22,513 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	FlipAngle         90
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	EchoTime          30
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	InversionTime     -1
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	RepetitionTime    2000
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	PhEncFOV          216
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	ReadoutFOV        216
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:Image information
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	RunNo             15
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	SeriesNo          16
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	ImageNo           1
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	NImageRows        972
+150307-17:49:22,514 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	NImageCols        972
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	NFrames           101
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	SliceArraylSize   65
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	IsMosaic          1
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	ImgPos            108.7400 137.1464 -20.7565 
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	VolRes              2.0000   2.0000   2.2000 
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	VolDim            108      108       65 
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	Vc                 -0.9999  -0.0088   0.0077 
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	Vr                  0.0057  -0.9439  -0.3301 
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	Vs                  0.0102  -0.3300   0.9439 
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	VolCenter           2.0929  10.6597  11.9200 
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:	TransferSyntaxUID unknown
+150307-17:49:22,515 interface INFO:
+	 stdout 2015-03-07T17:49:22.512296:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:49:50,244 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:sagrev = 0, correv =0, trarev = 0
+150307-17:49:50,245 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:Vs = 0.0101868 -0.330013 0.943921
+150307-17:49:50,245 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:49:50,245 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:TR=2000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:49:50,245 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:i_ras = (-0.999932, -0.00875685, 0.00772971)
+150307-17:49:50,245 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:j_ras = (0.00571487, -0.943936, -0.33008)
+150307-17:49:50,245 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:k_ras = (0.0101868, -0.330013, 0.943921)
+150307-17:49:50,245 interface INFO:
+	 stdout 2015-03-07T17:49:50.244596:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task007_run002/bold.nii.gz...
+150307-17:49:51,246 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/BOLD/task005_run001/bold
+/om/project/voice/mri/openfmri/voice_999b/BOLD/task005_run001
+nii.gz
+mri_convert
+150307-17:50:21,318 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:50:21,399 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-10-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task005_run001/bold.nii.gz
+150307-17:50:21,599 interface INFO:
+	 stdout 2015-03-07T17:50:21.599366:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-10-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/BOLD/task005_run001/bold.nii.gz 
+150307-17:50:21,620 interface INFO:
+	 stdout 2015-03-07T17:50:21.619939:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:50:21,620 interface INFO:
+	 stdout 2015-03-07T17:50:21.619939:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-10-1.dcm...
+150307-17:50:21,630 interface INFO:
+	 stdout 2015-03-07T17:50:21.630020:Getting Series No 
+150307-17:50:21,638 interface INFO:
+	 stderr 2015-03-07T17:50:21.638101:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:50:21,638 interface INFO:
+	 stderr 2015-03-07T17:50:21.638101:INFO: Scanning for Series Number 10
+150307-17:50:21,638 interface INFO:
+	 stdout 2015-03-07T17:50:21.638639:Scanning Directory 
+150307-17:51:06,790 interface INFO:
+	 stderr 2015-03-07T17:51:06.790139:INFO: found 42 files in series
+150307-17:51:06,790 interface INFO:
+	 stdout 2015-03-07T17:51:06.790507:INFO: loading series header info.
+150307-17:51:14,319 interface INFO:
+	 stderr 2015-03-07T17:51:14.318921:
+150307-17:51:14,319 interface INFO:
+	 stderr 2015-03-07T17:51:14.318921:RunNo = 9
+150307-17:51:14,319 interface INFO:
+	 stdout 2015-03-07T17:51:14.319374:INFO: sorting.
+150307-17:51:14,354 interface INFO:
+	 stdout 2015-03-07T17:51:14.354801:INFO: (108 108  65), nframes = 42, ismosaic=1
+150307-17:51:14,392 interface INFO:
+	 stdout 2015-03-07T17:51:14.392758:Could not parse NUMARIS version string syngo MR B17
+150307-17:51:14,393 interface INFO:
+	 stdout 2015-03-07T17:51:14.392758:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:51:14,393 interface INFO:
+	 stdout 2015-03-07T17:51:14.392758:Repetition Time = 4000, TR = 4000 ms
+150307-17:51:14,393 interface INFO:
+	 stdout 2015-03-07T17:51:14.392758:PE Dir COL COL
+150307-17:51:14,434 interface INFO:
+	 stdout 2015-03-07T17:51:14.434716:AutoAlign matrix detected 
+150307-17:51:14,443 interface INFO:
+	 stdout 2015-03-07T17:51:14.443653:AutoAlign Matrix --------------------- 
+150307-17:51:14,443 interface INFO:
+	 stdout 2015-03-07T17:51:14.443653: 1.000  -0.022  -0.004  -1.366;
+150307-17:51:14,443 interface INFO:
+	 stdout 2015-03-07T17:51:14.443653: 0.023   0.967   0.253  -14.316;
+150307-17:51:14,444 interface INFO:
+	 stdout 2015-03-07T17:51:14.443653:-0.002  -0.253   0.967   0.378;
+150307-17:51:14,444 interface INFO:
+	 stdout 2015-03-07T17:51:14.443653: 0.000   0.000   0.000   1.000;
+150307-17:51:14,444 interface INFO:
+	 stdout 2015-03-07T17:51:14.443653:
+150307-17:51:14,470 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-10-1.dcm
+150307-17:51:14,470 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:Identification
+150307-17:51:14,470 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	NumarisVer        syngo MR B17
+150307-17:51:14,470 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	ScannerModel      TrioTim 
+150307-17:51:14,470 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	PatientName       voice_999b
+150307-17:51:14,470 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:Date and time
+150307-17:51:14,470 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	StudyDate         20150305
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	StudyTime         164719.750000 
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	SeriesTime        173846.875000 
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	AcqTime           173752.860000 
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:Acquisition parameters
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	PulseSeq          epfid2d1_108
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	Protocol          EmoSent_2_SMS5_Sparse_2x2x2_4000_2900ms 
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	PhEncDir          COL
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	EchoNo            1
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	FlipAngle         90
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	EchoTime          30
+150307-17:51:14,471 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	InversionTime     -1
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	RepetitionTime    4000
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	PhEncFOV          216
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	ReadoutFOV        216
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:Image information
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	RunNo             9
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	SeriesNo          10
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	ImageNo           1
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	NImageRows        972
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	NImageCols        972
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	NFrames           42
+150307-17:51:14,472 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	SliceArraylSize   65
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	IsMosaic          1
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	ImgPos            106.7272 137.8259 -26.2468 
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	VolRes              2.0000   2.0000   2.2000 
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	VolDim            108      108       65 
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	Vc                 -0.9997  -0.0225  -0.0028 
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	Vr                  0.0224  -0.9566  -0.2904 
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	Vs                  0.0039  -0.2904   0.9569 
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	VolCenter           1.4463  11.3130  10.5043 
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:	TransferSyntaxUID unknown
+150307-17:51:14,473 interface INFO:
+	 stdout 2015-03-07T17:51:14.470163:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:51:25,821 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:sagrev = 0, correv =0, trarev = 0
+150307-17:51:25,822 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:Vs = 0.00387994 -0.290418 0.956892
+150307-17:51:25,822 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:51:25,822 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:TR=4000.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:51:25,822 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:i_ras = (-0.999743, -0.0225135, -0.00277919)
+150307-17:51:25,822 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:j_ras = (0.0223501, -0.956635, -0.290431)
+150307-17:51:25,822 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:k_ras = (0.00387994, -0.290418, 0.956892)
+150307-17:51:25,822 interface INFO:
+	 stdout 2015-03-07T17:51:25.821611:writing to /om/project/voice/mri/openfmri/voice_999b/BOLD/task005_run001/bold.nii.gz...
+150307-17:51:26,373 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999b/anatomy/T2_001
+/om/project/voice/mri/openfmri/voice_999b/anatomy
+nii.gz
+mri_convert
+150307-17:51:39,218 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpRAf54J/convert
+150307-17:51:39,235 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-21-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/anatomy/T2_001.nii.gz
+150307-17:51:39,434 interface INFO:
+	 stdout 2015-03-07T17:51:39.434602:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-21-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999b/anatomy/T2_001.nii.gz 
+150307-17:51:39,455 interface INFO:
+	 stdout 2015-03-07T17:51:39.455049:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:51:39,455 interface INFO:
+	 stdout 2015-03-07T17:51:39.455049:reading from /mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-21-1.dcm...
+150307-17:51:39,465 interface INFO:
+	 stdout 2015-03-07T17:51:39.465113:Getting Series No 
+150307-17:51:39,473 interface INFO:
+	 stderr 2015-03-07T17:51:39.473142:INFO: Found 1671 files in /mindhive/xnat/dicom_storage/voice/voice_999b/dicom
+150307-17:51:39,473 interface INFO:
+	 stderr 2015-03-07T17:51:39.473142:INFO: Scanning for Series Number 21
+150307-17:51:39,473 interface INFO:
+	 stdout 2015-03-07T17:51:39.473683:Scanning Directory 
+150307-17:52:24,947 interface INFO:
+	 stderr 2015-03-07T17:52:24.947209:INFO: found 176 files in series
+150307-17:52:24,947 interface INFO:
+	 stdout 2015-03-07T17:52:24.947578:INFO: loading series header info.
+150307-17:52:49,45 interface INFO:
+	 stderr 2015-03-07T17:52:49.045535:
+150307-17:52:49,46 interface INFO:
+	 stdout 2015-03-07T17:52:49.045986:INFO: sorting.
+150307-17:52:49,46 interface INFO:
+	 stdout 2015-03-07T17:52:49.045986:INFO: (256 256 176), nframes = 1, ismosaic=0
+150307-17:52:49,46 interface INFO:
+	 stderr 2015-03-07T17:52:49.046388:RunNo = 20
+150307-17:52:49,52 interface INFO:
+	 stdout 2015-03-07T17:52:49.052746:PE Dir ROW ROW
+150307-17:52:49,65 interface INFO:
+	 stdout 2015-03-07T17:52:49.065859:AutoAlign matrix detected 
+150307-17:52:49,69 interface INFO:
+	 stdout 2015-03-07T17:52:49.069596:AutoAlign Matrix --------------------- 
+150307-17:52:49,69 interface INFO:
+	 stdout 2015-03-07T17:52:49.069596: 1.000   0.000   0.000   0.000;
+150307-17:52:49,69 interface INFO:
+	 stdout 2015-03-07T17:52:49.069596: 0.000   1.000   0.000   0.000;
+150307-17:52:49,69 interface INFO:
+	 stdout 2015-03-07T17:52:49.069596: 0.000   0.000   1.000   0.000;
+150307-17:52:49,70 interface INFO:
+	 stdout 2015-03-07T17:52:49.069596: 0.000   0.000   0.000   1.000;
+150307-17:52:49,70 interface INFO:
+	 stdout 2015-03-07T17:52:49.069596:
+150307-17:52:49,91 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999b/dicom/750000-21-1.dcm
+150307-17:52:49,91 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:Identification
+150307-17:52:49,91 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	NumarisVer        syngo MR B17
+150307-17:52:49,91 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	ScannerModel      TrioTim 
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	PatientName       voice_999b
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:Date and time
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	StudyDate         20150305
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	StudyTime         164719.750000 
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	SeriesTime        182221.875000 
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	AcqTime           181529.870000 
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:Acquisition parameters
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	PulseSeq          *spcir3d1_278ns 
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	Protocol          T2_SPACE_FLAIR_1.0_iso
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	PhEncDir          ROW
+150307-17:52:49,92 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	EchoNo            1
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	FlipAngle         120
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	EchoTime          454
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	InversionTime     2100
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	RepetitionTime    6000
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	PhEncFOV          256
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	ReadoutFOV        256
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:Image information
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	RunNo             20
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	SeriesNo          21
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	ImageNo           1
+150307-17:52:49,93 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	NImageRows        256
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	NImageCols        256
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	NFrames           1
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	SliceArraylSize   1
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	IsMosaic          0
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	ImgPos             87.5000  85.2616 170.6702 
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	VolRes              1.0000   1.0000   1.0000 
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	VolDim            256      256      176 
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	Vc                 -0.0000  -0.9763  -0.2164 
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	Vr                  0.0000   0.2164  -0.9763 
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	Vs                 -1.0000  -0.0000   0.0000 
+150307-17:52:49,94 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	VolCenter          -0.5000 -12.0000  18.0000 
+150307-17:52:49,95 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:	TransferSyntaxUID unknown
+150307-17:52:49,95 interface INFO:
+	 stdout 2015-03-07T17:52:49.091408:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:52:54,788 interface INFO:
+	 stdout 2015-03-07T17:52:54.788213:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:52:54,788 interface INFO:
+	 stdout 2015-03-07T17:52:54.788213:TR=6000.00, TE=454.00, TI=2100.00, flip angle=120.00
+150307-17:52:54,788 interface INFO:
+	 stdout 2015-03-07T17:52:54.788213:i_ras = (-0, -0.976296, -0.21644)
+150307-17:52:54,788 interface INFO:
+	 stdout 2015-03-07T17:52:54.788213:j_ras = (1e-16, 0.21644, -0.976296)
+150307-17:52:54,789 interface INFO:
+	 stdout 2015-03-07T17:52:54.788213:k_ras = (-1, -0, 0)
+150307-17:52:54,789 interface INFO:
+	 stdout 2015-03-07T17:52:54.788213:writing to /om/project/voice/mri/openfmri/voice_999b/anatomy/T2_001.nii.gz...
+150307-17:52:55,73 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpRAf54J/embedder
+Converting /om/project/voice/mri/openfmri/voice_999_20150304/anatomy/T1_001
+/om/project/voice/mri/openfmri/voice_999_20150304/anatomy
+nii.gz
+mri_convert
+150307-17:55:06,162 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpgTiaHz/convert
+150307-17:55:06,179 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-15-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/anatomy/T1_001.nii.gz
+150307-17:55:06,386 interface INFO:
+	 stdout 2015-03-07T17:55:06.386207:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-15-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/anatomy/T1_001.nii.gz 
+150307-17:55:06,406 interface INFO:
+	 stdout 2015-03-07T17:55:06.406594:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:55:06,406 interface INFO:
+	 stdout 2015-03-07T17:55:06.406594:reading from /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-15-1.dcm...
+150307-17:55:06,416 interface INFO:
+	 stdout 2015-03-07T17:55:06.416637:Getting Series No 
+150307-17:55:06,425 interface INFO:
+	 stderr 2015-03-07T17:55:06.425047:INFO: Found 2997 files in /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000
+150307-17:55:06,425 interface INFO:
+	 stderr 2015-03-07T17:55:06.425047:INFO: Scanning for Series Number 15
+150307-17:55:06,425 interface INFO:
+	 stdout 2015-03-07T17:55:06.425604:Scanning Directory 
+150307-17:56:27,831 interface INFO:
+	 stderr 2015-03-07T17:56:27.831854:INFO: found 176 files in series
+150307-17:56:27,832 interface INFO:
+	 stdout 2015-03-07T17:56:27.832236:INFO: loading series header info.
+150307-17:56:52,416 interface INFO:
+	 stderr 2015-03-07T17:56:52.416184:
+150307-17:56:52,416 interface INFO:
+	 stdout 2015-03-07T17:56:52.416659:INFO: sorting.
+150307-17:56:52,416 interface INFO:
+	 stdout 2015-03-07T17:56:52.416659:INFO: (256 256 176), nframes = 1, ismosaic=0
+150307-17:56:52,417 interface INFO:
+	 stderr 2015-03-07T17:56:52.417082:RunNo = 14
+150307-17:56:52,421 interface INFO:
+	 stdout 2015-03-07T17:56:52.421658:PE Dir ROW ROW
+150307-17:56:52,437 interface INFO:
+	 stdout 2015-03-07T17:56:52.437211:AutoAlign matrix detected 
+150307-17:56:52,441 interface INFO:
+	 stdout 2015-03-07T17:56:52.441101:AutoAlign Matrix --------------------- 
+150307-17:56:52,441 interface INFO:
+	 stdout 2015-03-07T17:56:52.441101: 1.000   0.011   0.016  -2.031;
+150307-17:56:52,441 interface INFO:
+	 stdout 2015-03-07T17:56:52.441101:-0.015   0.968   0.251  -15.847;
+150307-17:56:52,441 interface INFO:
+	 stdout 2015-03-07T17:56:52.441101:-0.013  -0.252   0.968   7.844;
+150307-17:56:52,441 interface INFO:
+	 stdout 2015-03-07T17:56:52.441101: 0.000   0.000   0.000   1.000;
+150307-17:56:52,441 interface INFO:
+	 stdout 2015-03-07T17:56:52.441101:
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-15-1.dcm
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:Identification
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	NumarisVer        syngo MR B17
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	ScannerModel      TrioTim 
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	PatientName       voice_999 
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:Date and time
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	StudyDate         20150304
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	StudyTime         172922.656000 
+150307-17:56:52,463 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	SeriesTime        181548.093000 
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	AcqTime           180647.460000 
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:Acquisition parameters
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	PulseSeq          r83d4_ns
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	Protocol          T1_MPRAGE_Ellison_4e_p2_1mm_iso 
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	PhEncDir          ROW
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	EchoNo            1
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	FlipAngle         7
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	EchoTime          1.64
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	InversionTime     -1
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	RepetitionTime    2530
+150307-17:56:52,464 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	PhEncFOV          256
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	ReadoutFOV        256
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:Image information
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	RunNo             14
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	SeriesNo          15
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	ImageNo           1
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	NImageRows        256
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	NImageCols        256
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	NFrames           1
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	SliceArraylSize   1
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	IsMosaic          0
+150307-17:56:52,465 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	ImgPos             89.3081 122.3834 150.6337 
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	VolRes              1.0000   1.0000   1.0000 
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	VolDim            256      256      176 
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	Vc                 -0.0110  -0.9677  -0.2517 
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	Vr                  0.0159   0.2515  -0.9677 
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	Vs                 -0.9998   0.0147  -0.0126 
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	VolCenter           1.9495  31.9938  -6.5611 
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:	TransferSyntaxUID unknown
+150307-17:56:52,466 interface INFO:
+	 stdout 2015-03-07T17:56:52.462915:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:56:58,359 interface INFO:
+	 stdout 2015-03-07T17:56:58.359371:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:56:58,359 interface INFO:
+	 stdout 2015-03-07T17:56:58.359371:TR=2530.00, TE=1.64, TI=-1.00, flip angle=7.00
+150307-17:56:58,359 interface INFO:
+	 stdout 2015-03-07T17:56:58.359371:i_ras = (-0.0110303, -0.967749, -0.251675)
+150307-17:56:58,360 interface INFO:
+	 stdout 2015-03-07T17:56:58.359371:j_ras = (0.0159124, 0.251489, -0.967729)
+150307-17:56:58,360 interface INFO:
+	 stdout 2015-03-07T17:56:58.359371:k_ras = (-0.999813, 0.014679, -0.0126249)
+150307-17:56:58,360 interface INFO:
+	 stdout 2015-03-07T17:56:58.359371:writing to /om/project/voice/mri/openfmri/voice_999_20150304/anatomy/T1_001.nii.gz...
+150307-17:56:58,657 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpgTiaHz/embedder
+Converting /om/project/voice/mri/openfmri/voice_999_20150304/dmri/dwi_001
+/om/project/voice/mri/openfmri/voice_999_20150304/dmri
+dicom
+Converting /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run001/bold
+/om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run001
+nii.gz
+mri_convert
+150307-17:57:16,699 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpgTiaHz/convert
+150307-17:57:16,719 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-20-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run001/bold.nii.gz
+150307-17:57:16,902 interface INFO:
+	 stdout 2015-03-07T17:57:16.902249:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-20-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run001/bold.nii.gz 
+150307-17:57:16,922 interface INFO:
+	 stdout 2015-03-07T17:57:16.922689:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-17:57:16,922 interface INFO:
+	 stdout 2015-03-07T17:57:16.922689:reading from /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-20-1.dcm...
+150307-17:57:16,932 interface INFO:
+	 stdout 2015-03-07T17:57:16.932690:Getting Series No 
+150307-17:57:16,941 interface INFO:
+	 stderr 2015-03-07T17:57:16.941006:INFO: Found 2997 files in /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000
+150307-17:57:16,941 interface INFO:
+	 stderr 2015-03-07T17:57:16.941006:INFO: Scanning for Series Number 20
+150307-17:57:16,941 interface INFO:
+	 stdout 2015-03-07T17:57:16.941563:Scanning Directory 
+150307-17:58:38,547 interface INFO:
+	 stderr 2015-03-07T17:58:38.547103:INFO: found 207 files in series
+150307-17:58:38,547 interface INFO:
+	 stdout 2015-03-07T17:58:38.547492:INFO: loading series header info.
+150307-17:59:09,14 interface INFO:
+	 stderr 2015-03-07T17:59:09.014483:
+150307-17:59:09,14 interface INFO:
+	 stdout 2015-03-07T17:59:09.014866:INFO: sorting.
+150307-17:59:09,15 interface INFO:
+	 stderr 2015-03-07T17:59:09.015012:RunNo = 19
+150307-17:59:09,49 interface INFO:
+	 stdout 2015-03-07T17:59:09.049719:INFO: ( 72  72  45), nframes = 207, ismosaic=1
+150307-17:59:09,109 interface INFO:
+	 stdout 2015-03-07T17:59:09.109801:Could not parse NUMARIS version string syngo MR B17
+150307-17:59:09,110 interface INFO:
+	 stdout 2015-03-07T17:59:09.109801:found in dicom tag 18,1020 (len = 3 != 6)
+150307-17:59:09,110 interface INFO:
+	 stdout 2015-03-07T17:59:09.109801:Repetition Time = 1640, TR = 1640 ms
+150307-17:59:09,110 interface INFO:
+	 stdout 2015-03-07T17:59:09.109801:PE Dir COL COL
+150307-17:59:09,132 interface INFO:
+	 stdout 2015-03-07T17:59:09.132234:AutoAlign matrix detected 
+150307-17:59:09,139 interface INFO:
+	 stdout 2015-03-07T17:59:09.139373:AutoAlign Matrix --------------------- 
+150307-17:59:09,139 interface INFO:
+	 stdout 2015-03-07T17:59:09.139373: 1.000   0.011   0.006  -1.954;
+150307-17:59:09,139 interface INFO:
+	 stdout 2015-03-07T17:59:09.139373:-0.012   0.965   0.260  -15.483;
+150307-17:59:09,139 interface INFO:
+	 stdout 2015-03-07T17:59:09.139373:-0.003  -0.260   0.966   8.895;
+150307-17:59:09,139 interface INFO:
+	 stdout 2015-03-07T17:59:09.139373: 0.000   0.000   0.000   1.000;
+150307-17:59:09,139 interface INFO:
+	 stdout 2015-03-07T17:59:09.139373:
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-20-1.dcm
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:Identification
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	NumarisVer        syngo MR B17
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	ScannerModel      TrioTim 
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	PatientName       voice_999 
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:Date and time
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	StudyDate         20150304
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	StudyTime         172922.656000 
+150307-17:59:09,162 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	SeriesTime        182942.265000 
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	AcqTime           182858.295000 
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:Acquisition parameters
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	PulseSeq          epfid2d1_72 
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	Protocol          PaTaKa_1_SMS5_Sparse_3x3x3_1640_1000ms
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	PhEncDir          COL
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	EchoNo            1
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	FlipAngle         90
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	EchoTime          30
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	InversionTime     -1
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	RepetitionTime    1640
+150307-17:59:09,163 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	PhEncFOV          216
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	ReadoutFOV        216
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:Image information
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	RunNo             19
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	SeriesNo          20
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	ImageNo           1
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	NImageRows        504
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	NImageCols        504
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	NFrames           207
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	SliceArraylSize   45
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	IsMosaic          1
+150307-17:59:09,164 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	ImgPos            111.5583 133.9456 -22.0267 
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	VolRes              3.0000   3.0000   3.3000 
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	VolDim             72       72       45 
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	Vc                 -0.9999   0.0125  -0.0026 
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	Vr                 -0.0114  -0.9654  -0.2604 
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	Vs                 -0.0058  -0.2603   0.9655 
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	VolCenter           1.9108  11.6959  21.2572 
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:	TransferSyntaxUID unknown
+150307-17:59:09,165 interface INFO:
+	 stdout 2015-03-07T17:59:09.161906:UseSliceScaleFactor 0 (slice 0: 1)
+150307-17:59:28,815 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:sagrev = 0, correv =0, trarev = 0
+150307-17:59:28,816 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:Vs = -0.00577626 -0.260336 0.965501
+150307-17:59:28,816 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:INFO: no Siemens slice order reversal detected (good!). 
+150307-17:59:28,816 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:TR=1640.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-17:59:28,816 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:i_ras = (-0.999919, 0.0124768, -0.00261791)
+150307-17:59:28,817 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:j_ras = (-0.0113648, -0.965437, -0.260387)
+150307-17:59:28,817 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:k_ras = (-0.00577626, -0.260336, 0.965501)
+150307-17:59:28,817 interface INFO:
+	 stdout 2015-03-07T17:59:28.815846:writing to /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run001/bold.nii.gz...
+150307-17:59:29,525 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpgTiaHz/embedder
+Converting /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run002/bold
+/om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run002
+nii.gz
+mri_convert
+150307-18:00:05,489 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpgTiaHz/convert
+150307-18:00:05,509 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-21-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run002/bold.nii.gz
+150307-18:00:05,700 interface INFO:
+	 stdout 2015-03-07T18:00:05.699846:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-21-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run002/bold.nii.gz 
+150307-18:00:05,720 interface INFO:
+	 stdout 2015-03-07T18:00:05.720557:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-18:00:05,720 interface INFO:
+	 stdout 2015-03-07T18:00:05.720557:reading from /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-21-1.dcm...
+150307-18:00:05,730 interface INFO:
+	 stdout 2015-03-07T18:00:05.730794:Getting Series No 
+150307-18:00:05,739 interface INFO:
+	 stderr 2015-03-07T18:00:05.739329:INFO: Found 2997 files in /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000
+150307-18:00:05,739 interface INFO:
+	 stderr 2015-03-07T18:00:05.739329:INFO: Scanning for Series Number 21
+150307-18:00:05,739 interface INFO:
+	 stdout 2015-03-07T18:00:05.739913:Scanning Directory 
+150307-18:01:27,334 interface INFO:
+	 stderr 2015-03-07T18:01:27.334193:INFO: found 207 files in series
+150307-18:01:27,334 interface INFO:
+	 stdout 2015-03-07T18:01:27.334590:INFO: loading series header info.
+150307-18:01:57,890 interface INFO:
+	 stderr 2015-03-07T18:01:57.889918:
+150307-18:01:57,890 interface INFO:
+	 stdout 2015-03-07T18:01:57.890278:INFO: sorting.
+150307-18:01:57,890 interface INFO:
+	 stderr 2015-03-07T18:01:57.890433:RunNo = 20
+150307-18:01:57,928 interface INFO:
+	 stdout 2015-03-07T18:01:57.928099:INFO: ( 72  72  45), nframes = 207, ismosaic=1
+150307-18:01:57,988 interface INFO:
+	 stdout 2015-03-07T18:01:57.988860:Could not parse NUMARIS version string syngo MR B17
+150307-18:01:57,989 interface INFO:
+	 stdout 2015-03-07T18:01:57.988860:found in dicom tag 18,1020 (len = 3 != 6)
+150307-18:01:57,989 interface INFO:
+	 stdout 2015-03-07T18:01:57.988860:Repetition Time = 1640, TR = 1640 ms
+150307-18:01:57,989 interface INFO:
+	 stdout 2015-03-07T18:01:57.988860:PE Dir COL COL
+150307-18:01:58,11 interface INFO:
+	 stdout 2015-03-07T18:01:58.011099:AutoAlign matrix detected 
+150307-18:01:58,18 interface INFO:
+	 stdout 2015-03-07T18:01:58.018210:AutoAlign Matrix --------------------- 
+150307-18:01:58,18 interface INFO:
+	 stdout 2015-03-07T18:01:58.018210: 1.000   0.011   0.006  -1.954;
+150307-18:01:58,18 interface INFO:
+	 stdout 2015-03-07T18:01:58.018210:-0.012   0.965   0.260  -15.483;
+150307-18:01:58,18 interface INFO:
+	 stdout 2015-03-07T18:01:58.018210:-0.003  -0.260   0.966   8.895;
+150307-18:01:58,18 interface INFO:
+	 stdout 2015-03-07T18:01:58.018210: 0.000   0.000   0.000   1.000;
+150307-18:01:58,18 interface INFO:
+	 stdout 2015-03-07T18:01:58.018210:
+150307-18:01:58,42 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-21-1.dcm
+150307-18:01:58,43 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:Identification
+150307-18:01:58,43 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	NumarisVer        syngo MR B17
+150307-18:01:58,43 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	ScannerModel      TrioTim 
+150307-18:01:58,43 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	PatientName       voice_999 
+150307-18:01:58,43 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:Date and time
+150307-18:01:58,43 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	StudyDate         20150304
+150307-18:01:58,43 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	StudyTime         172922.656000 
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	SeriesTime        184109.296000 
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	AcqTime           184027.905000 
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:Acquisition parameters
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	PulseSeq          epfid2d1_72 
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	Protocol          PaTaKa_2_SMS5_Sparse_3x3x3_1640_1000ms
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	PhEncDir          COL
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	EchoNo            1
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	FlipAngle         90
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	EchoTime          30
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	InversionTime     -1
+150307-18:01:58,44 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	RepetitionTime    1640
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	PhEncFOV          216
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	ReadoutFOV        216
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:Image information
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	RunNo             20
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	SeriesNo          21
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	ImageNo           1
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	NImageRows        504
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	NImageCols        504
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	NFrames           207
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	SliceArraylSize   45
+150307-18:01:58,45 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	IsMosaic          1
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	ImgPos            111.5583 133.9456 -22.0267 
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	VolRes              3.0000   3.0000   3.3000 
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	VolDim             72       72       45 
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	Vc                 -0.9999   0.0125  -0.0026 
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	Vr                 -0.0114  -0.9654  -0.2604 
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	Vs                 -0.0058  -0.2603   0.9655 
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	VolCenter           1.9108  11.6959  21.2572 
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:	TransferSyntaxUID unknown
+150307-18:01:58,46 interface INFO:
+	 stdout 2015-03-07T18:01:58.042733:UseSliceScaleFactor 0 (slice 0: 1)
+150307-18:02:17,709 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:sagrev = 0, correv =0, trarev = 0
+150307-18:02:17,709 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:Vs = -0.00577626 -0.260336 0.965501
+150307-18:02:17,709 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:INFO: no Siemens slice order reversal detected (good!). 
+150307-18:02:17,710 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:TR=1640.00, TE=30.00, TI=-1.00, flip angle=90.00
+150307-18:02:17,710 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:i_ras = (-0.999919, 0.0124768, -0.00261791)
+150307-18:02:17,710 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:j_ras = (-0.0113648, -0.965437, -0.260387)
+150307-18:02:17,710 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:k_ras = (-0.00577626, -0.260336, 0.965501)
+150307-18:02:17,710 interface INFO:
+	 stdout 2015-03-07T18:02:17.709296:writing to /om/project/voice/mri/openfmri/voice_999_20150304/BOLD/task001_run002/bold.nii.gz...
+150307-18:02:18,416 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpgTiaHz/embedder
+Converting /om/project/voice/mri/openfmri/voice_999_20150304/resting/rest/bold
+/om/project/voice/mri/openfmri/voice_999_20150304/resting/rest
+dicom
+nii.gz
+mri_convert
+150307-18:02:55,158 workflow INFO:
+	 Executing node convert in dir: /tmp/tmpgTiaHz/convert
+150307-18:02:55,185 workflow INFO:
+	 Running: mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-3-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/resting/rest/bold.nii.gz
+150307-18:02:55,378 interface INFO:
+	 stdout 2015-03-07T18:02:55.378438:mri_convert --out_type nii --input_volume /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-3-1.dcm --output_volume /om/project/voice/mri/openfmri/voice_999_20150304/resting/rest/bold.nii.gz 
+150307-18:02:55,399 interface INFO:
+	 stdout 2015-03-07T18:02:55.399274:$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+150307-18:02:55,399 interface INFO:
+	 stdout 2015-03-07T18:02:55.399274:reading from /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-3-1.dcm...
+150307-18:02:55,409 interface INFO:
+	 stdout 2015-03-07T18:02:55.409211:Getting Series No 
+150307-18:02:55,417 interface INFO:
+	 stderr 2015-03-07T18:02:55.417764:INFO: Found 2997 files in /mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000
+150307-18:02:55,418 interface INFO:
+	 stderr 2015-03-07T18:02:55.417764:INFO: Scanning for Series Number 3
+150307-18:02:55,418 interface INFO:
+	 stdout 2015-03-07T18:02:55.418335:Scanning Directory 
+150307-18:04:17,77 interface INFO:
+	 stderr 2015-03-07T18:04:17.076953:INFO: found 300 files in series
+150307-18:04:17,77 interface INFO:
+	 stdout 2015-03-07T18:04:17.077332:INFO: loading series header info.
+150307-18:05:07,130 interface INFO:
+	 stderr 2015-03-07T18:05:07.130163:
+150307-18:05:07,130 interface INFO:
+	 stdout 2015-03-07T18:05:07.130554:INFO: sorting.
+150307-18:05:07,130 interface INFO:
+	 stderr 2015-03-07T18:05:07.130714:RunNo = 2
+150307-18:05:07,168 interface INFO:
+	 stdout 2015-03-07T18:05:07.168538:INFO: (108 108  65), nframes = 300, ismosaic=1
+150307-18:05:07,431 interface INFO:
+	 stdout 2015-03-07T18:05:07.431665:Could not parse NUMARIS version string syngo MR B17
+150307-18:05:07,432 interface INFO:
+	 stdout 2015-03-07T18:05:07.431665:found in dicom tag 18,1020 (len = 3 != 6)
+150307-18:05:07,432 interface INFO:
+	 stdout 2015-03-07T18:05:07.431665:Repetition Time = 1090, TR = 1090 ms
+150307-18:05:07,432 interface INFO:
+	 stdout 2015-03-07T18:05:07.431665:PE Dir COL COL
+150307-18:05:07,480 interface INFO:
+	 stdout 2015-03-07T18:05:07.480097:AutoAlign matrix detected 
+150307-18:05:07,489 interface INFO:
+	 stdout 2015-03-07T18:05:07.489359:AutoAlign Matrix --------------------- 
+150307-18:05:07,489 interface INFO:
+	 stdout 2015-03-07T18:05:07.489359: 1.000   0.011   0.016  -2.031;
+150307-18:05:07,489 interface INFO:
+	 stdout 2015-03-07T18:05:07.489359:-0.015   0.968   0.251  -15.847;
+150307-18:05:07,489 interface INFO:
+	 stdout 2015-03-07T18:05:07.489359:-0.013  -0.252   0.968   7.844;
+150307-18:05:07,489 interface INFO:
+	 stdout 2015-03-07T18:05:07.489359: 0.000   0.000   0.000   1.000;
+150307-18:05:07,489 interface INFO:
+	 stdout 2015-03-07T18:05:07.489359:
+150307-18:05:07,516 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:FileName 		/mindhive/xnat/dicom_storage/voice/voice_999_20150304/TrioTim-35115-20150304-172922-656000/656000-3-1.dcm
+150307-18:05:07,516 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:Identification
+150307-18:05:07,516 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	NumarisVer        syngo MR B17
+150307-18:05:07,516 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	ScannerModel      TrioTim 
+150307-18:05:07,516 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	PatientName       voice_999 
+150307-18:05:07,516 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:Date and time
+150307-18:05:07,516 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	StudyDate         20150304
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	StudyTime         172922.656000 
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	SeriesTime        175102.265000 
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	AcqTime           174924.892500 
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:Acquisition parameters
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	PulseSeq          epfid2d1_108
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	Protocol          SMS5_rsfMRI_PA
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	PhEncDir          COL
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	EchoNo            1
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	FlipAngle         61
+150307-18:05:07,517 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	EchoTime          30
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	InversionTime     -1
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	RepetitionTime    1090
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	PhEncFOV          216
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	ReadoutFOV        216
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:Image information
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	RunNo             2
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	SeriesNo          3
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	ImageNo           1
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	NImageRows        972
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	NImageCols        972
+150307-18:05:07,518 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	NFrames           300
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	SliceArraylSize   65
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	IsMosaic          1
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	ImgPos            112.2201 120.2037  -9.1182 
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	VolRes              2.0000   2.0000   2.0000 
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	VolDim            108      108       65 
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	Vc                 -0.9998   0.0159  -0.0110 
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	Vr                 -0.0110  -0.9361  -0.3515 
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	Vs                 -0.0159  -0.3513   0.9361 
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	VolCenter           2.0147  -2.0126  12.5836 
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:	TransferSyntaxUID unknown
+150307-18:05:07,519 interface INFO:
+	 stdout 2015-03-07T18:05:07.515874:UseSliceScaleFactor 0 (slice 0: 1)
+150307-18:06:30,956 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:sagrev = 0, correv =0, trarev = 0
+150307-18:06:30,957 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:Vs = -0.0159121 -0.351267 0.93614
+150307-18:06:30,957 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:INFO: no Siemens slice order reversal detected (good!). 
+150307-18:06:30,957 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:TR=1090.00, TE=30.00, TI=-1.00, flip angle=61.00
+150307-18:06:30,957 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:i_ras = (-0.999813, 0.0159183, -0.0110214)
+150307-18:06:30,957 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:j_ras = (-0.0110303, -0.93614, -0.351454)
+150307-18:06:30,957 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:k_ras = (-0.0159121, -0.351267, 0.93614)
+150307-18:06:30,958 interface INFO:
+	 stdout 2015-03-07T18:06:30.956837:writing to /om/project/voice/mri/openfmri/voice_999_20150304/resting/rest/bold.nii.gz...
+150307-18:06:33,448 workflow INFO:
+	 Executing node embedder in dir: /tmp/tmpgTiaHz/embedder
+slurmstepd: Job 3401662 exceeded memory limit (3202636 > 2097152), being killed
+slurmstepd: Exceeded job memory limit
+slurmstepd: *** JOB 3401662 CANCELLED AT 2015-03-07T18:07:37 ***
