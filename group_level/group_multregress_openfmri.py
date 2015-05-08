@@ -1,11 +1,7 @@
 """
 group openfmri script
-EXTREME ROUGH DRAFT
-
-for help:
-contact annepark@mit.edu
-
-
+reflective of openfmri organization in draft document Open_Brain_Imaging_Data_Structure.pdf date 2015-03-18
+exception: use of txt files instead of tsvs for the time being
 """
 
 import os
@@ -58,8 +54,8 @@ def get_sub_vars(dataset_dir,task_id,model_id):
     with open(sub_list_file, 'rt') as fp:
         subs_list_def.extend([np.array(row.split()) for row in fp.readlines() if row.strip()])
         task_id_num=int(task_id)
-        subs_list=[y[0] for y in subs_list_def[1:] if] y[0] != 'nan']
-        groups=[1 for y in subs_list_def[1:] if y[0] !='nan']
+        subs_list=[y[0] for y in subs_list_def[1:]]
+        groups=[1 for y in subs_list_def[1:]]
         #groups=[int(y[task_id_num]) for y in subs_list_def[1:]]
         #subs_list=[str(x) for x in [y[0] for y in subs_list_def[1:]] #if subs_list_def[task_id_num][x] != 0]
         #groups=[int(x) for x in subs_list_def[task_id_num][:] if  x != 0]
@@ -133,12 +129,12 @@ def group_multregress_openfmri(dataset_dir,model_id=None,task_id=None,l1output_d
 
         dg = Node(DataGrabber(infields=['model_id','task_id','cope_id'],
                               outfields=['copes', 'varcopes']),name='grabber')
-        #dg.inputs.template = os.path.join(l1output_dir,'model%03d/task%03d/%s/%scopes/mni/%scope%02d.nii.gz')
-        dg.inputs.template = os.path.join(l1output_dir,'model%03d/task%03d/%s/%scopes/mni/model%03d/task%03d_%scope%02d.nii.gz')
-        #dg.inputs.template_args['copes'] = [['model_id','task_id',subj_list,'','', 'cope_id']]
-        #dg.inputs.template_args['varcopes'] = [['model_id','task_id',subj_list,'var', 'var', 'cope_id']]
-        dg.inputs.template_args['copes'] = [['model_id','task_id',subj_list,'','model_id','task_id','','cope_id']]
-        dg.inputs.template_args['varcopes'] = [['model_id','task_id',subj_list,'var','model_id','task_id','var','cope_id']]    
+        dg.inputs.template = os.path.join(l1output_dir,'model%03d/task%03d/%s/%scopes/mni/%scope%02d.nii.gz')
+        #dg.inputs.template = os.path.join(l1output_dir,'model%03d/task%03d/%s/%scopes/mni/model%03d/task%03d_%scope%02d.nii.gz')
+        dg.inputs.template_args['copes'] = [['model_id','task_id',subj_list,'','', 'cope_id']]
+        dg.inputs.template_args['varcopes'] = [['model_id','task_id',subj_list,'var', 'var', 'cope_id']]
+       # dg.inputs.template_args['copes'] = [['model_id','task_id',subj_list,'','model_id','task_id','','cope_id']]
+       # dg.inputs.template_args['varcopes'] = [['model_id','task_id',subj_list,'var','model_id','task_id','var','cope_id']]    
         dg.iterables=('cope_id',num_copes)
 
         dg.inputs.sort_filelist = False

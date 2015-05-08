@@ -1107,16 +1107,11 @@ if __name__ == '__main__':
                                   fwhm=args.fwhm,
                                   subjects_dir=args.subjects_dir,
                                   target=args.target_file)
-    #wf.config['execution']['remove_unnecessary_outputs'] = False
-    file_path_crashdump='/home/gr21783/OMerrLog'
-    wf.config['execution']['crashdump_dir'] = file_path_crashdump
     wf.base_dir = work_dir
     if args.plugin_args:
         wf.run(args.plugin, plugin_args=eval(args.plugin_args))
     else:
-      # wf.run(args.plugin, plugin_args={'sbatch_args': '-x node017,node018 -N1 -c1 -p om_interactive','max_jobs':25})
-        wf.run(args.plugin, plugin_args={'sbatch_args': '-p om_all_nodes -N1 -c1 ','max_jobs':25})
-
+        wf.run(args.plugin)
 
 
 
