@@ -1,7 +1,8 @@
 """
-group openfmri script
-reflective of openfmri organization in draft document Open_Brain_Imaging_Data_Structure.pdf date 2015-03-18
-exception: use of txt files instead of tsvs for the time being
+ROUGH DRAFT
+
+for help:
+contact: annepark@mit.edu
 """
 
 import os
@@ -73,7 +74,7 @@ def get_sub_vars(dataset_dir,task_id,model_id):
                          idx=np.where(behav_list_def[0][:]==key)[0][0]
                          for row in behav_list_def:
                              if row[0] == sub:
-                                 regressors[key].append(float(row[idx]))
+                                regressors[key].append(float(row[idx]))
                  else:
                      raise Exception('%s is missing from behav.txt'%sub)
     contrast_def=[]
