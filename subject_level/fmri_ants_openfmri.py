@@ -218,7 +218,7 @@ def create_reg_workflow(name='registration'):
     reg.inputs.args = '--float'
     reg.inputs.output_warped_image = 'output_warped_image.nii.gz'
     reg.inputs.num_threads = 4
-    reg.plugin_args = {'qsub_args': '-pe orte 4', 
+    reg.plugin_args = {'qsub_args': '-pe orte 4',
                        'sbatch_args': '--mem=6G -c 4'}
     register.connect(stripper, 'out_file', reg, 'moving_image')
     register.connect(inputnode,'target_image_brain', reg,'fixed_image')
@@ -241,8 +241,8 @@ def create_reg_workflow(name='registration'):
 
     warpmean = pe.Node(ants.ApplyTransforms(),
                        name='warpmean')
-    warpmean.inputs.input_image_type = 3
-    warpmean.inputs.interpolation = 'BSpline'
+    warpmean.inputs.input_image_type = 0
+    warpmean.inputs.interpolation = 'Linear'
     warpmean.inputs.invert_transform_flags = [False, False]
     warpmean.inputs.terminal_output = 'file'
 
@@ -257,8 +257,8 @@ def create_reg_workflow(name='registration'):
     warpall = pe.MapNode(ants.ApplyTransforms(),
                          iterfield=['input_image'],
                          name='warpall')
-    warpall.inputs.input_image_type = 3
-    warpall.inputs.interpolation = 'BSpline'
+    warpall.inputs.input_image_type = 0
+    warpall.inputs.interpolation = 'Linear'
     warpall.inputs.invert_transform_flags = [False, False]
     warpall.inputs.terminal_output = 'file'
 
@@ -428,7 +428,7 @@ def create_fs_reg_workflow(name='registration'):
     reg.inputs.args = '--float'
     reg.inputs.output_warped_image = 'output_warped_image.nii.gz'
     reg.inputs.num_threads = 4
-    reg.plugin_args = {'qsub_args': '-pe orte 4', 
+    reg.plugin_args = {'qsub_args': '-pe orte 4',
                        'sbatch_args': '--mem=6G -c 4'}
     register.connect(stripper, 'out_file', reg, 'moving_image')
     register.connect(inputnode,'target_image', reg,'fixed_image')
@@ -449,8 +449,8 @@ def create_fs_reg_workflow(name='registration'):
     Transform the mean image. First to anatomical and then to target
     """
     warpmean = Node(ants.ApplyTransforms(), name='warpmean')
-    warpmean.inputs.input_image_type = 3
-    warpmean.inputs.interpolation = 'BSpline'
+    warpmean.inputs.input_image_type = 0
+    warpmean.inputs.interpolation = 'Linear'
     warpmean.inputs.invert_transform_flags = [False, False]
     warpmean.inputs.terminal_output = 'file'
     warpmean.inputs.args = '--float'
@@ -464,8 +464,8 @@ def create_fs_reg_workflow(name='registration'):
     warpall = pe.MapNode(ants.ApplyTransforms(),
                          iterfield=['input_image'],
                          name='warpall')
-    warpall.inputs.input_image_type = 3
-    warpall.inputs.interpolation = 'BSpline'
+    warpall.inputs.input_image_type = 0
+    warpall.inputs.interpolation = 'Linear'
     warpall.inputs.invert_transform_flags = [False, False]
     warpall.inputs.terminal_output = 'file'
     warpall.inputs.args = '--float'
@@ -562,8 +562,8 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id):
                                          'task%03d_run*' % (idx + 1))))
         runs = [int(val[-3:]) for val in files]
         run_ids.insert(idx, runs)
-    json_info = os.path.join(base_dir, subject_id, 'BOLD', 
-                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]), 
+    json_info = os.path.join(base_dir, subject_id, 'BOLD',
+                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]),
                                  'bold_scaninfo.json')
     if os.path.exists(json_info):
         import json
@@ -571,8 +571,8 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id):
             data = json.load(fp)
             TR = data['global']['const']['RepetitionTime']/1000.
     else:
-        task_scan_key = os.path.join(base_dir, subject_id, 'BOLD', 
-                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]), 
+        task_scan_key = os.path.join(base_dir, subject_id, 'BOLD',
+                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]),
                                  'scan_key.txt')
         if os.path.exists(task_scan_key):
             TR = np.genfromtxt(task_scan_key)[1]
@@ -667,7 +667,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                          name='datasource')
     datasource.inputs.base_directory = data_dir
     datasource.inputs.template = '*'
-    
+
     if has_contrast:
         datasource.inputs.field_template = {'anat': '%s/anatomy/T1_001.nii.gz',
                                             'bold': '%s/BOLD/task%03d_r*/bold.nii.gz',
@@ -909,18 +909,18 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                splitfunc, 'in_files')
 
     if subjects_dir:
-        get_roi_mean = pe.MapNode(fs.SegStats(default_color_table=True), 
+        get_roi_mean = pe.MapNode(fs.SegStats(default_color_table=True),
                                   iterfield=['in_file'], name='get_aparc_means')
         get_roi_mean.inputs.avgwf_txt_file = True
         wf.connect(fixed_fx.get_node('outputspec'), 'copes', get_roi_mean, 'in_file')
         wf.connect(registration, 'outputspec.aparc', get_roi_mean, 'segmentation_file')
-        
-        get_roi_tsnr = pe.MapNode(fs.SegStats(default_color_table=True), 
+
+        get_roi_tsnr = pe.MapNode(fs.SegStats(default_color_table=True),
                                   iterfield=['in_file'], name='get_aparc_tsnr')
         get_roi_tsnr.inputs.avgwf_txt_file = True
         wf.connect(tsnr, 'tsnr_file', get_roi_tsnr, 'in_file')
         wf.connect(registration, 'outputspec.aparc', get_roi_tsnr, 'segmentation_file')
-        
+
     """
     Connect to a datasink
     """
@@ -1028,10 +1028,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     modelspec.inputs.high_pass_filter_cutoff = hpcutoff
     modelfit.inputs.inputspec.bases = {'dgamma': {'derivs': use_derivatives}}
     modelfit.inputs.inputspec.model_serial_correlations = True
-    if version < 507:
-        modelfit.inputs.inputspec.film_threshold = 1000
-    else:
-        modelfit.inputs.inputspec.film_threshold = -1000
+    modelfit.inputs.inputspec.film_threshold = 1000
 
     datasink.inputs.base_directory = output_dir
     return wf
