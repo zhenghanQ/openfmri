@@ -183,9 +183,9 @@ def embed_nifti(dcmfiles, niftifile, infofile, force=False):
     axcodes = nb.orientations.ornt2axcodes(ornt)
     new_nii = stack.to_nifti(voxel_order=''.join(axcodes), embed_meta=True)
     new_hdr = new_nii.get_header()
-    orig_hdr.extensions = new_hdr.extensions
-    orig_nii.update_header()
-    orig_nii.to_filename(niftifile)
+    #orig_hdr.extensions = new_hdr.extensions
+    #orig_nii.update_header()
+    #orig_nii.to_filename(niftifile)
     meta = ds.NiftiWrapper(new_nii).meta_ext.to_json()
     with open(infofile, 'wt') as fp:
         fp.writelines(meta)
