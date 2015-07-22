@@ -152,10 +152,7 @@ def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1outpu
         wk.connect(flame, 'zstats', ztopval,'in_file')
 
         sinker = Node(DataSink(), name='sinker')
-        sinker.inputs.base_directory = os.path.join(out_dir, 
-                                                    'model_%03d_task_%03d_contrast_%s' % (model_id, 
-                                                                                          task_id, 
-                                                                                          contrast[0][0]))
+        sinker.inputs.base_directory = os.path.join(out_dir, contrast[0][0])
         sinker.inputs.substitutions = [('_cope_id', 'contrast'),
                                     ('_maths_', '_reversed_')]
         if no_reversal == False:
@@ -221,7 +218,7 @@ if __name__ == '__main__':
     else:
         l1_outdir=os.path.join(args.datasetdir, 'l1output')
 
-    outdir = os.path.join(outdir, 'group','model%03d' % int(args.model),
+    outdir = os.path.join(outdir, 'model%03d' % int(args.model),
                           'task%03d' % int(args.task))
 
     wf = group_multregress_openfmri(model_id=int(args.model),
