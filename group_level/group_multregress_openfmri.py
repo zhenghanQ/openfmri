@@ -84,7 +84,6 @@ def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1outpu
                                no_reversal=False, plugin=None, plugin_args=None):
     cope_ids = l1_contrasts_num(model_id, task_id, dataset_dir)
     regressors_needed, contrasts, groups, subj_list = get_sub_vars(dataset_dir, task_id, model_id)
-    print cope_ids, contrasts, subj_list
 
     meta_workflow = Workflow(name='mult_regress')
     meta_workflow.base_dir = work_dir
