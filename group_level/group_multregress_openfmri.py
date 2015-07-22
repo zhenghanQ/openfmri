@@ -33,19 +33,6 @@ def l1_contrasts_num(model_id, task_id, dataset_dir):
         if row[0] != 'task%03d' % task_id:
             continue
         contrasts = contrasts + 1
-    '''
-    condition_info = []
-    cond_file = os.path.join(dataset_dir, 'models', 'model%03d' % model_id,
-                             'condition_key.txt')
-    with open(cond_file, 'rt') as fp:
-        for line in fp:
-            info = line.strip().split()
-            condition_info.append([info[0], info[1], ' '.join(info[2:])])
-    for row in condition_info:
-        if row[0] != 'task%03d' % task_id:
-            continue
-        contrasts = contrasts + 1
-    '''
     cope_id = range(1, contrasts + 1)
     return cope_id
 
