@@ -123,6 +123,7 @@ def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1outpu
         flame = Node(FLAMEO(), name='flameo')
         flame.inputs.mask_file =  mask_file
         flame.inputs.run_mode = 'flame1'
+        #flame.inputs.infer_outliers = True
 
         wk.connect(model, 'design_mat', flame, 'design_file')
         wk.connect(model, 'design_con', flame, 't_con_file')
@@ -140,7 +141,7 @@ def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1outpu
         wk.connect(smoothest, 'volume', cluster, 'volume')
         cluster.inputs.connectivity = 26
         cluster.inputs.threshold = 2.3
-        cluster.inputs.pthreshold = 0.01
+        cluster.inputs.pthreshold = 0.05
         cluster.inputs.out_threshold_file = True
         cluster.inputs.out_index_file = True
         cluster.inputs.out_localmax_txt_file = True
@@ -187,7 +188,7 @@ if __name__ == '__main__':
                                      description=__doc__)
     parser.add_argument('-m', '--model', default=1, type=int,
                         help="Model index" + defstr)
-    parser.add_argument('-t', '--task', default=1, type=int,
+    parser.add_argument('-t', '--task', default=1,
                         type=int, help="Task index" + defstr)
     parser.add_argument("-o", "--output_dir", dest="outdir",
                         help="Output directory base")
