@@ -511,7 +511,7 @@ def create_fs_reg_workflow(name='registration'):
 Get info for a given subject
 """
 
-def get_subjectinfo(subject_id, base_dir, task_id, model_id):
+def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id):
     """Get info for a given subject
 
     Parameters
@@ -538,13 +538,17 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id):
     from glob import glob
     import os
     import numpy as np
+    import re
     condition_info = []
-    cond_file = os.path.join(base_dir, 'models', 'model%03d' % model_id,
-                             'condition_key.txt')
+    cond_file = os.path.join(base_dir, 'participant_models', 'model%03d' % model_id,
+                             'condition_key.tsv')
     with open(cond_file, 'rt') as fp:
         for line in fp:
-            info = line.strip().split()
-            condition_info.append([info[0], info[1], ' '.join(info[2:])])
+            if not line.isspace():
+                #GAC check to make sure condition_key line has a condition on it 
+                # and is not white space
+                info = line.strip().split()
+                condition_info.append([info[0], info[1], ' '.join(info[2:])])
     if len(condition_info) == 0:
         raise ValueError('No condition info found in %s' % cond_file)
     taskinfo = np.array(condition_info)
@@ -553,19 +557,40 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id):
     run_ids = []
     if task_id > n_tasks:
         raise ValueError('Task id %d does not exist' % task_id)
+    
+    print 'condition info'
+    print condition_info
+    print 'N tasks ' + str(n_tasks)
+    
     for idx in range(n_tasks):
         taskidx = np.where(taskinfo[:, 0] == 'task%03d' % (idx + 1))
         conds.append([condition.replace(' ', '_') for condition
                       in taskinfo[taskidx[0], 2]]) # if 'junk' not in condition])
         files = sorted(glob(os.path.join(base_dir,
-                                         subject_id,
-                                         'BOLD',
-                                         'task%03d_run*' % (idx + 1))))
-        runs = [int(val[-3:]) for val in files]
+                                         subject_id, session_id,
+                                         'functional',
+                                         '*task%03d_run*.nii.gz' % (idx + 1))))
+        print 'idx ' + str(idx)
+        print 'files'
+        print files
+        #runs = [int(val[-3:]) for val in files] #GAC
+        runs = [int(re.search('run(.+?)_', val).group(1)) for val in files]
+        
+        print 'runs'
+        print runs
+        print
+        
         run_ids.insert(idx, runs)
-    json_info = os.path.join(base_dir, subject_id, 'BOLD', 
-                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]), 
-                                 'bold_scaninfo.json')
+        print 'run ids'
+        print run_ids
+        print
+    print os.path.join(base_dir, subject_id, session_id, 'functional', 
+                                 '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0])+ '*_scaninfo.json')
+    json_info = glob(os.path.join(base_dir, subject_id, session_id, 'functional', 
+                                 '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0])+ '*_scaninfo.json'))[0]
+    # GAC added glob expansion.  Only one file should be returned in the list, access that element with [0]
+    
+    print json_info
     if os.path.exists(json_info):
         import json
         with open(json_info, 'rt') as fp:
@@ -574,8 +599,9 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id):
             delay = data['global']['const']['CsaSeries.MrPhoenixProtocol.lDelayTimeInTR']/1000000.
             TA = TR - delay
     else:
-        task_scan_key = os.path.join(base_dir, subject_id, 'BOLD', 
-                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]), 
+        #GAC 5/4/2015 This is all outdated
+        task_scan_key = os.path.join(base_dir, subject_id, 'functional', 
+                                 '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]), 
                                  'scan_key.txt')
         if os.path.exists(task_scan_key):
             TR = np.genfromtxt(task_scan_key)[1]
@@ -592,7 +618,7 @@ Analyzes an open fmri dataset
 def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                              task_id=None, output_dir=None, subj_prefix='*',
                              hpcutoff=120., use_derivatives=True,
-                             fwhm=6.0, subjects_dir=None, target=None):
+                             fwhm=6.0, subjects_dir=None, target=None, session_id=None):
     """Analyzes an open fmri dataset
 
     Parameters
@@ -641,24 +667,28 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                 ('model_id', [model_id]),
                                 ('task_id', task_id)]
     else:
+        # GAC believes that this is called, but not certain
+        print "GAC-infosource is called"
         infosource.iterables = [('subject_id',
                                  [subjects[subjects.index(subj)] for subj in subject]),
                                 ('model_id', [model_id]),
-                                ('task_id', task_id)]
+                                ('task_id', task_id),
+                                ('session_id', session_id)]
 
     #GAC, added 'TA' to output_names
     subjinfo = pe.Node(niu.Function(input_names=['subject_id', 'base_dir',
-                                                 'task_id', 'model_id'],
+                                                 'task_id', 'model_id', 'session_id'],
                                     output_names=['run_id', 'conds', 'TR', 'TA'],
                                     function=get_subjectinfo),
                        name='subjectinfo')
     subjinfo.inputs.base_dir = data_dir
-
+    subjinfo.inputs.session_id= session_id #GAC 5/9/2015
+    
     """
     Return data components as anat, bold and behav
     """
-    contrast_file = os.path.join(data_dir, 'models', 'model%03d' % model_id,
-                                 'task_contrasts.txt')
+    contrast_file = os.path.join(data_dir,  'participant_models', 'model%03d' % model_id,
+                                 'contrast_key.tsv')
     has_contrast = os.path.exists(contrast_file)
     if has_contrast:
         datasource = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
@@ -675,21 +705,23 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     datasource.inputs.template = '*'
     
     if has_contrast:
-        datasource.inputs.field_template = {'anat': '%s/anatomy/T1_001.nii.gz',
-                                            'bold': '%s/BOLD/task%03d_r*/bold.nii.gz',
-                                            'behav': ('%s/model/model%03d/onsets/task%03d_'
-                                                      'run%03d/cond*.txt'),
-                                            'contrasts': ('models/model%03d/'
-                                                          'task_contrasts.txt')}
-        datasource.inputs.template_args = {'anat': [['subject_id']],
-                                       'bold': [['subject_id', 'task_id']],
-                                       'behav': [['subject_id', 'model_id',
+        #GAC the root to these folders is different 5/4/2015
+        datasource.inputs.field_template = {'anat': '%s/%s/anatomy/*T1w_001.nii.gz',
+                                            'bold': '%s/%s/functional/*task%03d_r*.nii.gz',
+                                            'behav': ('participant_models/model%03d/%s/%s/*task%03d_'
+                                                      'run%03d*/onsets/cond*.txt'),
+                                            'contrasts': ('participant_models/model%03d/'
+                                                          'contrast_key.tsv')}
+        datasource.inputs.template_args = {'anat': [['subject_id', 'session_id']],
+                                       'bold': [['subject_id', 'session_id', 'task_id']],
+                                       'behav': [['model_id','subject_id', 'session_id',
                                                   'task_id', 'run_id']],
                                        'contrasts': [['model_id']]}
     else:
-        datasource.inputs.field_template = {'anat': '%s/anatomy/T1_001.nii.gz',
-                                            'bold': '%s/BOLD/task%03d_r*/bold.nii.gz',
-                                            'behav': ('%s/model/model%03d/onsets/task%03d_'
+        #GAC 5/4/2015 This is outdated and should not be called
+        datasource.inputs.field_template = {'anat': '%s/session001/anatomy/*T1w_001.nii.gz',
+                                            'bold': '%s/session001/BOLD/task%03d_r*/bold.nii.gz',
+                                            'behav': ('%s/session001/model/model%03d/onsets/task%03d_'
                                                       'run%03d/cond*.txt')}
         datasource.inputs.template_args = {'anat': [['subject_id']],
                                        'bold': [['subject_id', 'task_id']],
@@ -697,6 +729,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                                   'task_id', 'run_id']]}
 
     datasource.inputs.sort_filelist = True
+    datasource.inputs.session_id = session_id #GAC 5/9/2015
 
     """
     Create meta workflow
@@ -970,7 +1003,6 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
             subs.append(('__realign%d/' % i, '/run%02d_' % run_num))
             subs.append(('__modelgen%d/' % i, '/run%02d_' % run_num))
         subs.append(('/model%03d/task%03d/' % (model_id, task_id), '/'))
-        subs.append(('/model%03d/task%03d_' % (model_id, task_id), '/'))
         subs.append(('_bold_dtype_mcf_bet_thresh_dil', '_mask'))
         subs.append(('_output_warped_image', '_anat2target'))
         return subs
@@ -1082,6 +1114,17 @@ if __name__ == '__main__':
                         help=("Target in MNI space. Best to use the MindBoggle "
                               "template - only used with FreeSurfer"
                               "OASIS-30_Atropos_template_in_MNI152_2mm.nii.gz"))
+
+    parser.add_argument("--crashdump_dir", 
+                            default=[],
+                            type=str,
+                            help="Crash dump location, defaults to work_dir")
+    parser.add_argument("--session_id", 
+                            required=True,
+                            type=str,
+                            help="Subject's session folder")
+
+
     args = parser.parse_args()
     outdir = args.outdir
     work_dir = os.getcwd()
@@ -1093,6 +1136,12 @@ if __name__ == '__main__':
         outdir = os.path.join(work_dir, 'output')
     outdir = os.path.join(outdir, 'model%02d' % int(args.model),
                           'task%03d' % int(args.task))
+
+    if args.crashdump_dir:
+        crashdump_dir = os.path.abspath(args.crashdump_dir)
+    else:
+        crashdump_dir = work_dir
+ 
     derivatives = args.derivatives
     if derivatives is None:
        derivatives = False
@@ -1106,12 +1155,17 @@ if __name__ == '__main__':
                                   use_derivatives=derivatives,
                                   fwhm=args.fwhm,
                                   subjects_dir=args.subjects_dir,
-                                  target=args.target_file)
+                                  target=args.target_file,
+                                  session_id=args.session_id)
+    #wf.config['execution']['remove_unnecessary_outputs'] = False
+###    file_path_crashdump='/home/gr21783/OMerrLog'
+    wf.config['execution']['crashdump_dir'] = crashdump_dir #file_path_crashdump
     wf.base_dir = work_dir
     if args.plugin_args:
         wf.run(args.plugin, plugin_args=eval(args.plugin_args))
     else:
-        wf.run(args.plugin)
+        wf.run(args.plugin, plugin_args={'sbatch_args': '-x node017,node018 -N1 -c1','max_jobs':25})
+        #wf.run(args.plugin, plugin_args={'sbatch_args': '-p om_interactive -N1 -c1 ','max_jobs':25})
 
 
 
