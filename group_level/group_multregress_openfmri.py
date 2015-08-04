@@ -74,7 +74,10 @@ def get_sub_vars(dataset_dir, task_id, model_id):
     for idx, con in enumerate(contrasts):
         model_regressor = {}
         for cond in con[0][2]:
-            model_regressor[cond] = behav_info.ix[subs_needed, cond].values.tolist()
+            values = behav_info.ix[subs_needed, cond].values
+            if tuple(np.unique(values).tolist()) not in [(1,), (0, 1)]:
+                values = values - values.mean()
+            model_regressor[cond] = values.tolist()
         regressors_needed.append(model_regressor)
     groups = [1 for val in subs_needed]
     return regressors_needed, contrasts, groups, subs_needed.values.tolist()
