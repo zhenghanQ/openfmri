@@ -584,7 +584,7 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id):
         conds.append([condition.replace(' ', '_') for condition
                       in taskinfo[taskidx[0], 2]]) # if 'junk' not in condition])
         files = sorted(glob(os.path.join(base_dir,
-                                         subject_id, session_id,
+                                         subject_id, session_id + '*',
                                          'functional',
                                          '*task%03d_run*.nii.gz' % (idx + 1))))
         print 'idx ' + str(idx)
@@ -601,9 +601,9 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id):
         print 'run ids'
         print run_ids
         print
-    print os.path.join(base_dir, subject_id, session_id, 'functional', 
+    print os.path.join(base_dir, subject_id, session_id + '*', 'functional', 
                                  '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0])+ '*_scaninfo.json')
-    json_info = glob(os.path.join(base_dir, subject_id, session_id, 'functional', 
+    json_info = glob(os.path.join(base_dir, subject_id, session_id + '*', 'functional', 
                                  '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0])+ '*_scaninfo.json'))[0]
     # GAC added glob expansion.  Only one file should be returned in the list, access that element with [0]
     
@@ -723,9 +723,9 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     
     if has_contrast:
         #GAC the root to these folders is different 5/4/2015
-        datasource.inputs.field_template = {'anat': '%s/%s/anatomy/*T1w_001.nii.gz',
-                                            'bold': '%s/%s/functional/*task%03d_r*.nii.gz',
-                                            'behav': ('participant_models/model%03d/%s/%s/*task%03d_'
+        datasource.inputs.field_template = {'anat': '%s/%s*/anatomy/*T1w_001.nii.gz',
+                                            'bold': '%s/%s*/functional/*task%03d_r*.nii.gz',
+                                            'behav': ('participant_models/model%03d/%s/%s*/*task%03d_'
                                                       'run%03d*/onsets/cond*.txt'),
                                             'contrasts': ('participant_models/model%03d/'
                                                           'contrast_key.tsv')}
@@ -919,7 +919,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     wf.connect(calc_median, 'median_file', registration, 'inputspec.mean_image')
     if subjects_dir:
         wf.connect(infosource, 'subject_id', registration, 'inputspec.subject_id')
-        registration.inputs.inputspec.subjects_dir = subjects_dir
+        registration.inputs.inputspec.subjects_dir = glob(subjects_dir + '*')[0] #Glob over visits
         registration.inputs.inputspec.target_image = fsl.Info.standard_image('MNI152_T1_2mm_brain.nii.gz')
         if target:
             registration.inputs.inputspec.target_image = target
@@ -1019,7 +1019,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
             subs.append(('__dilatemask%d/' % i, '/run%02d_' % run_num))
             subs.append(('__realign%d/' % i, '/run%02d_' % run_num))
             subs.append(('__modelgen%d/' % i, '/run%02d_' % run_num))
-        subs.append(('/model%03d/task%03d_' % (model_id, task_id), '/'))
+        subs.append(('/model%03d/task%03d_' % (model_id, task_id), '/')) # This was important, don't comment out.
         subs.append(('_bold_dtype_mcf_bet_thresh_dil', '_mask'))
         subs.append(('_output_warped_image', '_anat2target'))
         subs.append(('median_flirt_brain_mask', 'median_brain_mask'))
