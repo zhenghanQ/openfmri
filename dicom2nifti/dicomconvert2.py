@@ -297,7 +297,10 @@ def convert_dicoms(subjs, dicom_dir_template, outdir, heuristic_file, converter,
             convertcmd = ' '.join(['python', progname, '-d', dicom_dir_template,
                                    '-o', outdir, '-f', heuristic_file, '-s', sid, 
                                    '-c', converter])
-            outcmd = 'ezsub.py -n sg-%s -q %s -c \"%s\"'%(sid, queue, convertcmd)
+            script_file = 'sg-%s.sh' % sid
+            with open(script_file, 'wt') as fp:
+                fp.writelines(['#!/bin/bash\n', convertcmd])
+            outcmd = 'sbatch -J sg-%s -p %s -N1 -c2 --mem=20G %s' % (sid, queue, script_file)
             os.system(outcmd)
             continue
         sdir = dicom_dir_template % sid
@@ -348,7 +351,7 @@ s3
     parser.add_argument('-s','--subjects',dest='subjs', required=True,
                         type=str, nargs='+', help='list of subjects')
     parser.add_argument('-c','--converter', dest='converter',
-                        default='mri_convert',
+                        default='dcm2nii',
                         choices=('mri_convert', 'dcmstack', 'dcm2nii'),
                         help='tool to use for dicom conversion')
     parser.add_argument('-o','--outdir', dest='outputdir',
@@ -357,7 +360,7 @@ s3
     parser.add_argument('-f','--heuristic', dest='heuristic_file', required=True,
                         help='python script containing heuristic')
     parser.add_argument('-q','--queue',dest='queue',
-                        help='PBS queue to use if available')
+                        help='SLURM partition to use if available')
     args = parser.parse_args()
     convert_dicoms(args.subjs, os.path.abspath(args.dicom_dir_template),
                    os.path.abspath(args.outputdir),
