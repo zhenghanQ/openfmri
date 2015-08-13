@@ -175,7 +175,7 @@ def create_reg_workflow(name='registration'):
     """
     Create a mask of the median image coregistered to the anatomical image
     """
-    
+
     mean2anat_mask = Node(fsl.BET(mask=True), name='mean2anat_mask')
     register.connect(mean2anatbbr, 'out_file', mean2anat_mask, 'in_file')
 
@@ -443,7 +443,7 @@ def create_fs_reg_workflow(name='registration'):
     reg.inputs.args = '--float'
     reg.inputs.output_warped_image = 'output_warped_image.nii.gz'
     reg.inputs.num_threads = 4
-    reg.plugin_args = {'qsub_args': '-pe orte 4', 
+    reg.plugin_args = {'qsub_args': '-pe orte 4',
                        'sbatch_args': '--mem=6G -c 4'}
     register.connect(stripper, 'out_file', reg, 'moving_image')
     register.connect(inputnode,'target_image', reg,'fixed_image')
@@ -562,7 +562,7 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id):
     with open(cond_file, 'rt') as fp:
         for line in fp:
             if not line.isspace():
-                #GAC check to make sure condition_key line has a condition on it 
+                #GAC check to make sure condition_key line has a condition on it
                 # and is not white space
                 info = line.strip().split()
                 condition_info.append([info[0], info[1], ' '.join(info[2:])])
@@ -574,11 +574,11 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id):
     run_ids = []
     if task_id > n_tasks:
         raise ValueError('Task id %d does not exist' % task_id)
-    
+
     print 'condition info'
     print condition_info
     print 'N tasks ' + str(n_tasks)
-    
+
     for idx in range(n_tasks):
         taskidx = np.where(taskinfo[:, 0] == 'task%03d' % (idx + 1))
         conds.append([condition.replace(' ', '_') for condition
@@ -592,21 +592,21 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id):
         print files
         #runs = [int(val[-3:]) for val in files] #GAC
         runs = [int(re.search('run(.+?)_', val).group(1)) for val in files]
-        
+
         print 'runs'
         print runs
         print
-        
+
         run_ids.insert(idx, runs)
         print 'run ids'
         print run_ids
         print
-    print os.path.join(base_dir, subject_id, session_id + '*', 'functional', 
+    print os.path.join(base_dir, subject_id, session_id + '*', 'functional',
                                  '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0])+ '*_scaninfo.json')
-    json_info = glob(os.path.join(base_dir, subject_id, session_id + '*', 'functional', 
+    json_info = glob(os.path.join(base_dir, subject_id, session_id + '*', 'functional',
                                  '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0])+ '*_scaninfo.json'))[0]
     # GAC added glob expansion.  Only one file should be returned in the list, access that element with [0]
-    
+
     print json_info
     if os.path.exists(json_info):
         import json
@@ -617,8 +617,8 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id):
             TA = TR - delay
     else:
         #GAC 5/4/2015 This is all outdated
-        task_scan_key = os.path.join(base_dir, subject_id, 'functional', 
-                                 '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]), 
+        task_scan_key = os.path.join(base_dir, subject_id, 'functional',
+                                 '*task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]),
                                  'scan_key.txt')
         if os.path.exists(task_scan_key):
             TR = np.genfromtxt(task_scan_key)[1]
@@ -700,7 +700,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                        name='subjectinfo')
     subjinfo.inputs.base_dir = data_dir
     subjinfo.inputs.session_id= session_id #GAC 5/9/2015
-    
+
     """
     Return data components as anat, bold and behav
     """
@@ -720,7 +720,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                          name='datasource')
     datasource.inputs.base_directory = data_dir
     datasource.inputs.template = '*'
-    
+
     if has_contrast:
         #GAC the root to these folders is different 5/4/2015
         datasource.inputs.field_template = {'anat': '%s/%s*/anatomy/*T1w_001.nii.gz',
@@ -968,18 +968,31 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                splitfunc, 'in_files')
 
     if subjects_dir:
-        get_roi_mean = pe.MapNode(fs.SegStats(default_color_table=True), 
+        get_roi_mean = pe.MapNode(fs.SegStats(default_color_table=True),
                                   iterfield=['in_file'], name='get_aparc_means')
         get_roi_mean.inputs.avgwf_txt_file = True
         wf.connect(fixed_fx.get_node('outputspec'), 'copes', get_roi_mean, 'in_file')
         wf.connect(registration, 'outputspec.aparc', get_roi_mean, 'segmentation_file')
-        
-        get_roi_tsnr = pe.MapNode(fs.SegStats(default_color_table=True), 
+
+        get_roi_tsnr = pe.MapNode(fs.SegStats(default_color_table=True),
                                   iterfield=['in_file'], name='get_aparc_tsnr')
         get_roi_tsnr.inputs.avgwf_txt_file = True
         wf.connect(tsnr, 'tsnr_file', get_roi_tsnr, 'in_file')
         wf.connect(registration, 'outputspec.aparc', get_roi_tsnr, 'segmentation_file')
-        
+
+        # Sample the average time series in aparc ROIs
+        # from rsfmri_vol_surface_preprocessing_nipy.py
+        sampleaparc = MapNode(freesurfer.SegStats(default_color_table=True),
+                              iterfield=['in_file', 'summary_file',
+                                         'avgwf_txt_file'],
+                              name='aparc_ts')
+        sampleaparc.inputs.segment_id = ([8] + range(10, 14) + [17, 18, 26, 47] +
+                                         range(49, 55) + [58] + range(1001, 1036) +
+                                         range(2001, 2036))
+
+        wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
+        wf.connect(preproc, 'outputspec.highpassed_files', sampleaparc, 'in_file')
+
     """
     Connect to a datasink
     """
@@ -1070,6 +1083,8 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                               ('summary_file', 'qa.tsnr.@summary')])])
         wf.connect([(get_roi_mean, datasink, [('avgwf_txt_file', 'copes.roi'),
                                               ('summary_file', 'copes.roi.@summary')])])
+        wf.connect(sampleaparc, 'summary_file', datasink, 'timeseries.aparc')
+        wf.connect(sampleaparc, 'avgwf_txt_file', datasink, 'timeseries.aparc.@avgwf')
     wf.connect([(splitfunc, datasink,
                  [('copes', 'copes.mni'),
                   ('varcopes', 'varcopes.mni'),
@@ -1135,11 +1150,11 @@ if __name__ == '__main__':
                               "template - only used with FreeSurfer"
                               "OASIS-30_Atropos_template_in_MNI152_2mm.nii.gz"))
 
-    parser.add_argument("--crashdump_dir", 
+    parser.add_argument("--crashdump_dir",
                             default=[],
                             type=str,
                             help="Crash dump location, defaults to work_dir")
-    parser.add_argument("--session_id", 
+    parser.add_argument("--session_id",
                             required=True,
                             type=str,
                             help="Subject's session folder")
@@ -1161,7 +1176,7 @@ if __name__ == '__main__':
         crashdump_dir = os.path.abspath(args.crashdump_dir)
     else:
         crashdump_dir = work_dir
- 
+
     derivatives = args.derivatives
     if derivatives is None:
        derivatives = False
@@ -1186,9 +1201,3 @@ if __name__ == '__main__':
     else:
         wf.run(args.plugin, plugin_args={'sbatch_args': '-x node017,node018 -N1 -c1','max_jobs':25})
         #wf.run(args.plugin, plugin_args={'sbatch_args': '-p om_interactive -N1 -c1 ','max_jobs':25})
-
-
-
-
-
-
