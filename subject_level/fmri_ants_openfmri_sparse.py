@@ -983,12 +983,13 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         # Sample the average time series in aparc ROIs
         # from rsfmri_vol_surface_preprocessing_nipy.py
         sampleaparc = MapNode(freesurfer.SegStats(default_color_table=True),
-                              iterfield=['in_file', 'summary_file',
-                                         'avgwf_txt_file'],
+                              iterfield=['in_file'],
                               name='aparc_ts')
         sampleaparc.inputs.segment_id = ([8] + range(10, 14) + [17, 18, 26, 47] +
                                          range(49, 55) + [58] + range(1001, 1036) +
                                          range(2001, 2036))
+        sampleaparc.avgwf_txt_file = 'avgwf.txt'
+        sampleaparc.summary_file = 'summary.stats'
 
         wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
         wf.connect(preproc, 'outputspec.highpassed_files', sampleaparc, 'in_file')
@@ -1083,8 +1084,8 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                               ('summary_file', 'qa.tsnr.@summary')])])
         wf.connect([(get_roi_mean, datasink, [('avgwf_txt_file', 'copes.roi'),
                                               ('summary_file', 'copes.roi.@summary')])])
-        wf.connect(sampleaparc, 'summary_file', datasink, 'timeseries.aparc')
-        wf.connect(sampleaparc, 'avgwf_txt_file', datasink, 'timeseries.aparc.@avgwf')
+        wf.connect(sampleaparc, 'summary_file', datasink, 'timeseries.aparc.@summary')
+        wf.connect(sampleaparc, 'avgwf_txt_file', datasink, 'timeseries.aparc')
     wf.connect([(splitfunc, datasink,
                  [('copes', 'copes.mni'),
                   ('varcopes', 'varcopes.mni'),
