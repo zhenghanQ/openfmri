@@ -919,10 +919,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     wf.connect(calc_median, 'median_file', registration, 'inputspec.mean_image')
     if subjects_dir:
         wf.connect(infosource, 'subject_id', registration, 'inputspec.subject_id')
-        try:
-            registration.inputs.inputspec.subjects_dir = glob(subjects_dir + '*')[0] #Glob over visits
-        except:
-            registration.inputs.inputspec.subjects_dir = glob(subjects_dir + subject + '*')[0] #Glob over visits
+        registration.inputs.inputspec.subjects_dir = glob(subjects_dir + '*')[0] #Glob over visits
         registration.inputs.inputspec.target_image = fsl.Info.standard_image('MNI152_T1_2mm_brain.nii.gz')
         if target:
             registration.inputs.inputspec.target_image = target
