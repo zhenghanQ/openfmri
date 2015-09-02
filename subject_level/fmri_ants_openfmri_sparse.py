@@ -919,7 +919,10 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     wf.connect(calc_median, 'median_file', registration, 'inputspec.mean_image')
     if subjects_dir:
         wf.connect(infosource, 'subject_id', registration, 'inputspec.subject_id')
-        registration.inputs.inputspec.subjects_dir = glob(subjects_dir + '*')[0] #Glob over visits
+        try:
+            registration.inputs.inputspec.subjects_dir = glob(subjects_dir + '*')[0] #Glob over visits
+        except:
+            registration.inputs.inputspec.subjects_dir = glob(subjects_dir + subject + '*')[0] #Glob over visits
         registration.inputs.inputspec.target_image = fsl.Info.standard_image('MNI152_T1_2mm_brain.nii.gz')
         if target:
             registration.inputs.inputspec.target_image = target
@@ -988,11 +991,11 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         sampleaparc.inputs.segment_id = ([8] + range(10, 14) + [17, 18, 26, 47] +
                                          range(49, 55) + [58] + range(1001, 1036) +
                                          range(2001, 2036))
-        sampleaparc.avgwf_txt_file = 'avgwf.txt'
+        sampleaparc.inputs.avgwf_txt_file = True
         sampleaparc.summary_file = 'summary.stats'
 
         wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
-        wf.connect(preproc, 'outputspec.highpassed_files', sampleaparc, 'in_file')
+        wf.connect(preproc, 'outputspec.realigned_files', sampleaparc, 'in_file')
 
     """
     Connect to a datasink
