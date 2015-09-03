@@ -728,7 +728,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                             'behav': ('participant_models/model%03d/%s/%s*/*task%03d_'
                                                       'run%03d*/onsets/cond*.txt'),
                                             'contrasts': ('participant_models/model%03d/'
-                                                          'contrast_key.tsv')}
+                                                          'contrast_key_ppi.tsv')}
         datasource.inputs.template_args = {'anat': [['subject_id', 'session_id']],
                                        'bold': [['subject_id', 'session_id', 'task_id']],
                                        'behav': [['model_id','subject_id', 'session_id',
@@ -790,10 +790,11 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
             con = [row[1], 'T', ['cond%03d' % (i + 1)  for i in range(len(conds))],
                    row[2:].astype(float).tolist()]
             contrasts.append(con)
-        # add auto contrasts for each column
-        for i, cond in enumerate(conds):
-            con = [cond, 'T', ['cond%03d' % (i + 1)], [1]]
-            contrasts.append(con)
+        # add auto contrasts for each column - KRS 2015.09.02: nahhh,
+        # shouldn't need for ppi since altered contrasts in new file aren't conds
+        #for i, cond in enumerate(conds):
+        #    con = [cond, 'T', ['cond%03d' % (i + 1)], [1]]
+        #    contrasts.append(con)
         return contrasts
 
     contrastgen = pe.Node(niu.Function(input_names=['contrast_file',
@@ -827,7 +828,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         ppi_aparc_timeseries = np.loadtxt(ppi_aparc_timeseries_file)
         ppi_timeseries = ppi_aparc_timeseries[:,28] # roi_list.index('ctx-lh-medialorbitofrontal')
         regress_phys = ppi_timeseries
-        
+
         regress_interact = regress_task * regress_phys
 
         session_info_ppi = dict.copy(session_info)
@@ -886,7 +887,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                 (modelspec, modelfit, [('session_info',
                                         'inputspec.session_info')]),
                 (modelspec, model_ppi, [('session_info',
-                                        'inputspec.session_info')]),
+                                        'session_info')]),
                 (model_ppi, modelfit, [('session_info_ppi',
                                         'inputspec.session_info')]),
                 (preproc, modelfit, [('outputspec.highpassed_files',
