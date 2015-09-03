@@ -819,7 +819,20 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     modelspec.inputs.stimuli_as_impulses=False #GAC, added but not sure if this is relevant
     modelspec.inputs.model_hrf=True # GAC added 2/8/2015
 
-
+    datasource_timeseries = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
+                                               'task_id', 'model_id'],
+                                     outfields=['aparc_timeseries_file']),
+                     name='datasource_timeseries')
+    datasource.inputs.base_directory = '/om/project/voice/processedData/l1analysis/all_hc/'
+    datasource.inputs.template = '*'
+    datasource_timeseries.inputs.field_template = {'aparc_timeseries_file': ('participant_models/'
+                                                    'model%02d/task%03d/%s/timeseries/aparc/'
+                                                    '_aparc_ts%d/aparc+aseg_warped_avgwf.txt')}
+    run_id_0index = run_id-1
+    datasource_timeseries.inputs.template_args = {'aparc_timeseries_file': [['model_id',
+                                                        'task_id','subject_id','run_id_0index']]}
+    # send to ppi model node
+    wf.connect(datasource_timeseries, 'aparc_timeseries_file', model_ppi, 'ppi_aparc_timeseries_file')
 
     def model_ppi_func(session_info,ppi_aparc_timeseries_file):
         regress_task_raw = np.sum(session_info[0]['regress'][0:2]) # 3 conditions in this task
@@ -1019,10 +1032,10 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         sampleaparc.summary_file = 'summary.stats'
 
         wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
-        wf.connect(preproc, 'outputspec.realigned_files', sampleaparc, 'in_file')
+        # use highpassed since PPI will need it anyway
+        wf.connect(preproc, 'outputspec.highpassed_files', sampleaparc, 'in_file')
 
-        # send to ppi model node
-        wf.connect(sampleaparc, 'avgwf_txt_file', model_ppi, 'ppi_aparc_timeseries_file')
+
 
 
     """
