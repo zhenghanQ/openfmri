@@ -819,35 +819,52 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     modelspec.inputs.stimuli_as_impulses=False #GAC, added but not sure if this is relevant
     modelspec.inputs.model_hrf=True # GAC added 2/8/2015
 
+    def subtract_1(run_id):
+        run_id_0index = []
+        [run_id_0index.append(run-1) for run in run_id]
+        return run_id_0index
+    sub_1 = pe.Node(niu.Function(input_names=['run_id'],
+                                       output_names=['run_id_0index'],
+                                       function=subtract_1),
+                          name='sub_1')
+    wf.connect(subjinfo, 'run_id', sub_1, 'run_id') # but will it be 1 off? indexed by 0
+
     datasource_timeseries = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
                                                'task_id', 'model_id'],
                                      outfields=['aparc_timeseries_file']),
                      name='datasource_timeseries')
-    datasource.inputs.base_directory = '/om/project/voice/processedData/l1analysis/all_hc/'
-    datasource.inputs.template = '*'
-    datasource_timeseries.inputs.field_template = {'aparc_timeseries_file': ('participant_models/'
-                                                    'model%02d/task%03d/%s/timeseries/aparc/'
-                                                    '_aparc_ts%d/aparc+aseg_warped_avgwf.txt')}
-    run_id_0index = run_id-1
+    datasource_timeseries.inputs.base_directory = '/om/project/voice/processedData/l1analysis/all_hc/'
+    datasource_timeseries.inputs.template = '*'
+    datasource_timeseries.inputs.sort_filelist=True
+    datasource_timeseries.inputs.field_template = {'aparc_timeseries_file': ('model%02d/task%03d/%s/timeseries/'
+                                                    'aparc/_aparc_ts%d/aparc+aseg_warped_avgwf.txt')}
     datasource_timeseries.inputs.template_args = {'aparc_timeseries_file': [['model_id',
-                                                        'task_id','subject_id','run_id_0index']]}
-    # send to ppi model node
-    wf.connect(datasource_timeseries, 'aparc_timeseries_file', model_ppi, 'ppi_aparc_timeseries_file')
+                                                        'task_id','subject_id','run_id']]}
+    wf.connect(infosource, 'subject_id', datasource_timeseries, 'subject_id')
+    wf.connect(infosource, 'model_id', datasource_timeseries, 'model_id')
+    wf.connect(infosource, 'task_id', datasource_timeseries, 'task_id')
+    wf.connect(sub_1, 'run_id_0index', datasource_timeseries, 'run_id') # but will it be 1 off? indexed by 0
 
     def model_ppi_func(session_info,ppi_aparc_timeseries_file):
-        regress_task_raw = np.sum(session_info[0]['regress'][0:2]) # 3 conditions in this task
-        regress_task = regress_task_raw/np.max(regress_task_raw) # rescaled to 0:1
+        import numpy as np
+        from copy import copy
+        session_info_ppi = copy(session_info)
+        for idx,info in enumerate(session_info):
+            conds = np.zeros((len(info['regress'][0]['val']),3))
+            for c in range(3):
+                conds[:,c]=np.array(info['regress'][c]['val'])
+            regress_task_raw = np.sum(conds,1) # 3 conditions in this task
+            regress_task = regress_task_raw/np.max(regress_task_raw) # rescaled to 0:1
 
-        ppi_aparc_timeseries = np.loadtxt(ppi_aparc_timeseries_file)
-        ppi_timeseries = ppi_aparc_timeseries[:,28] # roi_list.index('ctx-lh-medialorbitofrontal')
-        regress_phys = ppi_timeseries
+            ppi_aparc_timeseries = np.genfromtxt(ppi_aparc_timeseries_file[idx])
+            ppi_timeseries = ppi_aparc_timeseries[:,28] # roi_list.index('ctx-lh-medialorbitofrontal')
+            regress_phys = ppi_timeseries
 
-        regress_interact = regress_task * regress_phys
+            regress_interact = regress_task * regress_phys
 
-        session_info_ppi = dict.copy(session_info)
-        session_info_ppi[0]['regress'][0] = regress_task
-        session_info_ppi[0]['regress'][1] = regress_phys
-        session_info_ppi[0]['regress'][2] = regress_interact
+            session_info_ppi[idx]['regress'][0]['val'] = regress_task
+            session_info_ppi[idx]['regress'][1]['val'] = regress_phys
+            session_info_ppi[idx]['regress'][2]['val'] = regress_interact
 
         return session_info_ppi
 
@@ -855,6 +872,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                        output_names=['session_info_ppi'],
                                        function=model_ppi_func),
                           name='model_ppi')
+    wf.connect(datasource_timeseries, 'aparc_timeseries_file', model_ppi, 'ppi_aparc_timeseries_file')
 
     def check_behav_list(behav, run_id, conds):
         from nipype.external import six
