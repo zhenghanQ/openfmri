@@ -992,7 +992,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         sampleaparc.summary_file = 'summary.stats'
 
         wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
-        wf.connect(preproc, 'outputspec.realigned_files', sampleaparc, 'in_file')
+        wf.connect(preproc, 'outputspec.highpassed_files', sampleaparc, 'in_file')
 
     """
     Connect to a datasink
@@ -1200,5 +1200,5 @@ if __name__ == '__main__':
     if args.plugin_args:
         wf.run(args.plugin, plugin_args=eval(args.plugin_args))
     else:
-        wf.run(args.plugin, plugin_args={'sbatch_args': '-x node017,node018 -N1 -c1','max_jobs':25})
-        #wf.run(args.plugin, plugin_args={'sbatch_args': '-p om_interactive -N1 -c1 ','max_jobs':25})
+        #wf.run(args.plugin, plugin_args={'sbatch_args': '-x node017,node018 -N1 -c1','max_jobs':25})
+        wf.run(args.plugin, plugin_args={'sbatch_args': '-p om_interactive -N1 -c1 ','max_jobs':25})
