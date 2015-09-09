@@ -1050,7 +1050,6 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         sampleaparc.summary_file = 'summary.stats'
 
         wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
-        # use highpassed since PPI will need it anyway
         wf.connect(preproc, 'outputspec.highpassed_files', sampleaparc, 'in_file')
 
 
