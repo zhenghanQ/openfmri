@@ -728,7 +728,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                             'behav': ('participant_models/model%03d/%s/%s*/*task%03d_'
                                                       'run%03d*/onsets/cond*.txt'),
                                             'contrasts': ('participant_models/model%03d/'
-                                                          'contrast_key.tsv')}
+                                                          'contrast_key_ppi.tsv')}
         datasource.inputs.template_args = {'anat': [['subject_id', 'session_id']],
                                        'bold': [['subject_id', 'session_id', 'task_id']],
                                        'behav': [['model_id','subject_id', 'session_id',
@@ -790,10 +790,11 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
             con = [row[1], 'T', ['cond%03d' % (i + 1)  for i in range(len(conds))],
                    row[2:].astype(float).tolist()]
             contrasts.append(con)
-        # add auto contrasts for each column
-        for i, cond in enumerate(conds):
-            con = [cond, 'T', ['cond%03d' % (i + 1)], [1]]
-            contrasts.append(con)
+        # add auto contrasts for each column - KRS 2015.09.02: nahhh,
+        # shouldn't need for ppi since altered contrasts in new file aren't conds
+        #for i, cond in enumerate(conds):
+        #    con = [cond, 'T', ['cond%03d' % (i + 1)], [1]]
+        #    contrasts.append(con)
         return contrasts
 
     contrastgen = pe.Node(niu.Function(input_names=['contrast_file',
@@ -817,6 +818,61 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     modelspec.inputs.input_units = 'secs'
     modelspec.inputs.stimuli_as_impulses=False #GAC, added but not sure if this is relevant
     modelspec.inputs.model_hrf=True # GAC added 2/8/2015
+
+    def subtract_1(run_id):
+        run_id_0index = []
+        [run_id_0index.append(run-1) for run in run_id]
+        return run_id_0index
+    sub_1 = pe.Node(niu.Function(input_names=['run_id'],
+                                       output_names=['run_id_0index'],
+                                       function=subtract_1),
+                          name='sub_1')
+    wf.connect(subjinfo, 'run_id', sub_1, 'run_id') # but will it be 1 off? indexed by 0
+
+    datasource_timeseries = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
+                                               'task_id', 'model_id'],
+                                     outfields=['aparc_timeseries_file']),
+                     name='datasource_timeseries')
+    datasource_timeseries.inputs.base_directory = '/om/project/voice/processedData/l1analysis/all_hc/'
+    datasource_timeseries.inputs.template = '*'
+    datasource_timeseries.inputs.sort_filelist=True
+    datasource_timeseries.inputs.field_template = {'aparc_timeseries_file': ('model%02d/task%03d/%s/timeseries/'
+                                                    'aparc/_aparc_ts%d/aparc+aseg_warped_avgwf.txt')}
+    datasource_timeseries.inputs.template_args = {'aparc_timeseries_file': [['model_id',
+                                                        'task_id','subject_id','run_id']]}
+    wf.connect(infosource, 'subject_id', datasource_timeseries, 'subject_id')
+    wf.connect(infosource, 'model_id', datasource_timeseries, 'model_id')
+    wf.connect(infosource, 'task_id', datasource_timeseries, 'task_id')
+    wf.connect(sub_1, 'run_id_0index', datasource_timeseries, 'run_id') # but will it be 1 off? indexed by 0
+
+    def model_ppi_func(session_info,ppi_aparc_timeseries_file):
+        import numpy as np
+        from copy import copy
+        session_info_ppi = copy(session_info)
+        for idx,info in enumerate(session_info):
+            conds = np.zeros((len(info['regress'][0]['val']),3))
+            for c in range(3):
+                conds[:,c]=np.array(info['regress'][c]['val'])
+            regress_task_raw = np.sum(conds,1) # 3 conditions in this task
+            regress_task = regress_task_raw/np.max(regress_task_raw) # rescaled to 0:1
+
+            ppi_aparc_timeseries = np.genfromtxt(ppi_aparc_timeseries_file[idx])
+            ppi_timeseries = ppi_aparc_timeseries[:,14] # roi_list.index('ctx-lh-medialorbitofrontal')
+            regress_phys = ppi_timeseries
+
+            regress_interact = regress_task * regress_phys
+
+            session_info_ppi[idx]['regress'][0]['val'] = regress_task
+            session_info_ppi[idx]['regress'][1]['val'] = regress_phys
+            session_info_ppi[idx]['regress'][2]['val'] = regress_interact
+
+        return session_info_ppi
+
+    model_ppi = pe.Node(niu.Function(input_names=['session_info','ppi_aparc_timeseries_file'],
+                                       output_names=['session_info_ppi'],
+                                       function=model_ppi_func),
+                          name='model_ppi')
+    wf.connect(datasource_timeseries, 'aparc_timeseries_file', model_ppi, 'ppi_aparc_timeseries_file')
 
     def check_behav_list(behav, run_id, conds):
         from nipype.external import six
@@ -859,7 +915,9 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                       ('outputspec.motion_parameters',
                                        'realignment_parameters')]),
                 (art, modelspec, [('outlier_files', 'outlier_files')]),
-                (modelspec, modelfit, [('session_info',
+                (modelspec, model_ppi, [('session_info',
+                                        'session_info')]),
+                (model_ppi, modelfit, [('session_info_ppi',
                                         'inputspec.session_info')]),
                 (preproc, modelfit, [('outputspec.highpassed_files',
                                       'inputspec.functional_data')])
@@ -993,6 +1051,9 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
 
         wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
         wf.connect(preproc, 'outputspec.highpassed_files', sampleaparc, 'in_file')
+
+
+
 
     """
     Connect to a datasink
@@ -1200,5 +1261,5 @@ if __name__ == '__main__':
     if args.plugin_args:
         wf.run(args.plugin, plugin_args=eval(args.plugin_args))
     else:
-        #wf.run(args.plugin, plugin_args={'sbatch_args': '-x node017,node018 -N1 -c1','max_jobs':25})
-        wf.run(args.plugin, plugin_args={'sbatch_args': '-p om_interactive -N1 -c1 ','max_jobs':25})
+        wf.run(args.plugin, plugin_args={'sbatch_args': '-x node017,node018 -N1 -c1','max_jobs':25})
+        #wf.run(args.plugin, plugin_args={'sbatch_args': '-p om_interactive -N1 -c1 ','max_jobs':25})
