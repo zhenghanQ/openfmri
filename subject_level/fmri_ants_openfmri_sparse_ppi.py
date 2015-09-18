@@ -857,7 +857,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
             regress_task = regress_task_raw/np.max(regress_task_raw) # rescaled to 0:1
 
             ppi_aparc_timeseries = np.genfromtxt(ppi_aparc_timeseries_file[idx])
-            ppi_timeseries = ppi_aparc_timeseries[:,28] # roi_list.index('ctx-lh-medialorbitofrontal')
+            ppi_timeseries = ppi_aparc_timeseries[:,14] # roi_list.index('ctx-lh-medialorbitofrontal')
             regress_phys = ppi_timeseries
 
             regress_interact = regress_task * regress_phys
