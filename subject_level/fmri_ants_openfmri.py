@@ -240,7 +240,7 @@ def create_reg_workflow(name='registration'):
 
     merge = pe.Node(niu.Merge(2), iterfield=['in2'], name='mergexfm')
     register.connect(convert2itk, 'itk_transform', merge, 'in2')
-    register.connect(reg, ('composite_transform', pickfirst), merge, 'in1')
+    register.connect(reg, 'composite_transform', merge, 'in1')
 
 
     """
