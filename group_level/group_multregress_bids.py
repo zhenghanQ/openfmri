@@ -19,33 +19,43 @@ from nipype.interfaces.fsl.maths import BinaryMaths
 
 get_len = lambda x: len(x)
 
-def l1_contrasts_num(model_id, task_id, dataset_dir):
+def l1_contrasts_num(model_id, task_name, dataset_dir):
     import numpy as np
     import os
     contrast_def = []
     contrasts = 0
-    contrast_file = os.path.join(dataset_dir, 'models', 'model%03d' % model_id,
+    contrast_file = os.path.join(dataset_dir, 'code', 'model', 'model%03d' % model_id,
                                  'task_contrasts.txt')
     if os.path.exists(contrast_file):
         with open(contrast_file, 'rt') as fp:
             contrast_def.extend([np.array(row.split()) for row in fp.readlines() if row.strip()])
     for row in contrast_def:
-        if row[0] != 'task%03d' % task_id:
+        if row[0] != "task-%s" % task_name:
             continue
         contrasts = contrasts + 1
     cope_id = range(1, contrasts + 1)
     return cope_id
 
+def get_taskname(base_dir, task_id):
+    import os
+    task_key = os.path.join(base_dir, 'code', 'task_key.txt')
+    if not os.path.exists(task_key):
+        return
+    with open(task_key, 'rt') as fp:
+        for line in fp:
+            info = line.strip().split()
+            if 'task%03d'%(task_id) in info:
+                return info[1]
 
-def get_sub_vars(dataset_dir, task_id, model_id):
+def get_sub_vars(dataset_dir, task_name, model_id):
     import numpy as np
     import os
     import pandas as pd
-    sub_list_file = os.path.join(dataset_dir, 'groups', 'participant_key.txt')
-    behav_file = os.path.join(dataset_dir, 'groups', 'behav.txt')
-    group_contrast_file = os.path.join(dataset_dir, 'groups', 'contrasts.txt')
+    sub_list_file = os.path.join(dataset_dir, 'code', 'groups', 'participant_key.txt')
+    behav_file = os.path.join(dataset_dir, 'code', 'groups', 'behav.txt')
+    group_contrast_file = os.path.join(dataset_dir, 'code', 'groups', 'contrasts.txt')
 
-    subs_list = pd.read_table(sub_list_file, index_col=0)['task%03d' % int(task_id)]
+    subs_list = pd.read_table(sub_list_file, index_col=0)['task-%s' % task_name]
     subs_needed = subs_list.index[np.nonzero(subs_list)[0]]
     behav_info = pd.read_table(behav_file, index_col=0)
 
@@ -59,7 +69,7 @@ def get_sub_vars(dataset_dir, task_id, model_id):
 
     contrasts = []
     for row in contrast_defs:
-        if 'task%03d' % int(task_id) not in row:
+        if 'task-%s' % task_name not in row:
             continue
         regressor_names = eval('[' + row.split(' [')[1].split(']')[0] + ']')
         for val in regressor_names:
@@ -99,13 +109,14 @@ def run_palm(cope_file, design_file, contrast_file, group_file, mask_file,
 
 def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1output_dir=None, out_dir=None, 
                                no_reversal=False, plugin=None, plugin_args=None, flamemodel='flame1',
-                               nonparametric=False):
+                               nonparametric=False, use_spm=False):
 
     meta_workflow = Workflow(name='mult_regress')
     meta_workflow.base_dir = work_dir
     for task in task_id:
-        cope_ids = l1_contrasts_num(model_id, task, dataset_dir)
-        regressors_needed, contrasts, groups, subj_list = get_sub_vars(dataset_dir, task, model_id)
+        task_name = get_taskname(dataset_dir, task)
+        cope_ids = l1_contrasts_num(model_id, task_name, dataset_dir)
+        regressors_needed, contrasts, groups, subj_list = get_sub_vars(dataset_dir, task_name, model_id)
         for idx, contrast in enumerate(contrasts):
             wk = Workflow(name='model_%03d_task_%03d_contrast_%s' % (model_id, task, contrast[0][0]))
 
@@ -118,9 +129,17 @@ def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1outpu
             dg = Node(DataGrabber(infields=['model_id', 'task_id', 'cope_id'],
                                   outfields=['copes', 'varcopes']), name='grabber')
             dg.inputs.template = os.path.join(l1output_dir,
-                                              'model%03d/task%03d/%s/%scopes/mni/%scope%02d.nii.gz')
-            dg.inputs.template_args['copes'] = [['model_id', 'task_id', subj_list, '', '', 'cope_id']]
-            dg.inputs.template_args['varcopes'] = [['model_id', 'task_id', subj_list, 'var', 'var', 'cope_id']]
+                                              'model%03d/task%03d/%s/%scopes/%smni/%scope%02d.nii%s')
+            if use_spm:
+                dg.inputs.template_args['copes'] = [['model_id', 'task_id', subj_list, '', 'spm/',
+                                                     '', 'cope_id', '']]
+                dg.inputs.template_args['varcopes'] = [['model_id', 'task_id', subj_list, 'var', 'spm/',
+                                                        'var', 'cope_id', '.gz']]
+            else:
+                dg.inputs.template_args['copes'] = [['model_id', 'task_id', subj_list, '', '', '', 
+                                                     'cope_id', '.gz']]
+                dg.inputs.template_args['varcopes'] = [['model_id', 'task_id', subj_list, 'var', '',
+                                                        'var', 'cope_id', '.gz']]
             dg.iterables=('cope_id', cope_ids)
             dg.inputs.sort_filelist = False
 
@@ -135,8 +154,9 @@ def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1outpu
             mergecopes = Node(Merge(dimension='t'), name='merge_copes')
             wk.connect(dg, 'copes', mergecopes, 'in_files')
             
-            mergevarcopes = Node(Merge(dimension='t'), name='merge_varcopes')
-            wk.connect(dg, 'varcopes', mergevarcopes, 'in_files')
+            if flamemodel != 'ols':
+                mergevarcopes = Node(Merge(dimension='t'), name='merge_varcopes')
+                wk.connect(dg, 'varcopes', mergevarcopes, 'in_files')
             
             mask_file = fsl.Info.standard_image('MNI152_T1_2mm_brain_mask.nii.gz')
             flame = Node(FLAMEO(), name='flameo')
@@ -147,7 +167,8 @@ def group_multregress_openfmri(dataset_dir, model_id=None, task_id=None, l1outpu
             wk.connect(model, 'design_mat', flame, 'design_file')
             wk.connect(model, 'design_con', flame, 't_con_file')
             wk.connect(mergecopes, 'merged_file', flame, 'cope_file')
-            wk.connect(mergevarcopes, 'merged_file', flame, 'var_cope_file')
+            if flamemodel != 'ols':
+                wk.connect(mergevarcopes, 'merged_file', flame, 'var_cope_file')
             wk.connect(model, 'design_grp', flame, 'cov_split_file')
             
             if nonparametric:
@@ -240,6 +261,8 @@ if __name__ == '__main__':
                         help="Plugin arguments")
     parser.add_argument("--norev",action='store_true',
                         help="do not generate reverse contrasts")
+    parser.add_argument("--use_spm",action='store_true', default=False,
+                        help="use spm estimation results from 1st level")
     parser.add_argument("--nonparametric", action='store_true', default=False,
                         help="Run non-parametric estimation using palm" + defstr)
     parser.add_argument('-f','--flame', dest='flamemodel', default='flame1',
@@ -269,7 +292,8 @@ if __name__ == '__main__':
                                     dataset_dir=os.path.abspath(args.datasetdir),
                                     no_reversal=args.norev,
                                     flamemodel=args.flamemodel,
-                                    nonparametric=args.nonparametric)
+                                    nonparametric=args.nonparametric,
+                                    use_spm=args.use_spm)
     wf.config['execution']['poll_sleep_duration'] = args.sleep
 
     if args.plugin_args:

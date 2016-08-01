@@ -525,7 +525,7 @@ def create_fs_reg_workflow(name='registration'):
 Get info for a given subject
 """
 
-def get_subjectinfo(subject_id, base_dir, task_id, model_id):
+def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id=None):
     """Get info for a given subject
 
     Parameters
@@ -551,9 +551,11 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id):
     from glob import glob
     import os
     import numpy as np
+    import re
+    
     condition_info = []
-    cond_file = os.path.join(base_dir, 'models', 'model%03d' % model_id,
-                             'condition_key.txt')
+    cond_file = os.path.join(base_dir, 'code', 'model', 'model%03d' % model_id,
+                                 'condition_key.txt') 
     with open(cond_file, 'rt') as fp:
         for line in fp:
             info = line.strip().split()
@@ -561,39 +563,48 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id):
     if len(condition_info) == 0:
         raise ValueError('No condition info found in %s' % cond_file)
     taskinfo = np.array(condition_info)
-    n_tasks = len(np.unique(taskinfo[:, 0]))
+    n_tasks = np.unique(taskinfo[:, 0])
     conds = []
     run_ids = []
-    if task_id > n_tasks:
-        raise ValueError('Task id %d does not exist' % task_id)
-    for idx in range(n_tasks):
-        taskidx = np.where(taskinfo[:, 0] == 'task%03d' % (idx + 1))
+    if task_id > len(n_tasks):
+        raise ValueError('Task id %s does not exist' % task_id)
+    for idx,task in enumerate(n_tasks):
+        taskidx = np.where(taskinfo[:, 0] == '%s'%(task))
         conds.append([condition.replace(' ', '_') for condition
                       in taskinfo[taskidx[0], 2]]) # if 'junk' not in condition])
-        files = sorted(glob(os.path.join(base_dir,
-                                         subject_id,
-                                         'BOLD',
-                                         'task%03d_run*' % (idx + 1))))
-        runs = [int(val[-3:]) for val in files]
+        if session_id:
+            files = sorted(glob(os.path.join(base_dir,
+                                             subject_id,
+                                             session_id,
+                                             'func',
+                                             '*%s*.nii.gz'%(task))))
+        else:
+            files = sorted(glob(os.path.join(base_dir,
+                                             subject_id,
+                                             'func',
+                                             '*%s*.nii.gz'%(task))))
+            
+        runs = [int(re.search('(?<=run-)\d+',os.path.basename(val)).group(0)) for val in files]
         run_ids.insert(idx, runs)
-    json_info = os.path.join(base_dir, subject_id, 'BOLD',
-                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]),
-                                 'bold_scaninfo.json')
+    # TR should be same across runs
+    if session_id:
+        json_info = glob(os.path.join(base_dir, subject_id, session_id, 
+                                      'func','*%s*.json'%(n_tasks[task_id-1])))[0]
+    else:    
+        json_info = glob(os.path.join(base_dir, subject_id, 'func',
+                                     '*%s*.json'%(n_tasks[task_id-1])))[0]
     if os.path.exists(json_info):
         import json
         with open(json_info, 'rt') as fp:
             data = json.load(fp)
-            TR = data['global']['const']['RepetitionTime']/1000.
+            TR = data['RepetitionTime']
     else:
-        task_scan_key = os.path.join(base_dir, subject_id, 'BOLD',
-                                 'task%03d_run%03d' % (task_id, run_ids[task_id - 1][0]),
-                                 'scan_key.txt')
+        task_scan_key = os.path.join(base_dir, 'code', 'scan_key.txt')
         if os.path.exists(task_scan_key):
             TR = np.genfromtxt(task_scan_key)[1]
         else:
             TR = np.genfromtxt(os.path.join(base_dir, 'scan_key.txt'))[1]
     return run_ids[task_id - 1], conds[task_id - 1], TR
-
 
 def extract_subrois(timeseries_file, label_file, indices):
     """Extract voxel time courses for each subcortical roi index
@@ -643,7 +654,17 @@ def combine_hemi(left, right):
                fmt=','.join(['%d'] + ['%.10f'] * (all_data.shape[1] - 1)))
     return os.path.abspath(filename)
 
-
+def get_taskname(base_dir, task_id):
+    import os
+    task_key = os.path.join(base_dir, 'code', 'task_key.txt')
+    if not os.path.exists(task_key):
+        return
+    
+    with open(task_key, 'rt') as fp:
+        for line in fp:
+            info = line.strip().split()
+            if 'task%03d'%(task_id) in info:
+                return info[1]
 """
 Analyzes an open fmri dataset
 """
@@ -708,52 +729,64 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                 ('task_id', task_id)]
 
     subjinfo = pe.Node(niu.Function(input_names=['subject_id', 'base_dir',
-                                                 'task_id', 'model_id'],
+                                                 'task_id', 'model_id', 'session_id'],
                                     output_names=['run_id', 'conds', 'TR'],
                                     function=get_subjectinfo),
                        name='subjectinfo')
+    subjinfo.inputs.session_id = None
     subjinfo.inputs.base_dir = data_dir
+
+    """
+    Get task name (BIDS)
+    """
+    taskname = pe.Node(niu.Function(input_names=['base_dir', 'task_id'],
+                                    output_names=['task_name'],
+                                    function=get_taskname),
+                       name='taskname')
+    taskname.inputs.base_dir = data_dir
 
     """
     Return data components as anat, bold and behav
     """
-    contrast_file = os.path.join(data_dir, 'models', 'model%03d' % model_id,
+    contrast_file = os.path.join(data_dir, 'code', 'model', 'model%03d' % model_id,
                                  'task_contrasts.txt')
+    
     has_contrast = os.path.exists(contrast_file)
     if has_contrast:
         datasource = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
-                                                   'task_id', 'model_id'],
+                                                   'task_id', 'model_id', 'task_name'],
                                          outfields=['anat', 'bold', 'behav',
                                                     'contrasts']),
                          name='datasource')
     else:
         datasource = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
-                                                   'task_id', 'model_id'],
+                                                   'task_id', 'model_id', 'task_name'],
                                          outfields=['anat', 'bold', 'behav']),
                          name='datasource')
     datasource.inputs.base_directory = data_dir
-    datasource.inputs.template = '*'
 
+    datasource.inputs.template = '*'
+########## 6/23/16 replace behav with events.tsv
     if has_contrast:
-        datasource.inputs.field_template = {'anat': '%s/anatomy/T1_001.nii.gz',
-                                            'bold': '%s/BOLD/task%03d_r*/bold.nii.gz',
-                                            'behav': ('%s/model/model%03d/onsets/task%03d_'
-                                                      'run%03d/cond*.txt'),
-                                            'contrasts': ('models/model%03d/'
+        datasource.inputs.field_template = {'anat': '%s/anat/*T1w.nii.gz',
+                                            'bold': '%s/func/*task-%s_*bold.nii.gz',
+                                            'behav': ('code/model/model%03d/onsets/%s/task%03d_'
+                                                      'run%03d/cond*.txt'), 
+                                            'contrasts': ('code/model/model%03d/'
                                                           'task_contrasts.txt')}
         datasource.inputs.template_args = {'anat': [['subject_id']],
-                                       'bold': [['subject_id', 'task_id']],
-                                       'behav': [['subject_id', 'model_id',
+                                       'bold': [['subject_id', 'task_name']],
+                                       'behav': [['model_id', 'subject_id',
                                                   'task_id', 'run_id']],
                                        'contrasts': [['model_id']]}
     else:
-        datasource.inputs.field_template = {'anat': '%s/anatomy/T1_001.nii.gz',
-                                            'bold': '%s/BOLD/task%03d_r*/bold.nii.gz',
-                                            'behav': ('%s/model/model%03d/onsets/task%03d_'
+        datasource.inputs.field_template = {'anat': '%s/anat/*T1w.nii.gz',
+                                            'bold': '%s/func/*task-%s_*bold.nii.gz',
+                                            'behav': ('code/model/model%03d/onsets/%s/task%03d_'
                                                       'run%03d/cond*.txt')}
         datasource.inputs.template_args = {'anat': [['subject_id']],
-                                       'bold': [['subject_id', 'task_id']],
-                                       'behav': [['subject_id', 'model_id',
+                                       'bold': [['subject_id', 'task_name']],
+                                       'behav': [['model_id', 'subject_id',
                                                   'task_id', 'run_id']]}
 
     datasource.inputs.sort_filelist = True
@@ -766,6 +799,8 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     wf.connect(infosource, 'subject_id', subjinfo, 'subject_id')
     wf.connect(infosource, 'model_id', subjinfo, 'model_id')
     wf.connect(infosource, 'task_id', subjinfo, 'task_id')
+    wf.connect(infosource, 'task_id', taskname, 'task_id')
+    wf.connect(taskname, 'task_name', datasource, 'task_name')
     wf.connect(infosource, 'subject_id', datasource, 'subject_id')
     wf.connect(infosource, 'model_id', datasource, 'model_id')
     wf.connect(infosource, 'task_id', datasource, 'task_id')
@@ -786,7 +821,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     Setup a basic set of contrasts, a t-test per condition
     """
 
-    def get_contrasts(contrast_file, task_id, conds):
+    def get_contrasts(contrast_file, task_name, conds):
         import numpy as np
         import os
         contrast_def = []
@@ -795,7 +830,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                 contrast_def.extend([np.array(row.split()) for row in fp.readlines() if row.strip()])
         contrasts = []
         for row in contrast_def:
-            if row[0] != 'task%03d' % task_id:
+            if row[0] != 'task-%s' % task_name:
                 continue
             con = [row[1], 'T', ['cond%03d' % (i + 1)  for i in range(len(conds))],
                    row[2:].astype(float).tolist()]
@@ -807,7 +842,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         return contrasts
 
     contrastgen = pe.Node(niu.Function(input_names=['contrast_file',
-                                                    'task_id', 'conds'],
+                                                    'task_name', 'conds'],
                                        output_names=['contrasts'],
                                        function=get_contrasts),
                           name='contrastgen')
@@ -863,7 +898,7 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         wf.connect(datasource, 'contrasts', contrastgen, 'contrast_file')
     else:
         contrastgen.inputs.contrast_file = ''
-    wf.connect(infosource, 'task_id', contrastgen, 'task_id')
+    wf.connect(taskname, 'task_name', contrastgen, 'task_name')
     wf.connect(contrastgen, 'contrasts', modelfit, 'inputspec.contrasts')
 
     maskfunc3 = preproc.get_node('maskfunc3')

@@ -15,28 +15,22 @@ def contrasts_num(model_id,
     import numpy as np
     import os
     contrast_def = []
-    contrasts=0
-    contrast_file = os.path.join(dataset_dir, 'models', 'model%03d' % model_id,
+    contrasts = 0
+    task_key = os.path.join(dataset_dir, 'tasks.tsv')
+    tasks = []
+    if os.path.exists(task_key):
+        with open(task_key, 'rt') as fp:
+            tasks.extend([np.array(row.split('\t')[1].rsplit()[0]) for row in fp.readlines()])
+    contrast_file = os.path.join(dataset_dir, 'code', 'model', 'model%03d' % model_id,
                                  'task_contrasts.txt')
     if os.path.exists(contrast_file):
         with open(contrast_file, 'rt') as fp:
             contrast_def.extend([np.array(row.split()) for row in fp.readlines() if row.strip()])
     for row in contrast_def:
-        if row[0] != 'task%03d' % task_id:
+        if row[0] != "task-%s" % tasks[task_id-1]:
             continue
-        contrasts=contrasts+1
-    condition_info = []
-    cond_file = os.path.join(dataset_dir, 'models', 'model%03d' % model_id,
-                             'condition_key.txt')
-    with open(cond_file, 'rt') as fp:
-        for line in fp:
-            info = line.strip().split()
-            condition_info.append([info[0], info[1], ' '.join(info[2:])])
-    for row in condition_info:
-        if row[0] != 'task%03d' % task_id:
-            continue
-        contrasts=contrasts+1
-        cope_id=range(1,contrasts+1)
+        contrasts = contrasts + 1
+    cope_id = range(1, contrasts + 1)
     return cope_id
 
 def group_onesample_openfmri(dataset_dir,model_id=None,task_id=None,l1output_dir=None,out_dir=None, no_reversal=False):
@@ -175,7 +169,7 @@ if __name__ == '__main__':
     else:
         l1_outdir=os.path.join(args.datasetdir,'l1output')
 
-    outdir = os.path.join(outdir, 'one_sample','model%02d' % int(args.model),
+    outdir = os.path.join(outdir, 'one_sample','model%03d' % int(args.model),
                           'task%03d' % int(args.task))
 
     wf = group_onesample_openfmri(model_id=int(args.model),
