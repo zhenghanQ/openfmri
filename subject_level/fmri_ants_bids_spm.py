@@ -1266,7 +1266,6 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
             subs.append(('__modelgen%d/' % i, '/run%02d_' % run_num))
             subs.append(('_getsubcortts%d/' % i, '/run%02d_' % run_num))
             subs.append(('_combiner%d/' % i, '/run%02d_' % run_num))
-        subs.append(('/model%03d/task%03d/' % (model_id, task_id), '/'))
         subs.append(('/model%03d/task%03d_' % (model_id, task_id), '/'))
         subs.append(('_bold_dtype_mcf_bet_thresh_dil', '_mask'))
         subs.append(('_bold_dtype_mcf_combined', '_bold_surface_timeseries'))
