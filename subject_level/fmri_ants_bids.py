@@ -589,7 +589,10 @@ def get_subjectinfo(subject_id, base_dir, task_id, model_id, session_id=None):
                                              'func',
                                              '*%s*.nii.gz'%(task))))
             
-        runs = [int(re.search('(?<=run-)\d+',os.path.basename(val)).group(0)) for val in files]
+        try:
+            runs = [int(re.search('(?<=run-)\d+',os.path.basename(val)).group(0)) for val in files]
+        except AttributeError:
+            runs = [int(re.search('(?<=run)\d+',os.path.basename(val)).group(0)) for val in files]
         run_ids.insert(idx, runs)
     # TR should be same across runs
     if session_id:
@@ -634,7 +637,8 @@ Analyzes an open fmri dataset
 def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                              task_id=None, output_dir=None, subj_prefix='*',
                              hpcutoff=120., use_derivatives=True,
-                             fwhm=6.0, subjects_dir=None, target=None):
+                             fwhm=6.0, subjects_dir=None, target=None, 
+                             session_id=None):
     """Analyzes an open fmri dataset
 
     Parameters
@@ -693,8 +697,9 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                     output_names=['run_id', 'conds', 'TR'],
                                     function=get_subjectinfo),
                        name='subjectinfo')
-    subjinfo.inputs.base_dir = None ## update with argumentparse eventually
+    #subjinfo.inputs.base_dir = None ## update with argumentparse eventually
     subjinfo.inputs.base_dir = data_dir
+    subjinfo.inputs.session_id = session_id
 
     """
     Get task name (BIDS)
@@ -713,11 +718,18 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     has_contrast = os.path.exists(contrast_file)
   
     if has_contrast:
-        datasource = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
-                                                   'task_id', 'model_id', 'task_name'],
-                                         outfields=['anat', 'bold', 'behav',
-                                                    'contrasts']),
-                         name='datasource')
+        if session_id is None:
+            datasource = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
+                                                       'task_id', 'model_id', 'task_name'],
+                                             outfields=['anat', 'bold', 'behav',
+                                                        'contrasts']),
+                             name='datasource')
+        else:
+            datasource = pe.Node(nio.DataGrabber(infields=['subject_id', 'session_id', 'run_id',
+                                                       'task_id', 'model_id', 'task_name'],
+                                             outfields=['anat', 'bold', 'behav',
+                                                        'contrasts']),
+                             name='datasource')
     else:
         datasource = pe.Node(nio.DataGrabber(infields=['subject_id', 'run_id',
                                                    'task_id', 'model_id', 'task_name'],
@@ -728,17 +740,33 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     
 ########## 6/23/16 replace behav with events.tsv
     if has_contrast:
-        datasource.inputs.field_template = {'anat': '%s/anat/*T1w.nii.gz',
-                                            'bold': '%s/func/*task-%s_*bold.nii.gz',
-                                            'behav': ('code/model/model%03d/onsets/%s/task%03d_'
-                                                      'run%03d/cond*.txt'), 
-                                            'contrasts': ('code/model/model%03d/'
-                                                          'task_contrasts.txt')}
-        datasource.inputs.template_args = {'anat': [['subject_id']],
-                                       'bold': [['subject_id', 'task_name']],
-                                       'behav': [['model_id', 'subject_id',
-                                                  'task_id', 'run_id']],
-                                       'contrasts': [['model_id']]}
+
+        if session_id is None:
+            datasource.inputs.field_template = {'anat': '%s/anat/*T1w.nii.gz',
+                                                'bold': '%s/func/*task-%s_*bold.nii.gz',
+                                                'behav': ('code/model/model%03d/onsets/%s/task%03d_'
+                                                          'run%03d/cond*.txt'), 
+                                                'contrasts': ('code/model/model%03d/'
+                                                              'task_contrasts.txt')}
+            datasource.inputs.template_args = {'anat': [['subject_id']],
+                                           'bold': [['subject_id', 'task_name']],
+                                           'behav': [['model_id', 'subject_id',
+                                                      'task_id', 'run_id']],
+                                           'contrasts': [['model_id']]}
+
+        else:
+            datasource.inputs.field_template = {'anat': '%s/%s/anat/*T1w.nii.gz',
+                                                'bold': '%s/%s/func/*task-%s_*bold.nii.gz',
+                                                'behav': ('code/model/model%03d/onsets/%s/task%03d_'
+                                                          'run%03d/cond*.txt'), 
+                                                'contrasts': ('code/model/model%03d/'
+                                                              'task_contrasts.txt')}
+            datasource.inputs.template_args = {'anat': [['subject_id', 'session_id']],
+                                           'bold': [['subject_id', 'session_id','task_name']],
+                                           'behav': [['model_id', 'subject_id',
+                                                      'task_id', 'run_id']],
+                                           'contrasts': [['model_id']]}
+
     else:
         datasource.inputs.field_template = {'anat': '%s/anat/*T1w.nii.gz',
                                             'bold': '%s/func/*task-%s_*bold.nii.gz',
@@ -766,6 +794,9 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
     wf.connect(infosource, 'model_id', datasource, 'model_id')
     wf.connect(infosource, 'task_id', datasource, 'task_id')
     wf.connect(subjinfo, 'run_id', datasource, 'run_id')
+    if not (session_id is None):
+        datasource.inputs.session_id = session_id
+
     wf.connect([(datasource, preproc, [('bold', 'inputspec.func')]),
                 ])
 
@@ -1139,6 +1170,11 @@ if __name__ == '__main__':
                         help=("Target in MNI space. Best to use the MindBoggle "
                               "template - only used with FreeSurfer"
                               "OASIS-30_Atropos_template_in_MNI152_2mm.nii.gz"))
+    parser.add_argument("--session_id", dest="session_id", default=None,
+                        help="Session id, ses-1")
+    parser.add_argument("--crashdump_dir", dest="crashdump_dir",
+                        help="Crashdump dir", default=None)
+
     args = parser.parse_args()
     outdir = args.outdir
     work_dir = os.getcwd()
@@ -1163,11 +1199,20 @@ if __name__ == '__main__':
                                   use_derivatives=derivatives,
                                   fwhm=args.fwhm,
                                   subjects_dir=args.subjects_dir,
-                                  target=args.target_file)
+                                  target=args.target_file,
+                                  session_id=args.session_id)
     #wf.config['execution']['remove_unnecessary_outputs'] = False
 
     wf.base_dir = work_dir
+    
+    if not (args.crashdump_dir is None):
+        wf.config['execution']['crashdump_dir'] = args.crashdump_dir
+
     if args.plugin_args:
         wf.run(args.plugin, plugin_args=eval(args.plugin_args))
     else:
         wf.run(args.plugin)
+
+
+
+
