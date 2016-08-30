@@ -687,7 +687,9 @@ def create_topup_workflow(num_slices, rest_pe_dir, readout,
                      ])
 
     else:
-        topup.connect(inputnode, 'realigned_files', applytopup, 'in_files')
+        topup.connect([(inputnode, applytopup, [('realigned_files', 'in_files')]),
+                     (inputnode, topup2median, [('ref_file', 'reference')]),
+                     (inputnode, applyxfm, [('ref_file', 'reference')])])
 
         extract_main = Node(fsl.ExtractROI(), name='extract_%s' % rest_pe_dir) 
         extract_main.inputs.crop_list = [(0,-1), (0,-1), (0,-1), (0,1)]
