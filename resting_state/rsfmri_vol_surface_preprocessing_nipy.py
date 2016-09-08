@@ -741,6 +741,7 @@ def create_workflow(files,
                     rest_pe_dir=None,
                     readout=None,
                     readout_topup=None,
+                    session=None,
                     name='resting'):
 
     wf = Workflow(name=name)
@@ -1107,7 +1108,10 @@ def create_workflow(files,
     # Save the relevant data into an output directory
     datasink = Node(interface=DataSink(), name="datasink")
     datasink.inputs.base_directory = sink_directory
-    datasink.inputs.container = subject_id
+    if session:
+        datasink.inputs.container = os.path.join(subject_id, str(session))
+    else:
+        datasink.inputs.container = subject_id
     datasink.inputs.substitutions = substitutions
     datasink.inputs.regexp_substitutions = regex_subs  # (r'(/_.*(\d+/))', r'/run\2')
     wf.connect(realign, 'par_file', datasink, 'resting.qa.motion')
@@ -1206,6 +1210,7 @@ def create_resting_workflow(args, name=None):
                   rest_pe_dir=args.rest_pe_dir,
                   readout=readout,
                   readout_topup=readout_topup,
+                  session=args.session,
                   name=name)
     wf = create_workflow(**kwargs)
     return wf
@@ -1263,6 +1268,8 @@ if __name__ == "__main__":
                         help="Plugin to use")
     parser.add_argument("--plugin_args", dest="plugin_args",
                         help="Plugin arguments")
+    parser.add_argument("-ss", "--session", dest="session",
+                        help="Session (if longitudinal study)")
     args = parser.parse_args()
 
     wf = create_resting_workflow(args)
