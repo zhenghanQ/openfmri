@@ -985,6 +985,19 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
         wf.connect(tsnr, 'tsnr_file', get_roi_tsnr, 'in_file')
         wf.connect(registration, 'outputspec.aparc', get_roi_tsnr, 'segmentation_file')
 
+        # Sample the average time series in aparc ROIs
+        # from rsfmri_vol_surface_preprocessing_nipy.py
+        sampleaparc = MapNode(fs.SegStats(default_color_table=True),
+	                          iterfield=['in_file'],
+	                          name='aparc_ts')
+        sampleaparc.inputs.segment_id = ([8] + range(10, 14) + [17, 18, 26, 47] +
+	                                     range(49, 55) + [58] + range(1001, 1036) +
+	                                     range(2001, 2036))
+        sampleaparc.inputs.avgwf_txt_file = True
+	
+        wf.connect(registration, 'outputspec.aparc', sampleaparc, 'segmentation_file')
+        wf.connect(preproc, 'outputspec.realigned_files', sampleaparc, 'in_file')
+
     """
     Connect to a datasink
     """
@@ -1026,6 +1039,8 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
             subs.append(('__modelgen%d/' % i, '/run%02d_' % run_num))
         subs.append(('/model%03d/task%03d_' % (model_id, task_id), '/'))
         subs.append(('_bold_dtype_mcf_bet_thresh_dil', '_mask'))
+        subs.append(('mask/model%03d/task%03d/' % (model_id, task_id), 'mask/'))
+        subs.append(('tsnr/model%03d/task%03d/' % (model_id, task_id), 'tsnr/'))
         subs.append(('_output_warped_image', '_anat2target'))
         subs.append(('median_flirt_brain_mask', 'median_brain_mask'))
         subs.append(('median_bbreg_brain_mask', 'median_brain_mask'))
@@ -1075,6 +1090,8 @@ def analyze_openfmri_dataset(data_dir, subject=None, model_id=None,
                                               ('summary_file', 'qa.tsnr.@summary')])])
         wf.connect([(get_roi_mean, datasink, [('avgwf_txt_file', 'copes.roi'),
                                               ('summary_file', 'copes.roi.@summary')])])
+        wf.connect(sampleaparc, 'summary_file', datasink, 'timeseries.aparc.@summary')
+        wf.connect(sampleaparc, 'avgwf_txt_file', datasink, 'timeseries.aparc')
     wf.connect([(splitfunc, datasink,
                  [('copes', 'copes.mni'),
                   ('varcopes', 'varcopes.mni'),
@@ -1165,7 +1182,7 @@ if __name__ == '__main__':
                                   subjects_dir=args.subjects_dir,
                                   target=args.target_file)
     #wf.config['execution']['remove_unnecessary_outputs'] = False
-
+    wf.config['execution']['poll_sleep_duration'] = 2
     wf.base_dir = work_dir
     if args.plugin_args:
         wf.run(args.plugin, plugin_args=eval(args.plugin_args))
