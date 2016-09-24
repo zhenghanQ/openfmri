@@ -1211,6 +1211,7 @@ if __name__ == '__main__':
     if args.plugin_args:
         wf.run(args.plugin, plugin_args=eval(args.plugin_args))
     else:
+        #wf.run('SLURM', plugin_args={'sbatch_args': '-p om_interactive -N1 -c1','max_jobs':40}) 
         wf.run(args.plugin)
 
 
