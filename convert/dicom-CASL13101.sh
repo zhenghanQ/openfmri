@@ -1,0 +1,2 @@
+#!/bin/bash
+python /om/user/zqi/projects/CASL/Analysis/env/bin/heudiconv -d /mindhive/xnat/dicom_storage/CASL/%s/dicom/*.dcm -o /mindhive/xnat/data/CASL/bids -f /om/user/zqi/projects/CASL/Analysis/bids/openfmri/convert/heuristic_CASL_bids.py -s CASL13101 -c dcm2niix --bids
