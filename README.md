@@ -21,13 +21,22 @@ conda install nipype
 ##install python packages
 * heudiconv: https://github.com/nipy/heudiconv
 * dcmstack: https://github.com/moloney/dcmstack
+* pybids: https://github.com/INCF/pybids
 
 #Dicom conversion
-##edit heuristic file
-* example: https://github.com/nipy/heudiconv/blob/master/heuristics/cmrr_heuristic.py
+##get dicominfo.txt 
+Start out running heudiconv without any converter, just passing in dicoms.
+'''
+heudiconv -d $DICOMPATH/%s/*.dcm -f convertall.py -c none -s $YOUR_SUBJECT
+'''
+##generate a heuristic file according to the dicominfo.txt
+*[example]( https://github.com/nipy/heudiconv/blob/master/heuristics/cmrr_heuristic.py)
 
 ##run heudiconv
 ```
 heudiconv -d dicoms_dir -o nifti_dir -f heuristic.py -c dcm2niix -q om_interactive -s $SUBJECT -b
 ```
 
+##
+##validate bids data structure
+[bids validator](https://github.com/INCF/bids-validator)

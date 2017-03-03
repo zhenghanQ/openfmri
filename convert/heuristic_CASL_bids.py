@@ -17,7 +17,7 @@ def infotodict(seqinfo):
     """
 
     rs = create_key('func/sub-{subject}_task-rest_run-{item:03d}_bold')
-    dwi = create_key('dwi/sub-{subject}_run-{item:03d}_dwi')
+    dwi = create_key('dwi/sub-{subject}-run-{item:03d}_dwi')
     t1 = create_key('anat/sub-{subject}_run-{item:03d}_T1w')
     fm_rest = create_key('fmap/sub-{subject}_task-rest_run-{item:03d}_epi')
     rs_multi = create_key('func/sub-{subject}_task-mb_run-{item:03d}_bold')
@@ -32,13 +32,13 @@ def infotodict(seqinfo):
         x,y,sl,nt = (s[6], s[7], s[8], s[9])
         if (nt == 149) and ('ep2d_Resting' in s[12]):
             info[rs] = [s[2]]
-        elif (nt == 140) and ('DIFFUSION' in s[12]):
+        elif (nt == 70) and ('DIFFUSION' in s[12]):
             info[dwi].append(s[2])
         elif (sl == 176) and (nt ==1) and ('T1_MPRAGE' in s[12]):
             info[t1]=[s[2]]
         elif ('field_mapping_3.5iso_32' in s[12]):
             info[fm_task].append(s[2])
-        elif (nt==300) and ('MultiBand' in s[12]):
+        elif (nt==300) and ('Multiband' in s[12]):
             info[rs_multi].append(s[2])
         elif ('fm_rest' in s[12]):
             info[fm_rest].append(s[2])

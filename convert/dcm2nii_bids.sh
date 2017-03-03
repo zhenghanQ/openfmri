@@ -7,7 +7,7 @@ subj=$(basename $subj)
 mkdir ${temp_dir}/${subj}_dicom
 cd ${temp_dir}/${subj}_dicom
 echo '#!bin/bash' > dicom_run.sh
-echo "heudiconv -d /mindhive/xnat/dicom_storage/CASL/%s/dicom/*.dcm -o /mindhive/xnat/data/CASL/bids -f /om/user/zqi/projects/CASL/Analysis/bids/openfmri/convert/heuristic_CASL_bids.py -c dcm2niix -q om_interactive -s ${subj} -b" >> dicom_run.sh
+echo "heudiconv -d /mindhive/xnat/dicom_storage/CASL/%s/dicom/*.dcm -o /mindhive/xnat/data/CASL/bids -f /om/user/zqi/projects/CASL/Analysis/bids/openfmri/convert/heuristic_CASL_bids.py -c dcm2niix -q om_all_nodes -s ${subj} -b" >> dicom_run.sh
 done
 for subj in `ls -d /mindhive/xnat/dicom_storage/CASL/CASL*`
 do
