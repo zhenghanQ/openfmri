@@ -37,6 +37,12 @@ heudiconv -d $DICOMPATH/%s/*.dcm -f convertall.py -c none -s $YOUR_SUBJECT
 heudiconv -d dicoms_dir -o nifti_dir -f heuristic.py -c dcm2niix -q om_interactive -s $SUBJECT -b
 ```
 
-##
+##merge longitudinal sessions (ses-pre; ses-post) into one subject folder, change file names to include session info
+```
+python merge_session.py
+```
+
+##create participants.tsv; dataset_description.json; task_bold.json in the same folder of the nifti files
+
 ##validate bids data structure
 [bids validator](https://github.com/INCF/bids-validator)
