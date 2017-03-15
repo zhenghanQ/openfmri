@@ -30,7 +30,7 @@ Start out running heudiconv without any converter, just passing in dicoms.
 heudiconv -d $DICOMPATH/%s/*.dcm -f convertall.py -c none -s $YOUR_SUBJECT
 '''
 ## generate a heuristic file according to the dicominfo.txt
-*[example]( https://github.com/nipy/heudiconv/blob/master/heuristics/cmrr_heuristic.py)
+* [example]( https://github.com/nipy/heudiconv/blob/master/heuristics/cmrr_heuristic.py)
 
 ## run heudiconv
 ```
@@ -46,3 +46,4 @@ python merge_session.py
 
 ## validate bids data structure
 [bids validator](https://github.com/INCF/bids-validator)
+__Note: because the validator works either on a local terminal or a local browser, use sshfs to mount the remote data directories to local computer.__
