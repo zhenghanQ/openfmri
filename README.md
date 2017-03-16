@@ -46,4 +46,17 @@ python merge_session.py
 
 ## validate bids data structure
 [bids validator](https://github.com/INCF/bids-validator)
-__Note: because the validator works either on a local terminal or a local browser, use sshfs to mount the remote data directories to local computer.__
+* use the docker image: bids/base_validator
+* on openmind: combine singularity with docker
+** create a directory to copy a docker image onto sigularity
+```
+$ export SINGULARITY_CACHEDIR=$PWD
+$ singularity -c shell docker://bids/base_validator
+Singularity.base_validator> exit
+```
+** rename the singularity file to something meaningful
+** mounting directory to singularity container and run bids validator
+```
+$ singularity shell -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/mnt -c bids-validator/bids/base_validator/
+$ node --max_old_space_size=30GB /usr/bin/bids-validator /mnt —verbose
+```
