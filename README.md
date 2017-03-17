@@ -48,14 +48,14 @@ python merge_session.py
 [bids validator](https://github.com/INCF/bids-validator)
 * use the docker image: bids/base_validator
 * on openmind: combine singularity with docker
-** create a directory to copy a docker image onto sigularity
+..* create a directory to copy a docker image onto sigularity
 ```
 $ export SINGULARITY_CACHEDIR=$PWD
 $ singularity -c shell docker://bids/base_validator
 Singularity.base_validator> exit
 ```
-** rename the singularity file to something meaningful
-** mounting directory to singularity container and run bids validator
+..* rename the singularity file to something meaningful
+..* mounting directory to singularity container and run bids validator
 ```
 $ singularity shell -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/mnt -c bids-validator/bids/base_validator/
 $ node --max_old_space_size=30GB /usr/bin/bids-validator /mnt —verbose
