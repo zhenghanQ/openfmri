@@ -61,5 +61,10 @@ Singularity.base_validator> exit
 $ singularity shell -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/mnt -c bids-validator/bids/base_validator/
 Singularity.base_validator>/usr/bin/bids-validator /mnt —verbose
 ```
-## [mriqc](https://hub.docker.com/r/poldracklab/mriqc/)
+## [mriqc](http://mriqc.readthedocs.io/en/latest/)
+* Either use docker on local computer or signularity on HPC
+Current status: only mriqc on local docker works. Copying over singularity image to cluster gives error: OSError: [Errno 30] Read-only file system: '/om'"
 
+## [fmriprep](http://fmriprep.readthedocs.io/en/stable/installation.html)
+Current status: fmriprep doesn't work on local docker or HPC.
+Error message: OSError: [Errno 6] No such device or address: '/out/log/run_workflow'
