@@ -58,5 +58,7 @@ Singularity.base_validator> exit
 ..* mounting directory to singularity container and run bids validator
 ```
 $ singularity shell -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/mnt -c bids-validator/bids/base_validator/
-$ node --max_old_space_size=30GB /usr/bin/bids-validator /mnt —verbose
+Singularity.base_validator>/usr/bin/bids-validator /mnt —verbose
 ```
+## [mriqc](https://hub.docker.com/r/poldracklab/mriqc/)
+
