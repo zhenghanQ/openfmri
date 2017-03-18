@@ -22,6 +22,7 @@ conda install nipype
 * heudiconv: https://github.com/nipy/heudiconv
 * dcmstack: https://github.com/moloney/dcmstack
 * pybids: https://github.com/INCF/pybids
+* singularity container is located at: /storage/gablab001/data/singularity-images/heudiconv/nipy/heudiconv
 
 # Dicom conversion
 ## get dicominfo.txt 
@@ -33,9 +34,9 @@ heudiconv -d $DICOMPATH/%s/*.dcm -f convertall.py -c none -s $YOUR_SUBJECT
 * [example]( https://github.com/nipy/heudiconv/blob/master/heuristics/cmrr_heuristic.py)
 
 ## run heudiconv
-```
-heudiconv -d dicoms_dir -o nifti_dir -f heuristic.py -c dcm2niix -q om_interactive -s $SUBJECT -b
-```
+* ```heudiconv -d dicoms_dir -o nifti_dir -f heuristic.py -c dcm2niix -q om_interactive -s $SUBJECT -b```
+* if using singularity:```singularity exec -B /mindhive/xnat/dicom_storage/CASL/:/dicomdir -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/output -B /om/user/zqi/projects/CASL/Analysis/bids/openfmri/convert/:/mnt -c /storage/gablab001/data/singularity-images/heudiconv/nipy/heudiconv heudiconv -d /dicomdir/%s/dicom/*.dcm -c dcm2niix -s CASL13100 -o /output/testagain -f /mnt/heuristic_CASL_bids.py -b```
+* run through all participants: ```bash dcm2nii_bids.sh```
 
 ## merge longitudinal sessions (ses-pre; ses-post) into one subject folder, change file names to include session info
 ```
