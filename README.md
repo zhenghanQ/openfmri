@@ -27,15 +27,18 @@ conda install nipype
 # Dicom conversion
 ## get dicominfo.txt 
 Start out running heudiconv without any converter, just passing in dicoms.
-'''
+```
 heudiconv -d $DICOMPATH/%s/*.dcm -f convertall.py -c none -s $YOUR_SUBJECT
-'''
+```
 ## generate a heuristic file according to the dicominfo.txt
 * [example]( https://github.com/nipy/heudiconv/blob/master/heuristics/cmrr_heuristic.py)
 
 ## run heudiconv
 * ```heudiconv -d dicoms_dir -o nifti_dir -f heuristic.py -c dcm2niix -q om_interactive -s $SUBJECT -b```
-* if using singularity:```singularity exec -B /mindhive/xnat/dicom_storage/CASL/:/dicomdir -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/output -B /om/user/zqi/projects/CASL/Analysis/bids/openfmri/convert/:/mnt -c /storage/gablab001/data/singularity-images/heudiconv/nipy/heudiconv heudiconv -d /dicomdir/%s/dicom/*.dcm -c dcm2niix -s CASL13100 -o /output/testagain -f /mnt/heuristic_CASL_bids.py -b```
+* if using singularity:
+```
+singularity exec -B /mindhive/xnat/dicom_storage/CASL/:/dicomdir -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/output -B /om/user/zqi/projects/CASL/Analysis/bids/openfmri/convert/:/mnt -c /storage/gablab001/data/singularity-images/heudiconv/nipy/heudiconv heudiconv -d /dicomdir/%s/dicom/*.dcm -c dcm2niix -s CASL13100 -o /output -f /mnt/heuristic_CASL_bids.py -b
+```
 * run through all participants: ```bash dcm2nii_bids.sh```
 
 ## merge longitudinal sessions (ses-pre; ses-post) into one subject folder, change file names to include session info
@@ -45,18 +48,17 @@ python merge_session.py
 
 ## create participants.tsv; dataset_description.json; task_bold.json in the same folder of the nifti files
 
-## validate bids data structure
-[bids validator](https://github.com/INCF/bids-validator)
+## [bids validator](https://github.com/INCF/bids-validator)
 * use the docker image: bids/base_validator
 * on openmind: combine singularity with docker
-..* create a directory to copy a docker image onto sigularity
+··* create a directory to copy a docker image onto a singularity container
 ```
 $ export SINGULARITY_CACHEDIR=$PWD
 $ singularity -c shell docker://bids/base_validator
 Singularity.base_validator> exit
 ```
-..* rename the singularity file to something meaningful
-..* mounting directory to singularity container and run bids validator
+··* rename the singularity file to something meaningful
+··* mounting directory to singularity container and run bids validator
 ```
 $ singularity shell -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/mnt -c bids-validator/bids/base_validator/
 Singularity.base_validator>/usr/bin/bids-validator /mnt —verbose
