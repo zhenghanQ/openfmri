@@ -64,7 +64,8 @@ Singularity.base_validator>/usr/bin/bids-validator /mnt —verbose
 ## [mriqc](http://mriqc.readthedocs.io/en/latest/)
 * Either use docker on local computer or signularity on HPC
 * on the server, cd into the docker image directory
-```singularity exec -B /om:/mnt -c poldracklab_mriqc.img mriqc --participant_label sub-CASL13100 -w /mnt/scratch/Mon/zqi /mnt/user/zqi/projects/CASL/Results/Imaging/openfmri/ /mnt/user/zqi/projects/CASL/Results/Imaging/qc participant```
+* the current docker-to-sigularity method does not load afni path correctly
+```singularity exec -B /om:/mnt -c poldracklab_mriqc.img bash -c "PATH=/usr/lib/afni/bin/:\$PATH mriqc --participant_label sub-CASL13100 -w /mnt/scratch/Mon/zqi /mnt/user/zqi/projects/CASL/Results/Imaging/openfmri/ /mnt/user/zqi/projects/CASL/Results/Imaging/qc participant"```
 
 ## [fmriprep](http://fmriprep.readthedocs.io/en/stable/installation.html)
 * copy singularity image to HPC
