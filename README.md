@@ -65,10 +65,14 @@ Singularity.base_validator>/usr/bin/bids-validator /mnt —verbose
 * Either use docker on local computer or signularity on HPC
 * on the server, cd into the docker image directory
 * the current docker-to-sigularity method does not load afni path correctly
-```singularity exec -B /om:/mnt -c poldracklab_mriqc.img bash -c "PATH=/usr/lib/afni/bin/:\$PATH mriqc --participant_label sub-CASL13100 -w /mnt/scratch/Mon/zqi /mnt/user/zqi/projects/CASL/Results/Imaging/openfmri/ /mnt/user/zqi/projects/CASL/Results/Imaging/qc participant"```
+```
+singularity exec -B /om:/mnt -c poldracklab_mriqc.img bash -c "PATH=/usr/lib/afni/bin/:\$PATH mriqc --participant_label sub-CASL13100 -w /mnt/scratch/Mon/zqi /mnt/user/zqi/projects/CASL/Results/Imaging/openfmri/ /mnt/user/zqi/projects/CASL/Results/Imaging/qc participant"
+```
 
 ## [fmriprep](http://fmriprep.readthedocs.io/en/stable/installation.html)
 * copy singularity image to HPC
 * on the server, cd into the docker image directory
-```singularity exec -B /om:/mnt -c poldracklab_fmriprep_latest-2017-01-13-98bd99012ac2.img fmriprep --participant_label sub-CASL13100 -w /mnt/scratch/Mon/zqi /mnt/user/zqi/projects/CASL/Results/Imaging/openfmri/ -s ses-pre --task-id sent /mnt/user/zqi/projects/CASL/Results/Imaging/fmriprep_out participant```
+```
+singularity exec -B /om:/mnt -c poldracklab_fmriprep_latest-2017-01-13-98bd99012ac2.img fmriprep --participant_label sub-CASL13100 -w /mnt/scratch/Mon/zqi /mnt/user/zqi/projects/CASL/Results/Imaging/openfmri/ -s ses-pre --task-id sent /mnt/user/zqi/projects/CASL/Results/Imaging/fmriprep_out participant
+```
 
