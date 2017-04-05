@@ -53,6 +53,7 @@ python merge_session.py
 * on openmind: combine singularity with docker
 ··* create a directory to copy a docker image onto a singularity container
 ```
+$ srun -N1 -c2 -t 1:0:0 --mem=20G --pty bash
 $ export SINGULARITY_CACHEDIR=$PWD
 $ singularity -c shell docker://bids/base_validator
 Singularity.base_validator> exit
@@ -61,7 +62,7 @@ Singularity.base_validator> exit
 ··* mounting directory to singularity container and run bids validator
 ```
 $ singularity shell -B /om/user/zqi/projects/CASL/Results/Imaging/openfmri/:/mnt -c bids-validator/bids/base_validator/
-Singularity.base_validator>/usr/bin/bids-validator /mnt —verbose
+Singularity.base_validator>/usr/bin/bids-validator /mnt
 ```
 ## [mriqc](http://mriqc.readthedocs.io/en/latest/)
 * Either use docker on local computer or signularity on HPC

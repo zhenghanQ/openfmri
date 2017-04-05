@@ -1,0 +1,5 @@
+current issue:
+missing "taskname" for resting scans
+task filenames missing hyphens between task and run
+
+heuristic py file has been fixed.

@@ -22,10 +22,10 @@ def infotodict(seqinfo):
     fm_rest = create_key('fmap/sub-{subject}_task-rest_run-{item:03d}_epi')
     rs_multi = create_key('func/sub-{subject}_task-mb_run-{item:03d}_bold')
     fm_task = create_key('fmap/sub-{subject}_task-bold_run-{item:03d}_epi')
-    sent = create_key('func/sub-{subject}_task-sent_run{item:03d}_bold')
-    srt=create_key('func/sub-{subject}_task-srt_run{item:03d}_bold')
-    tone=create_key('func/sub-{subject}_task-tone_run{item:03d}_bold')
-    nback=create_key('func/sub-{subject}_task-nback_run{item:03d}_bold')
+    sent = create_key('func/sub-{subject}_task-sent_run-{item:03d}_bold')
+    srt=create_key('func/sub-{subject}_task-srt_run-{item:03d}_bold')
+    tone=create_key('func/sub-{subject}_task-tone_run-{item:03d}_bold')
+    nback=create_key('func/sub-{subject}_task-nback_run-{item:03d}_bold')
     info = {rs:[], dwi:[], t1:[], fm_rest:[], rs_multi:[], fm_task:[], sent:[], srt:[], tone:[], nback:[]}
     
     for s in seqinfo:
