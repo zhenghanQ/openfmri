@@ -30,7 +30,7 @@ Start out running heudiconv without any converter, just passing in dicoms.
 heudiconv -d $DICOMPATH/%s/*.dcm -f convertall.py -c none -s $YOUR_SUBJECT
 '''
 ## generate a heuristic file according to the dicominfo.txt
-* [example]( https://github.com/nipy/heudiconv/blob/master/heuristics/cmrr_heuristic.py)
+* [example](https://github.com/nipy/heudiconv/blob/master/heudiconv/heuristics/cmrr_heuristic.py)
 
 ## run heudiconv
 ```
